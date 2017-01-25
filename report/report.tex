@@ -1,0 +1,458 @@
+%
+% OpenDCS Proposal
+%
+% Author: Geoff Johnson
+%
+% To compile: pdflatex --shell-escape --synctex=1 --interaction=nonstopmode report.tex
+%
+
+\documentclass[11pt]{article}
+
+\usepackage[titles]{tocloft}
+\usepackage{verbatim}
+\usepackage[pdftex]{graphics,graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{booktabs}
+\usepackage{pdfpages}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{biblatex}
+\usepackage{svg}
+\usepackage{tikz}
+\usepackage{listings,lstautogobble}
+\usepackage[tablegrid]{vhistory}
+\usetikzlibrary{arrows}
+\bibliography{references}
+
+\usepackage{hyperref}
+\hypersetup{%
+  pdfauthor={Geoff Johnson},
+  pdftitle={OpenDCS Project Report},
+  pdfsubject={Project Report},
+  pdfkeywords={OpenDCS Project Report},
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue
+}
+
+% Change listing setup.
+\definecolor{sol-basic}{RGB}{101,123,131} % Base0
+\definecolor{sol-comment}{RGB}{147,161,161} % Base1
+\definecolor{sol-keyword}{RGB}{133,153,0} % Green
+\definecolor{sol-string}{RGB}{203,75,22} % Orange
+\definecolor{sol-emph}{RGB}{211,54,130} % Magenta
+\definecolor{sol-background}{RGB}{253,246,227} % Base3
+
+\lstset{
+  language=xml,
+  backgroundcolor=\color{sol-background},
+  identifierstyle=\ttfamily,
+  basicstyle=\footnotesize\ttfamily\color{sol-basic},
+  keywordstyle=\color{sol-keyword},
+  commentstyle=\color{sol-comment},
+  stringstyle=\color{sol-string},
+  emph={dcs,objects,object,property},
+  emphstyle={\color{sol-emph}},
+  tabsize=4,
+  aboveskip={1.5\baselineskip},
+  columns=fixed,
+  inputencoding=utf8,
+  extendedchars=true,
+  breaklines=true,
+  prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+  frame=single,
+  showtabs=false,
+  showspaces=false,
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny,
+  breakatwhitespace=true,
+  title=\lstname,
+  literate={│}{{\textSFxi}}1 {└}{{\textSFii}}1 {├}{{\textSFviii}}1 {─}{{\textSFx}}1,
+  autogobble=true,
+}
+
+% Packages used for appendices.
+\usepackage{appendix}
+\usepackage{listings}
+\usepackage{color}
+\definecolor{light-gray}{gray}{0.95}
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\definecolor{light-blue}{rgb}{0.6,0.720,0.85}
+
+% The default margins are too wide all the way around, reset them.
+\setlength{\topmargin}{-.5in}
+\setlength{\textheight}{9in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+
+% Change paragraph formatting.
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2ex}
+
+\begin{document}
+\nocite{*}
+
+  \title{%
+    OpenDCS $-$ An Open Distributed Control System\vspace{2em}
+  }
+
+  \author{%
+    Geoff Johnson \vspace{0.5em} \\
+    geoff.jay@gmail.com \vspace{0.5em} \\
+    A00533481 \vspace{0.5em} \\
+    COMP8045 \vspace{0.5em}
+  }
+
+  \maketitle
+  \thispagestyle{empty}
+  \newpage
+  \mbox{}
+  \thispagestyle{empty}
+
+  \newpage
+  \addtocounter{page}{-1}
+  \pagenumbering{roman}
+  \tableofcontents
+  \listoffigures
+  \listoftables
+  \lstlistoflistings
+
+  \newpage
+  \pagenumbering{arabic}
+
+  % XXX fill in or omit sections as needed, for now just blasting ideas
+
+  \section{Project Description}\label{sec:desc}
+
+    \subsection{Background}\label{sec:desc-bg}
+
+  \section{Requirements}\label{sec:req}
+
+    The stakeholders that have been identified from Coanda are:
+
+    \begin{table}[H]
+      \centering
+      \begin{tabular}{l p{6cm} p{6cm}}
+        \toprule
+        Name & Organization Role & Project Role \\ [0.5ex]
+        \midrule
+        Geoff Johnson & Software Developer        & Project Lead \\
+        Stephen Roy   & Software Developer        & Contributor \\
+        Scott Webster & Research Scientist        & Requirements Contributor \\
+        Thomas Depew  & Instrumentation Scientist & Requirements Contributor \\
+        Bernie LeSage & Chief Operations Officer  & Project Reviewer \\
+        \bottomrule
+      \end{tabular}
+      \caption{Project Stakeholders}\label{tab:stakeholders}
+    \end{table}
+
+    \subsection{Raw List from Project Stakeholders}\label{sec:req-sh}
+
+      \begin{table}[H]
+        \centering
+        \begin{tabular}{l p{11cm} p{3cm}}
+          \toprule
+          Number & Description & Priority (1-5)\newline 1 is highest \\ [0.5ex]
+          \midrule
+          1 & Devices must be loaded as plugins & 1 \\
+          \bottomrule
+        \end{tabular}
+        \caption{Initial Requirements List}\label{tab:requirements}
+      \end{table}
+
+    \subsection{Analysis}\label{sec:req-analyze}
+
+    \subsection{System Requirements Specifications}\label{sec:req-srs}
+
+      \subsubsection{Core Library}\label{sec:req-srs-core}
+
+      \subsubsection{Data Acquisition Library}\label{sec:req-srs-daq}
+
+      \subsubsection{Data Logging Library}\label{sec:req-srs-log}
+
+      \subsubsection{Process Control Library}\label{sec:req-srs-ctl}
+
+      \subsubsection{Device Plugins}\label{sec:req-srs-dev-plug}
+
+      \subsubsection{Logging Plugins}\label{sec:req-srs-log-plug}
+
+      \subsubsection{Control Plugins}\label{sec:req-srs-ctl-plug}
+
+      \subsubsection{Data Acquisition Daemon}\label{sec:req-srs-daqd}
+
+      \subsubsection{Data Logging Daemon}\label{sec:req-srs-logd}
+
+      \subsubsection{Process Control Daemon}\label{sec:req-srs-ctld}
+
+  \section{Design}\label{sec:dsg}
+
+  \section{Modeling}\label{sec:mod}
+
+    \subsection{Use Cases}\label{sec:mod-use}
+
+      % good example of use case in "Bootstrap grids day 2" http://www.bossable.com/577/mean-stack-bootstrap/
+
+  \section{Development}\label{sec:dev}
+
+    \subsection{Autotools Build Systems}\label{sec:dev-ac}
+
+  \section{Installation}\label{sec:inst}
+
+    \subsection{Environment}\label{sec:inst-env}
+
+    \subsection{Dependencies}\label{sec:inst-dep}
+
+    \subsection{Containerized Components}\label{sec:inst-cont}
+
+  \section{Configuration}\label{sec:cfg}
+
+    For all OpenDCS objects that are the type \emph{Object} configuration can be
+    represented for \emph{property} as data, \emph{id} and \emph{type} as
+    attributes, and additionally \emph{property} should have a \emph{name}
+    attribute. For all that are the type \emph{Container} will have as an
+    addition an array of \emph{Object} nodes.
+
+    \subsection{XML Format}\label{sec:cfg-xml}
+
+      Object:
+
+      \begin{lstlisting}[caption={Object Configuration in XML},label={lst:cfg-xml-obj}]
+        <core:object id="ds0" type="data-series">
+          <property name="buffer-size">100</property>
+          <property name="stride">10</property>
+        </core:object>
+      \end{lstlisting}
+
+      Container:
+
+      \begin{lstlisting}[caption={Container Configuration in XML},label={lst:cfg-xml-ctr}]
+        <core:object id="" type="">
+          <property name=""></property>
+          <core:object id="" type="" />
+          <core:object id="" type="" />
+        </core:object>
+      \end{lstlisting}
+
+      Nested Containers:
+
+      \begin{lstlisting}[caption={Nested Container Configuration in XML},label={lst:cfg-xml-ctr}]
+        <core:object id="" type="">
+          <property name=""></property>
+          <core:object id="" type="">
+            <property name=""></property>
+            <core:object id="" type="" />
+            <core:object id="" type="" />
+          </core:object>
+        </core:object>
+      \end{lstlisting}
+
+    \subsection{JSON Format}\label{sec:cfg-json}
+
+      Object:
+
+      \begin{lstlisting}[caption={Object Configuration in JSON},label={lst:cfg-json-obj}]
+        {
+          "id": "ds0",
+          "type": "data-series",
+          "properties": [
+            { "name": "buffer-size", "value": 100 },
+            { "name": "stride", "value": 10 }
+          ]
+        }
+      \end{lstlisting}
+
+      Container:
+
+      \begin{lstlisting}[caption={Container Configuration in JSON},label={lst:cfg-json-ctr}]
+        {
+          "id": "ctr0",
+          "type": "container",
+          "properties": [
+            { "name": "sample", "value": "sample" }
+          ],
+          "objects": [
+            { "id": "", "type": "" },
+            { "id": "", "type": "" }
+          ]
+        }
+      \end{lstlisting}
+
+      Nested Containers:
+
+      \begin{lstlisting}[caption={Nested Container Configuration in JSON},label={lst:cfg-json-ctr}]
+        {
+          "id": "ctr0",
+          "type": "container",
+          "properties": [
+            { "name": "sample", "value": "sample" }
+          ],
+          "objects": [
+            {
+              "id": "samp0",
+              "type": "sample",
+              "properties": [
+                { "name": "sample", "value": "sample" }
+              ],
+              "objects": [
+                { "id": "", "type": "" },
+                { "id": "", "type": "" }
+              ]
+            },
+          ]
+        }
+      \end{lstlisting}
+
+  \section{Testing}\label{sec:test}
+
+  \section{Results}\label{sec:res}
+
+  % Insert a list of references that were cited.
+  %\newpage
+  %\printbibliography%
+
+  % Appendices
+  \newpage
+  \addappheadtotoc%
+  \appendix
+  \appendixpage%
+
+  % Left over from a previous proposal document, edit later as needed.
+  \section{Glossary of Abbreviations and Terms}\label{app:glossary}
+
+    Abbreviations and terms used within this document for computing and
+    software related topics are given in Table~\ref{tab:gloss:sw}, and in
+    Table~\ref{tab:gloss:hw} for hardware and data acquisition related topics.
+
+    \begin{table}[H]
+      \centering
+      \begin{tabular}{l p{12cm}}
+        \toprule
+        Term & Definition/Explanation \\ [0.5ex]
+        \midrule
+        API & Application Programming interface \\
+        Client & Refers to the software application that communications with a daemon \\
+        Container & Operating system level virtualization similar to chroot jails \\
+        CRC & Cyclic Redundancy Check, an error checking mechanism \\
+        CRUD & Create, Read, Update, Delete \\
+        Daemon & Common term used to refer to a server application in a Linux system \\
+        DevOps & A practice emphasizing collaboration between developers and IT professionals \\
+        Docker & Container software applications used for DevOps and SysOps \\
+        GLib & Standard set of Linux system libraries for the GNOME window manager \\
+        GNU & A collection of applications, libraries, and developer tools \\
+        GNOME & Open source dekstop environment software used with Linux systems \\
+        GObject & A C type library to gain object oriented style features \\
+        GUI & Graphical User Interface \\
+        OSS & Open Source Software \\
+        Perl & A high level programming language good for rapid development \\
+        REST & Representational State Transfer \\
+        RS232 & Serial communication devices that has been ubiquitous for decades \\
+        SDD & Software Specification Design Document \\
+        SRS & Software Requirements Specification \\
+        SysOps & System operator of a multi-user computing system \\
+        UML & Unified Modeling Language \\
+        Vala & An object oriented programming language that uses GObject types \\
+        valadoc & A documentation standard and tool for creating API descriptions \\
+        XML & Extensible markup language, common for use in messaging systems \\
+        \bottomrule
+      \end{tabular}
+      \caption{Glossary of Software Terms}\label{tab:gloss:sw}
+    \end{table}
+
+    \begin{table}[H]
+      \centering
+      \begin{tabular}{l p{12cm}}
+        \toprule
+        Term & Definition/Explanation \\ [0.5ex]
+        \midrule
+        Comedi & Open source hardware drivers for Control and Measurement Devices \\
+        Container & Operating system level virtualization similar to chroot jails \\
+        Data Acquisition & The act of gathering data from a real world process \\
+        DAQ & Acronym for Data Acquisition \\
+        Plant & Term commonly used for industrial control systems \\
+        Watchdog & Standard concept for monitoring a vital systems heartbeat \\
+        \bottomrule
+      \end{tabular}
+      \caption{Glossary of Hardware Terms}\label{tab:gloss:hw}
+    \end{table}
+
+  \newpage
+
+  \section{Websites Referenced}\label{app:websites}
+
+    A list of websites that have been referenced in this document. These have
+    been presented here instead of wherever the hyperlink has been made
+    because in some cases very long URLs in printed documents can be less useful
+    than an active link in a digital one.
+
+    \begin{table}[H]
+      \centering
+      \begin{tabular}{l p{10cm}}
+        \toprule
+        Name & URL \\ [0.5ex]
+        \midrule
+        Coanda     & https://www.coanda.ca \\
+        CRUD       & https://en.wikipedia.org/wiki/Create,\_read,\_update\_and\_delete \\
+        dactl      & https://github.com/coanda/dactl \\
+        libcld     & https://github.com/geoffjay/libcld \\
+        Markdown   & https://en.wikipedia.org/wiki/Markdown \\
+        Unit tests & https://github.com/geoffjay/libcld/tree/master/tests \\
+        Valadoc    & http://valadoc.org \\
+        \bottomrule
+      \end{tabular}
+      \caption{URL Reference List}\label{tab:websites}
+    \end{table}
+
+  \newpage
+
+  \section{Sample Configurations}\label{app:configurations}
+
+    Configuration files (XML and JSON) that will have been referenced throughout
+    this document.
+
+    \begin{lstlisting}[caption={Complete Core Sample},label={lst:full-core}]
+      <?xml version="1.0"?>
+      <dcs xmlns:core="libdcs-core">
+        <property name="app">Sample</property>
+        <core:objects>
+          <core:object id="0" type="test"/>
+        </core:objects>
+      </dcs>
+    \end{lstlisting}
+
+    \begin{lstlisting}[caption={Complete DAQ Sample},label={lst:full-daq}]
+      <?xml version="1.0"?>
+      <dcs xmlns:core="urn:libdcs-core" xmlns:daq="urn:libdcs-daq">
+        <property name="app">Sample</property>
+        <core:objects>
+          <core:object id="0" type="test"/>
+        </core:objects>
+      </dcs>
+    \end{lstlisting}
+
+    \begin{lstlisting}[caption={Complete Log Sample},label={lst:full-log}]
+      <?xml version="1.0"?>
+      <dcs xmlns:core="urn:libdcs-core" xmlns:log="urn:libdcs-log">
+        <property name="app">Sample</property>
+        <core:objects>
+          <core:object id="0" type="test"/>
+        </core:objects>
+      </dcs>
+    \end{lstlisting}
+
+  \newpage
+
+  \section{Document Change Log}\label{app:changelog}
+
+    The table below serves to track the key revisions made to this document for
+    change control purposes.
+
+    \begin{versionhistory}
+      \vhEntry{0.1}{2016-12-28}{Geoff Johnson}{Create initial report (pages: all)}
+      %\vhEntry{}{}{}{}{}
+      %\vhEntry{}{}{}{}{}
+    \end{versionhistory}
+
+\end{document}

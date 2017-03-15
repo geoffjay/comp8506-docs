@@ -92,6 +92,9 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{2ex}
 
+% Add paragraph as a section number
+\setcounter{secnumdepth}{4}
+
 \begin{document}
 \nocite{*}
 
@@ -128,6 +131,8 @@
   \section{Project Description}\label{sec:desc}
 
     \subsection{Background}\label{sec:desc-bg}
+
+    \subsection{Proposed Implementation}\label{sec:desc-impl}
 
   \section{Requirements}\label{sec:req}
 
@@ -169,11 +174,15 @@
 
       \subsubsection{Core Library}\label{sec:req-srs-core}
 
+        \input{analysis/srs-libdcs-core}
+
       \subsubsection{Data Acquisition Library}\label{sec:req-srs-daq}
 
       \subsubsection{Data Logging Library}\label{sec:req-srs-log}
 
       \subsubsection{Process Control Library}\label{sec:req-srs-ctl}
+
+      \subsubsection{Services/Networking Library}\label{sec:req-srs-net}
 
       \subsubsection{Device Plugins}\label{sec:req-srs-dev-plug}
 
@@ -181,11 +190,11 @@
 
       \subsubsection{Control Plugins}\label{sec:req-srs-ctl-plug}
 
-      \subsubsection{Data Acquisition Daemon}\label{sec:req-srs-daqd}
+      \subsubsection{Data Acquisition Service}\label{sec:req-srs-daqd}
 
-      \subsubsection{Data Logging Daemon}\label{sec:req-srs-logd}
+      \subsubsection{Data Logging Service}\label{sec:req-srs-logd}
 
-      \subsubsection{Process Control Daemon}\label{sec:req-srs-ctld}
+      \subsubsection{Process Control Service}\label{sec:req-srs-ctld}
 
   \section{Design}\label{sec:dsg}
 
@@ -450,7 +459,10 @@
     change control purposes.
 
     \begin{versionhistory}
-      \vhEntry{0.1}{2016-12-28}{Geoff Johnson}{Create initial report (pages: all)}
+      \vhEntry{0.1}{2016-11-12}{Geoff Johnson}{Create initial report (pages: all)}
+      \vhEntry{0.2}{2016-12-28}{Geoff Johnson}{Add configuration section (pages: 4-5)}
+      \vhEntry{0.3}{2016-12-30}{Geoff Johnson}{Add appendices for glossary (pages: 6)}
+      \vhEntry{0.4}{2017-01-04}{Geoff Johnson}{Add boilerplate for SRS (pages: 3-5)}
       %\vhEntry{}{}{}{}{}
       %\vhEntry{}{}{}{}{}
     \end{versionhistory}

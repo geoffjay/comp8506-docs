@@ -380,153 +380,153 @@
         require the inclusion of the protocol as well as defining how a system
         designer would be expected to structure the end system.
 
-    \subsection{Development Process Model}\label{sec:soln-model}
+      \subsection{Development Process Model}\label{sec:soln-model}
 
-      The current system that is in place and developed by the client is done
-      so using what best fits the \emph{Rapid Application Development} process,
-      this project will instead use an \emph{Incremental Development} process.
-      Doing so leaves the project in a state at the end to either transition
-      back to what the client prefers, or continue on using a more rigorous but
-      still a reasonably fast paced methodology that can accomodate the needs
-      of the business.
+        The current system that is in place and developed by the client is done
+        so using what best fits the \emph{Rapid Application Development} process,
+        this project will instead use an \emph{Incremental Development} process.
+        Doing so leaves the project in a state at the end to either transition
+        back to what the client prefers, or continue on using a more rigorous but
+        still a reasonably fast paced methodology that can accomodate the needs
+        of the business.
 
-      Of significant concern for this project at the early phase is getting the
-      requirements and design in a state that they can be used for more than a
-      single iteration of the process, this is because the actual scope of such
-      a system would be much more than would be possible in the time given.
-      With that said, only a single full iteration is planned with extra
-      emphasis during the analysis and design stages, this will hopefully
-      reduce these in later iterations and allow for faster subsequent
-      iterations.
+        Of significant concern for this project at the early phase is getting the
+        requirements and design in a state that they can be used for more than a
+        single iteration of the process, this is because the actual scope of such
+        a system would be much more than would be possible in the time given.
+        With that said, only a single full iteration is planned with extra
+        emphasis during the analysis and design stages, this will hopefully
+        reduce these in later iterations and allow for faster subsequent
+        iterations.
 
-      \subsubsection{Analysis}\label{sec:soln-model-analysis}
+        \subsubsection{Analysis}\label{sec:soln-model-analysis}
 
-        During the analysis phase of the project all components will be
-        identified by the client, fortunately many of these are already known
-        so this is in part a review as well as a stage to catch additional unknown
-        concerns. Once the project stakeholders have been identified and these
-        have been defined the process of eliciting requirements will take place
-        in the form of a series of meetings, the results of which will be
-        recorded and used as input into the creation of SRS documents.
+          During the analysis phase of the project all components will be
+          identified by the client, fortunately many of these are already known
+          so this is in part a review as well as a stage to catch additional unknown
+          concerns. Once the project stakeholders have been identified and these
+          have been defined the process of eliciting requirements will take place
+          in the form of a series of meetings, the results of which will be
+          recorded and used as input into the creation of SRS documents.
 
-        After the process of gathering and analyzing the requirements has been
-        completed they will be recorded using use cases or process
-        specifications where applicable.
+          After the process of gathering and analyzing the requirements has been
+          completed they will be recorded using use cases or process
+          specifications where applicable.
 
-      \subsubsection{Design}\label{sec:soln-model-design}
+        \subsubsection{Design}\label{sec:soln-model-design}
 
-        The software design process will be made up of two key components. The
-        first is a series of \emph{Software Specification Design Documents}
-        (SDD), and the second is a set of UML diagrams for the object-oriented
-        libraries the are core to the system.
+          The software design process will be made up of two key components. The
+          first is a series of \emph{Software Specification Design Documents}
+          (SDD), and the second is a set of UML diagrams for the object-oriented
+          libraries the are core to the system.
 
-        The SDD for each component will describe at a minimum the criteria used
-        for completion, and any milestones. For any applications where an
-        interface is required, either graphical or otherwise, the SDD will
-        include content regarding what the interface is meant to provide. It is
-        unlikely that a graphical application will be a component of the design,
-        but there is a high likelihood that the daemon processes will have a
-        REST API that is the equivalent of the interface requiring a
-        description.
+          The SDD for each component will describe at a minimum the criteria used
+          for completion, and any milestones. For any applications where an
+          interface is required, either graphical or otherwise, the SDD will
+          include content regarding what the interface is meant to provide. It is
+          unlikely that a graphical application will be a component of the design,
+          but there is a high likelihood that the daemon processes will have a
+          REST API that is the equivalent of the interface requiring a
+          description.
 
-        Given that components of this project are object-oriented, it is
-        something that is sensible to include, if not required. UML is a method
-        of describing components of a system visually by representing
-        activities, components and their interactions, and any
-        interfaces~\citation{WikiUML2016}. Ideally, these diagrams would feed
-        into the Unit Test framework in a very significant manner.
+          Given that components of this project are object-oriented, it is
+          something that is sensible to include, if not required. UML is a method
+          of describing components of a system visually by representing
+          activities, components and their interactions, and any
+          interfaces~\citation{WikiUML2016}. Ideally, these diagrams would feed
+          into the Unit Test framework in a very significant manner.
 
-      \subsubsection{Implementation}\label{sec:soln-model-implementation}
+        \subsubsection{Implementation}\label{sec:soln-model-implementation}
 
-        The deployment target for this project is Linux and the various modern
-        distributions that relate to it, as such the tools used for the
-        implementation need to be ones that are consistent with it. This phase
-        consists of not only the actual code that is compiled into the end
-        result, but additional code projects that make up the build steps which
-        use autotools for example, the documentation which will use the valadoc
-        and possibly sphinx systems, and time permitting \emph{.deb}/\emph{.deb}
-        packaging persuant to client desires regarding ease of deployment.
+          The deployment target for this project is Linux and the various modern
+          distributions that relate to it, as such the tools used for the
+          implementation need to be ones that are consistent with it. This phase
+          consists of not only the actual code that is compiled into the end
+          result, but additional code projects that make up the build steps which
+          use autotools for example, the documentation which will use the valadoc
+          and possibly sphinx systems, and time permitting \emph{.deb}/\emph{.deb}
+          packaging persuant to client desires regarding ease of deployment.
 
-        Implementation will start with the build sections, where depending on
-        the language and platform used can be either autotools/automake in the
-        case where the code used is C or Vala, or a simple package system for
-        bundling where the code used is Node Javascript or Ruby.
+          Implementation will start with the build sections, where depending on
+          the language and platform used can be either autotools/automake in the
+          case where the code used is C or Vala, or a simple package system for
+          bundling where the code used is Node Javascript or Ruby.
 
-      \subsubsection{Testing}\label{sec:soln-model-testing}
+        \subsubsection{Testing}\label{sec:soln-model-testing}
 
-        Software testing will be achieved for this project in two ways
-        depending on the unit being tested. The subprojects that are developed
-        as libraries will have written an unit test system with the goal to
-        reach a percentage of code coverage that will be agreed upon with the
-        client during the requirements stage, this document has assumed a value
-        of 75$\%$ in Section~\ref{sec:eval}. Other subprojects that are
-        developed as network daemons will rely on test clients and functional
-        testing that will be developed to meet design specifications ultimately
-        defined by the client during the design stage.
+          Software testing will be achieved for this project in two ways
+          depending on the unit being tested. The subprojects that are developed
+          as libraries will have written an unit test system with the goal to
+          reach a percentage of code coverage that will be agreed upon with the
+          client during the requirements stage, this document has assumed a value
+          of 75$\%$ in Section~\ref{sec:eval}. Other subprojects that are
+          developed as network daemons will rely on test clients and functional
+          testing that will be developed to meet design specifications ultimately
+          defined by the client during the design stage.
 
-        The unit test framework that the author is familiar with is the
-        Vala/GObject classes and assertions that are part of those softwares,
-        an example of this can be seen in the
-        \href{https://github.com/geoffjay/libcld/tree/master/tests}{libcld} git
-        repository. This is object oriented when used with the Vala programming
-        language and will therefore match well with the proposed development of
-        the suite of libraries required to make this project successful.
+          The unit test framework that the author is familiar with is the
+          Vala/GObject classes and assertions that are part of those softwares,
+          an example of this can be seen in the
+          \href{https://github.com/geoffjay/libcld/tree/master/tests}{libcld} git
+          repository. This is object oriented when used with the Vala programming
+          language and will therefore match well with the proposed development of
+          the suite of libraries required to make this project successful.
 
-        For the daemon application development it makes more sense to develop
-        testing systems that are functional in nature as the actual functionality
-        of the system is what needs to be tested. To achieve useful results the
-        functional testing will be split into:
+          For the daemon application development it makes more sense to develop
+          testing systems that are functional in nature as the actual functionality
+          of the system is what needs to be tested. To achieve useful results the
+          functional testing will be split into:
 
-        \begin{itemize}
-          \item \textbf{Network Design} - Validate from each system that every
-                other networked system is visible and configured appropriately
-                for communication. Unfortunately ZeroMQ can not be monitored
-                using tcpdump or Wireshark at this time so custom test clients
-                must be developed for evaluation.
-          \item \textbf{Configuration} - Validate that the configuration of
-                all daemon processes and the internal data models are coherent
-                in terms of structure and their capacity for internal
-                reference.
-          \item \textbf{Configuration Validation} - Validate the configuration
-                of all daemon processes in terms of syntax by creating schema
-                definitions and having a test stage which applies it to the
-                configuration provided.
-          \item \textbf{Transmission Completion} - Validate the transmission
-                as received by any subscribing system to the publishing system
-                by creating several known messages which can be requested, for
-                each a CRC will be calculated and known to both sides of the
-                transmission.
-        \end{itemize}
+          \begin{itemize}
+            \item \textbf{Network Design} - Validate from each system that every
+                  other networked system is visible and configured appropriately
+                  for communication. Unfortunately ZeroMQ can not be monitored
+                  using tcpdump or Wireshark at this time so custom test clients
+                  must be developed for evaluation.
+            \item \textbf{Configuration} - Validate that the configuration of
+                  all daemon processes and the internal data models are coherent
+                  in terms of structure and their capacity for internal
+                  reference.
+            \item \textbf{Configuration Validation} - Validate the configuration
+                  of all daemon processes in terms of syntax by creating schema
+                  definitions and having a test stage which applies it to the
+                  configuration provided.
+            \item \textbf{Transmission Completion} - Validate the transmission
+                  as received by any subscribing system to the publishing system
+                  by creating several known messages which can be requested, for
+                  each a CRC will be calculated and known to both sides of the
+                  transmission.
+          \end{itemize}
 
-      \subsubsection{Deployment}\label{sec:soln-model-deploy}
+        \subsubsection{Deployment}\label{sec:soln-model-deploy}
 
-        The project will be managed as a series of \emph{git} repositories hosted
-        on \emph{github.org} using the name `OpenDCS' under an organization named
-        `open-dcs', `opendcs' has unfortunately already been claimed. This
-        organization and the repositories within will provide the documentation
-        necessary to allow any user of the system to build from source all of the
-        components. Wherever possible continuous integration will be used to
-        verify the current build status of the projects, this status will be shown
-        using badges in the README sections of each of the projects making it
-        visible to the user what state the software is currently in.
+          The project will be managed as a series of \emph{git} repositories hosted
+          on \emph{github.org} using the name `OpenDCS' under an organization named
+          `open-dcs', `opendcs' has unfortunately already been claimed. This
+          organization and the repositories within will provide the documentation
+          necessary to allow any user of the system to build from source all of the
+          components. Wherever possible continuous integration will be used to
+          verify the current build status of the projects, this status will be shown
+          using badges in the README sections of each of the projects making it
+          visible to the user what state the software is currently in.
 
-        Realistically, reaching a stable 1.0 release of everything contained in
-        this project prior to the completion date is not feasible. Part of a
-        stable release would be the creation of distributable packages, eg.
-        \emph{.deb/.rpm/.dmg/.msi}, for their corresponding operating systems.
-        However, it may make sense at some point during development to be able
-        to install the software using a package management utility in Linux and use
-        an automated build system such as Copr or Launchpad to aide in the creation
-        of \emph{.rpm} or \emph{.deb}. This would be an ideal deployment strategy,
-        but will only be done if installation from source is for some reason deemed
-        to be excessively complex.
+          Realistically, reaching a stable 1.0 release of everything contained in
+          this project prior to the completion date is not feasible. Part of a
+          stable release would be the creation of distributable packages, eg.
+          \emph{.deb/.rpm/.dmg/.msi}, for their corresponding operating systems.
+          However, it may make sense at some point during development to be able
+          to install the software using a package management utility in Linux and use
+          an automated build system such as Copr or Launchpad to aide in the creation
+          of \emph{.rpm} or \emph{.deb}. This would be an ideal deployment strategy,
+          but will only be done if installation from source is for some reason deemed
+          to be excessively complex.
 
-        Another possibility for deployment would be use Docker, container software
-        which is growing in popularity for simplifying in the SysOps and DevOps
-        processes. Creation of a Dockerfile for each project component would not
-        be a complicated addition and may happen organically during the development
-        life-cycle because of what it offers towards automating testing and any
-        changes in required infrastructure.
+          Another possibility for deployment would be use Docker, container software
+          which is growing in popularity for simplifying in the SysOps and DevOps
+          processes. Creation of a Dockerfile for each project component would not
+          be a complicated addition and may happen organically during the development
+          life-cycle because of what it offers towards automating testing and any
+          changes in required infrastructure.
 
     % Existing technologies needed to realize a solution.
     %\subsection{Hardware Requirements}\label{sec:soln-tech-hw}

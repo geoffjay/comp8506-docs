@@ -1,0 +1,813 @@
+\section{Requirements}\label{sec:req}
+
+  The stakeholders that have been identified from Coanda are:
+
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{l p{6cm} p{6cm}}
+      \toprule
+      Name & Organization Role & Project Role \\ [0.5ex]
+      \midrule
+      Geoff Johnson & Software Developer        & Project Lead \\
+      Stephen Roy   & Software Developer        & Contributor \\
+      Scott Webster & Research Scientist        & Requirements Contributor \\
+      Thomas Depew  & Instrumentation Scientist & Requirements Contributor \\
+      Bernie LeSage & Chief Operations Officer  & Project Reviewer \\
+      \bottomrule
+    \end{tabular}
+    \caption{Project Stakeholders}\label{tab:stakeholders}
+  \end{table}
+
+  \subsection{Raw List from Project Stakeholders}\label{sec:req-sh}
+
+    During a meeting with project contributors at the beginning of the
+    requirements gathering process the question ``What would you like to be
+    able to do with the system'' was posed. A summary of the responses is
+    given below in Table~\ref{tab:requirements} where each may or may not
+    be directly applicable to this stage of the project. For instance elements
+    of the user interface that are of interest are not a component of this
+    work, instead what will be attempted with these is an analysis of how the
+    system can be structured to support that development in the future.
+
+    \begin{table}[H]
+      \centering
+      \begin{tabular}{l p{11cm} p{3cm}}
+        \toprule
+        Number & Description & Priority (1-5)\newline 1 is highest \\ [0.5ex]
+        \midrule
+         1 & Devices must be loaded as plugins & 1 \\
+         2 & Want to run any service on a RaspberryPI & 3 \\
+         3 & Like to run HMI on Windows systems & 5 \\
+         4 & Messages from services should be test-able using curl & 2 \\
+         5 & Data stream monitoring should be possible using tcpdump-like utility & 2 \\
+         6 & Message compression and decompression using msgpack is desired & 3 \\
+         7 & Configuration for all components needs to be consistent and similar to existing format used by libcld and dactl & 1 \\
+         8 & About/help systems for components should show versions and patches in use & 2 \\
+         9 & Must be able to develop plugins in Python as well as C/Vala & 1 \\
+        10 & Plugin skeletons should be possible to generate from templates & 3 \\
+        11 & Must be able to run any individual component on the same or separate host & 2 \\
+        12 & Plotting data in some format is a must & 2 \\
+        13 & The data logger data must be query-able from that service over a given date and time range & 1 \\
+        \bottomrule
+      \end{tabular}
+      \caption{Initial Requirements List}\label{tab:requirements}
+    \end{table}
+
+    \begin{table}[H]
+      \centering
+      \begin{tabular}{l p{11cm} p{3cm}}
+        \toprule
+        Number & Description & Priority (1-5)\newline 1 is highest \\ [0.5ex]
+        \midrule
+        14 & Time synchronization between the services that run on different computers should be possible & 5 \\
+        15 & Some method of broadcasting to the services should be provided for messages that apply to the system as a whole & 3 \\
+        16 & Must be able to acquire data from different devices and device types & 1 \\
+        17 & Logging data to plain text is a must, to special binary formats is a nice to have & 1 \\
+        18 & Must be able to perform feedback control of actuators using acquired data & 1 \\
+        19 & Documentation needs to be available to provide end users the know how to launch the services & 3 \\
+        20 & Documentation needs to be available to describe how to configure the services & 3 \\
+        21 & The build process should allow you to compile and install individual components as well as the system as a whole & 4 \\
+        22 & Data needs to be available over networked computers & 2 \\
+        23 & A well structured messaging format needs to be defined for other services and consumers to adhere to & 2 \\
+        24 & ZeroMQ should be used as the message queue system & 1 \\
+        25 & Services should also provide a RESTful API to make their information available to other software regardless of the language used to develop it & 2 \\
+        26 & Data acquisition devices need to be developed as plugins that are loaded into the DAQ service & 1 \\
+        27 & Data logging backends like XML or databases need to be developed as plugins that are loaded into the data logging service & 1 \\
+        28 & Feedback controllers need to be developed as plugins that are loaded into the control service & 1 \\
+        29 & Would be nice to be able to test and possibly distribute the different services as Dockerized applications & 4 \\
+        30 & Should be able to build and load the various plugins for the system using documentation provided & 3 \\
+        31 & Should be able to install any system component by following the documentation provided & 1 \\
+        32 & Should be able to configure any system component by following the documentation provided & 2 \\
+        33 & Should be able to test any system component by following the documentation provided & 3 \\
+        \bottomrule
+      \end{tabular}
+      \caption{Initial Requirements List Continued}\label{tab:requirements}
+    \end{table}
+
+  \subsection{Analysis}\label{sec:req-analyze}
+
+  \subsection{System Requirements Specifications}\label{sec:req-srs}
+
+    The system requirements for OpenDCS are described in this section, it
+    contains information about the functionality of the system as a whole.
+    OpenDCS is a platform that has the potential to integrate with electrical
+    and mechanical systems so it is necessary to comment on the software
+    interactions with such systems, but due to the nature of the design it
+    would be impossible to enforce strict rules governing external systems
+    that are mechanical, electrical and software.
+
+    This section contains all of the functional and quality requirements of
+    the system. A detailed description of the system and all its features is
+    given. The following is a list of the abbreviations and acronyms used to
+    document these requirements.
+
+    \begin{itemize}
+      \setlength{\itemindent}{.5in}
+      \itemsep .15em
+      \item[ID:] requirement identifier
+      \item[TAG:] short form of name
+      \item[DESC:] description
+      \item[RAT:] rationale
+      \item[DEP:] dependencies
+      \item[GIST:] rough summary
+      \item[SCALE:] the unit for the req to be measured in
+      \item[METER:] the way in which the measurement will be performed, can specify test
+      \item[PAST:] benchmark typ. for products dev'd in past
+      \item[REC:] (record) benchmark represents best value achieved for meter
+      \item[MUST:] minimal goal value
+      \item[PLAN:] desired goal value
+      \item[WISH:] ideal goal value
+    \end{itemize}
+
+    \subsubsection{External Interface Requirements}\label{sec:req-srs-func}
+
+      \paragraph{User Interfaces}
+
+      \paragraph{Hardware Interfaces}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] HWIR-0001
+          \item[TAG:] RS-232 Serial Port
+          \item[DESC:] A serial port data acquisition device should be able
+            to connect to the system.
+          \item[RAT:] Plugin device development will make use of serial port
+            core functionality.
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] HWIR-0002
+          \item[TAG:] Ethernet
+          \item[DESC:] The system shall communicate using 10BASE-T,
+            100BASE-TX and 1000BASE-T.
+          \item[RAT:] The physical system components connect to the network
+            using Ethernet.
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] HWIR-0003
+          \item[TAG:] Number of Ethernet Ports
+          \item[DESC:] The number of ports required shall depend on how the
+            system configuration for a particular application and whether it
+            needs to connect to remote hardware.
+          \item[RAT:] Multiple physical hosts can be used to configure a
+            system of services.
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] HWIR-0004
+          \item[TAG:] Processor speed
+          \item[DESC:] The system components shall each have a 400 MHz or
+            faster processor.
+          \item[RAT:] The software requires a reasonably fast processor to
+            handle the data and run a user interface.
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] HWIR-0005
+          \item[TAG:] Display
+          \item[DESC:] A 1920 x 1080 (16:9) monitor should be used.
+          \item[RAT:] A good user experience that represents a reasonable
+            amount of data necessarily requires a display with sufficient
+            resolution.
+        \end{itemize}
+
+      \paragraph{Software Interfaces}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] SWIR-0001
+          \item[TAG:] Operating System
+          \item[DESC:] The software architecture shall be 64-bit GNU/Linux
+            (e.g. Fedora 25)
+          \item[RAT:] The system is intended to be compiled with modern
+            software dependencies available in newer Linux distributions.
+        \end{itemize}
+
+      \paragraph{Communications Interfaces}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] CIR-0001
+          \item[TAG:] ZeroMQ
+          \item[DESC:] The system shall use ZeroMQ for publishing and
+            subscribing to service data, and to request and reply to
+            individual components.
+          \item[RAT:] A messaging system is required for easily extending the
+            service oriented architecture, ZeroMQ offers a lot of options for
+            future concepts.
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] CIR-0002
+          \item[TAG:] REST
+          \item[DESC:] Each service of the system shall provide a RESTful API
+            for data access to external components that need/prefer to use
+            HTTP requests.
+          \item[RAT:] Having this API available to application developers
+            simplifies the time required to do simple tasks.
+        \end{itemize}
+
+    \subsubsection{Functional Requirements}\label{sec:req-srs-func}
+
+      \paragraph{Common Requirements}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] FR-0001
+          \item[TAG:] Connectivity
+          \item[DESC:] Requirements that enable communication between and are
+            common to all system components that shall be met.
+          \item[RAT:] Interoperability of the system components requires a
+            common messaging queue.
+          \item[DEP:] FR-0002, FR-0003, FR-0004
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] FR-0002
+          \item[TAG:] Publishing Socket
+          \item[DESC:] A configurable ZeroMQ publishing socket shall be
+            available.
+          \item[RAT:] A service shall be able to publish data on a ZeroMQ
+            socket.
+          \item[DEP:] none
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] FR-0003
+          \item[TAG:] Subscribing Socket
+          \item[DESC:] A configurable ZeroMQ subscribing socket shall be
+            available.
+          \item[RAT:] A service can subscribe to published data from other
+            system components.
+          \item[DEP:] none
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] FR-0004
+          \item[TAG:] Request/Reply Socket
+          \item[DESC:] A ZeroMQ request/reply socket shall be available.
+          \item[RAT:] A service can request and receive data from a connected
+            system component.
+          \item[DEP:] none
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] FR-0005
+          \item[TAG:] Device Plugin System
+          \item[DESC:] A libpeas plugin system must be available to load data
+            acquisition devices.
+          \item[RAT:] The data acquisition service will get its data to
+            transmit from device plugins that are loaded at runtime.
+          \item[DEP:] none
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] FR-0006
+          \item[TAG:] Logging Backend Plugin System
+          \item[DESC:] A libpeas plugin system must be available to load data
+            logging backends.
+          \item[RAT:] The data logging service will log the data it receives
+            to backend plugins that are loaded at runtime.
+          \item[DEP:] none
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] FR-0007
+          \item[TAG:] Feedback Controller Plugin System
+          \item[DESC:] A libpeas plugin system must be available to load
+            feedback controllers.
+          \item[RAT:] The feedback control service will use data that it
+            receives to perform feedback control using plugins that are
+            loaded at runtime.
+          \item[DEP:] none
+        \end{itemize}
+
+      \paragraph{Data Acquisition}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] DSFR-0001
+          \item[TAG:] Data acquisition common system requirements
+          \item[DESC:] The common service requirements shall be met.
+          \item[RAT:]
+          \item[DEP:] FR-0001
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] DSFR-0002
+          \item[TAG:] Publish Data Messages
+          \item[DESC:] Data messages shall be published on the socket
+            containing channel measurements, timestamps, and broadcast
+            status/warnings.
+          \item[RAT:]
+          \item[DEP:] FR-0002
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] DSFR-0003
+          \item[TAG:] Subscribe to Data Messages
+          \item[DESC:] The data acquisition system component shall be able to
+            subscribe to published messages.
+          \item[RAT:]
+          \item[DEP:] FR-0003
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] DSFR-0004
+          \item[TAG:] Start
+          \item[DESC:] The data acquisition system component shall start
+            publishing data in response to a request to do so if it has not
+            already started.
+          \item[RAT:]
+          \item[DEP:] FR-0002
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] DSFR-0005
+          \item[TAG:] Stop
+          \item[DESC:] The data acquisition system component shall stop
+            publishing data in response to a request to do so.
+          \item[RAT:]
+          \item[DEP:] FR-0002
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] DSFR-0006
+          \item[TAG:] Automatic Start
+          \item[DESC:] The data acquisition system component shall start
+            publishing data immediately.
+          \item[RAT:]
+          \item[DEP:] FR-0002
+        \end{itemize}
+
+      \paragraph{Data Logging}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] LSFR-0001
+          \item[TAG:] Data logging common system requirements
+          \item[DESC:] The common service requirements shall be met.
+          \item[RAT:]
+          \item[DEP:] FR-0001
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] LSFR-0002
+          \item[TAG:] Publish backend malfunction warning
+          \item[DESC:] Data messages shall be published as a warning when its
+            back end data storage is not functioning.
+          \item[RAT:] To allow the subscribing GUI interface to alert the
+            user.
+          \item[DEP:] FR-0002
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] LSFR-0003
+          \item[TAG:] Subscribe to published data from data acquisition system.
+          \item[DESC:]
+          \item[RAT:]
+          \item[DEP:] FR-0003
+        \end{itemize}
+
+      \paragraph{Feedback Control}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] CSFR-0001
+          \item[TAG:] Feedback control common system requirements
+          \item[DESC:] The common service requirements shall be met.
+          \item[RAT:]
+          \item[DEP:] FR-0001
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] CSFR-0002
+          \item[TAG:] Subscribe to input data
+          \item[DESC:] The feedback control system will subscribe to
+            published data from the data acquisition system and filter out
+            the channel measurement data that it needs.
+          \item[RAT:] Input data is required for its calculations.
+          \item[DEP:] FR-0003
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] CSFR-0003
+          \item[TAG:] Publish output data
+          \item[DESC:] The feedback control system shall publish the data
+            resultant of it calculations.
+          \item[RAT:] Output data is required to control process variable
+            outputs.
+          \item[DEP:] FR-0002
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] CSFR-0004
+          \item[TAG:] Perform Feedback Control
+          \item[DESC:] Feedback control of hardware performed by the service
+            must be possible.
+          \item[RAT:] Hardware control is fundamental to a distributed
+            control system.
+          \item[DEP:] FR-0002, FR-0003, CSFR-0002, CSFR-0003
+        \end{itemize}
+
+    \subsubsection{Non-Functional Requirements}\label{sec:req-srs-func}
+
+      \paragraph{Performance}
+
+        The requirements in this section provide a detailed specification of
+        the user interaction with the software and measurements placed on the
+        system performance.
+
+        Usage of the data log query feature
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-0001
+          \item[GIST:] Data log query response time.
+          \item[SCALE:]
+          \item[METER:]
+          \item[MUST:]
+          \item[PLAN:]
+          \item[WISH:]
+        \end{itemize}
+
+        Usage of the data acquisition message publish feature
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-0002
+          \item[GIST:]
+          \item[SCALE:]
+          \item[METER:]
+          \item[MUST:]
+          \item[PLAN:]
+          \item[WISH:]
+        \end{itemize}
+
+        Usage of the data acquisition message subscribe feature
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-0003
+          \item[GIST:]
+          \item[SCALE:]
+          \item[METER:]
+          \item[MUST:]
+          \item[PLAN:]
+          \item[WISH:]
+        \end{itemize}
+
+        Configuration modification request response time
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-0004
+          \item[GIST:]
+          \item[SCALE:]
+          \item[METER:]
+          \item[MUST:]
+          \item[PLAN:]
+          \item[WISH:]
+        \end{itemize}
+
+        Configuration information request response time
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-0005
+          \item[GIST:]
+          \item[SCALE:]
+          \item[METER:]
+          \item[MUST:]
+          \item[PLAN:]
+          \item[WISH:]
+        \end{itemize}
+
+        Sample rate capacity of data acquisition service
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-0006
+          \item[GIST:]
+          \item[SCALE:]
+          \item[METER:]
+          \item[MUST:]
+          \item[PLAN:]
+          \item[WISH:]
+        \end{itemize}
+
+        Sample rate capacity of data logging service
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-0007
+          \item[GIST:]
+          \item[SCALE:]
+          \item[METER:]
+          \item[MUST:]
+          \item[PLAN:]
+          \item[WISH:]
+        \end{itemize}
+
+        Sample rate capacity of feedback control service
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-0008
+          \item[GIST:]
+          \item[SCALE:]
+          \item[METER:]
+          \item[MUST:]
+          \item[PLAN:]
+          \item[WISH:]
+        \end{itemize}
+
+        System dependability of the data acquisition service
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-0009
+          \item[GIST:] The fault tolerance of the system.
+          \item[SCALE:] If the system loses its connection to the building
+            network, another connected component, or a malformed message, the
+            user should be informed.
+          \item[METER:] Measurements obtained from 100 hours of usage during
+            testing.
+          \item[MUST:] 99\% of the time
+          \item[PLAN:] 100\% of the time
+          \item[WISH:] 100\% of the time
+        \end{itemize}
+
+        System dependability of the data logging service
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-0010
+          \item[GIST:] The fault tolerance of the system.
+          \item[SCALE:] If the system loses its connection to the building
+            network, another connected component, or a malformed message, the
+            user should be informed.
+          \item[METER:] Measurements obtained from 100 hours of usage during
+            testing.
+          \item[MUST:] 99\% of the time
+          \item[PLAN:] 100\% of the time
+          \item[WISH:] 100\% of the time
+        \end{itemize}
+
+        System dependability of the feedback control service
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-0011
+          \item[GIST:] The fault tolerance of the system.
+          \item[SCALE:] If the system loses its connection to the building
+            network, another connected component, or a malformed message, the
+            user should be informed.
+          \item[METER:] Measurements obtained from 100 hours of usage during
+            testing.
+          \item[MUST:] 99\% of the time
+          \item[PLAN:] 100\% of the time
+          \item[WISH:] 100\% of the time
+        \end{itemize}
+
+      \paragraph{Design Constraints}
+
+        This section includes the design constraints on the software caused by
+        the hardware.
+
+        Network bandwidth
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-00
+          \item[GIST:]
+          \item[SCALE:]
+          \item[METER:]
+          \item[MUST:]
+          \item[PLAN:]
+          \item[WISH:]
+        \end{itemize}
+
+        Network latency
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-00
+          \item[GIST:]
+          \item[SCALE:]
+          \item[METER:]
+          \item[MUST:]
+          \item[PLAN:]
+          \item[WISH:]
+        \end{itemize}
+
+        Data acquisition device speed
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-00
+          \item[GIST:]
+          \item[SCALE:]
+          \item[METER:]
+          \item[MUST:]
+          \item[PLAN:]
+          \item[WISH:]
+        \end{itemize}
+
+        Hard drive read/write speed
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-00
+          \item[GIST:]
+          \item[SCALE:]
+          \item[METER:]
+          \item[MUST:]
+          \item[PLAN:]
+          \item[WISH:]
+        \end{itemize}
+
+        Application memory usage
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-00
+          \item[GIST:]
+          \item[SCALE:]
+          \item[METER:]
+          \item[MUST:]
+          \item[PLAN:]
+          \item[WISH:]
+        \end{itemize}
+
+        Application processor usage
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-00
+          \item[GIST:]
+          \item[SCALE:]
+          \item[METER:]
+          \item[MUST:]
+          \item[PLAN:]
+          \item[WISH:]
+        \end{itemize}
+
+      \paragraph{Software System Attributes}
+
+        Reliability
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-00
+          \item[GIST:]
+          \item[SCALE:]
+          \item[METER:]
+          \item[MUST:]
+          \item[PLAN:]
+          \item[WISH:]
+        \end{itemize}
+
+        Availability
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-00
+          \item[GIST:]
+          \item[SCALE:]
+          \item[METER:]
+          \item[MUST:]
+          \item[PLAN:]
+          \item[WISH:]
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-00
+          \item[GIST:]
+          \item[SCALE:]
+          \item[METER:]
+          \item[MUST:]
+          \item[PLAN:]
+          \item[WISH:]
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-00
+          \item[GIST:]
+          \item[SCALE:]
+          \item[METER:]
+          \item[MUST:]
+          \item[PLAN:]
+          \item[WISH:]
+        \end{itemize}
+
+        Maintainability
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-00
+          \item[GIST:]
+          \item[SCALE:]
+          \item[METER:]
+          \item[MUST:]
+          \item[PLAN:]
+          \item[WISH:]
+        \end{itemize}
+
+    %\subsubsection{Core Library}\label{sec:req-srs-core}
+
+      %\input{analysis/srs-libdcs-core}
+
+    %\subsubsection{Data Acquisition Library}\label{sec:req-srs-daq}
+
+    %\subsubsection{Data Logging Library}\label{sec:req-srs-log}
+
+    %\subsubsection{Process Control Library}\label{sec:req-srs-ctl}
+
+    %\subsubsection{Services/Networking Library}\label{sec:req-srs-net}
+
+    %\subsubsection{Device Plugins}\label{sec:req-srs-dev-plug}
+
+    %\subsubsection{Logging Plugins}\label{sec:req-srs-log-plug}
+
+    %\subsubsection{Control Plugins}\label{sec:req-srs-ctl-plug}
+
+    %\subsubsection{Data Acquisition Service}\label{sec:req-srs-daq}
+
+    %\subsubsection{Data Logging Service}\label{sec:req-srs-log}
+
+    %\subsubsection{Process Control Service}\label{sec:req-srs-control}

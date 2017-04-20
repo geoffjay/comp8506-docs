@@ -1,0 +1,78 @@
+\section{Project Description}\label{sec:desc}
+
+  \subsection{Background}\label{sec:desc-bg}
+
+    \subsubsection{Student}\label{sec:desc-bg-student}
+
+      Geoff Johnson is a student of the BCIT Computer Systems Bachelor's degree.
+      Prior to this he obtained a diploma of Computer Systems Technology from
+      Camosun college in Victoria in 2001, as well as a diploma in Robotics and
+      Automation Technology from BCIT in 2006.
+
+      For the past 10 years Geoff has worked in Burnaby for the fluid mechanics
+      research and development company Coanda where he is responsible for managing
+      the IT operations, as well as managing and contributing to control system
+      software development. This software is used to interface with industrial
+      instrumentation, perform automated feedback control of plant processes,
+      and capture data to log files at upwards of 100,000 samples per second.
+
+    \subsubsection{Company}\label{sec:desc-bg-company}
+
+      Coanda is an engineering research and development company specializing in
+      industrial fluid dynamics and related technologies. They have been in
+      business for close to 20 years providing services in process flow modelling,
+      design optimization, and custom instrumentation to name a few. For more
+      information their website is \url{https://www.coanda.ca}.
+
+    \subsubsection{History}\label{sec:desc-bg-project}
+
+      The project that was proposed, and is the subject of this report, was the
+      reproduction of an existing piece of software used to measure and control
+      physical processes. The software that this project seeks to improve upon
+      is comprised of two software projects, a library of objects that abstract
+      components of a data acquisition and control system, and a GUI application
+      that functions as an operator panel.
+
+      The first is a library of objects that abstracts the data acquisition
+      hardware as various types of measurement channels, it handles logging
+      to both CSV files as well as databases, feedback control loop
+      calculations using the PID (Proportional Integral Derivative) equation,
+      and handles the creation of object hierarchy through a class builder
+      using XML as the input. This library, libcld, is an open source project
+      hosted in a git repository at \url{https://github.com/geoffjay/libcld}.
+
+      The second piece of software is a user facing GUI application developed for
+      the GNOME system. It interfaces with libcld, hereafter referred to as
+      CLD (Control, Logging, and Data Acquisition), using a single context to
+      provide the data necessary to update the interface view. This application
+      has also been released as open source and is hosted in a git repository
+      at \url{https://github.com/coanda/dactl}.
+
+  \subsection{Proposed Solution}\label{sec:desc-soln}
+
+    Performing all of the work in a single application for data acquisition,
+    feedback control, and data logging is open to a variety of issues. Doing so
+    limits hardware scalability, places critical operations onto systems running
+    desktop software, and ties high reliability functions like plant control in
+    the same process as the front end that the end user operates. These are just
+    a few of the more obvious problems.
+
+    The system being proposed in this document is one that implements all of
+    the hardware access and logging functionality as micro-services that run as
+    processes detached from the plant operators that interact with the GUI
+    application. This server software will use an existing library to interface
+    with the data acquisition hardware as well as perform the control and
+    logging tasks, this aspect of the software is a reimplementation of work
+    that already exists in an application that is currently in use.
+
+    New functionality that is planned is the definition and minimal
+    implementation of a REST API, a messaging system for streaming data, and a
+    configuration definition to allow for the reconfiguration of the daemon. The
+    REST API is meant to provide a means for clients to make simple requests of
+    the system like read a single measurement value or change a property value
+    of one of the internal objects. ZeroMQ is to be used to implement the
+    messaging system, it has several high level features including publish and
+    subscribe socket types that can be used for a streaming data system, a
+    request/reply structure for a higher performance version of the REST API,
+    and a structure for bridging communications to allow for the reconfiguration
+    of the server as a proxy or slave node in a distributed system.

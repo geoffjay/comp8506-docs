@@ -1,0 +1,67 @@
+\section{Testing}\label{sec:test}
+
+  \subsection{Unit Tests}\label{sec:test-unit}
+
+    Adding support to build and run unit tests can be done using the commands given here
+    in Listing~\ref{lst:test-unit}.
+
+    \begin{lstlisting}[caption={Compiling and Running Unit Tests},label={lst:test-unit}]
+      ./autogen.sh --enable-tests
+      make -j8
+      make check
+    \end{lstlisting}
+
+    If everything completes successfully a test suite summary should be given similar to
+    what is given here in Listing~\ref{lst:test-unit-summary}.
+
+    \begin{lstlisting}[caption={Test Suite Summary},label={lst:test-unit-summary}]
+      PASS: test-dcs-core
+      ============================================================================
+      Testsuite summary for dcs 0.2.0
+      ============================================================================
+      # TOTAL: 1
+      # PASS:  1
+      # SKIP:  0
+      # XFAIL: 0
+      # FAIL:  0
+      # XPASS: 0
+      # ERROR: 0
+      ============================================================================
+    \end{lstlisting}
+
+  \subsection{Coverage Reports}\label{sec:test-cov}
+
+    \begin{lstlisting}[caption={Generating Coverage Reports},label={lst:test-cov}]
+      ./autogen.sh --enable-coverage --enable-tests
+      make -j8
+      make check
+      make coverage
+    \end{lstlisting}
+
+    \begin{lstlisting}[caption={Coverage Summary},label={lst:test-cov-summary}]
+      %Writing data to ../lcov.info
+      %Summary coverage rate:
+        %lines......: 55.6% (1167 of 2100 lines)
+        %functions..: no data found
+        %branches...: no data found
+      %/usr/bin/mkdir -p ../tests/coverage
+      %git_commit=`GIT_DIR=../.git git log -1 --pretty=format:%h 2>/dev/null`;\
+      %genhtml --title "dcs 0.2.0 $git_commit" \
+        %--output-directory ../tests/coverage ../lcov.info
+      %Reading data file ../lcov.info
+      %Found 50 entries.
+      %Found common filename prefix "/home/gjohn/Dropbox/Projects/opendcs/dcs"
+      %Writing .css and .png files.
+      %Generating output.
+      %Processing file src/libdcs-core/dcs-meta-factory.vala
+      %... a bunch more lines like the last ...
+      %Writing directory view page.
+      %Overall coverage rate:
+        %lines......: 55.6% (1167 of 2100 lines)
+        %functions..: no data found
+
+      %lcov report can be found in:
+      %file:///home/gjohn/Dropbox/Projects/opendcs/dcs/tests/coverage/index.html
+
+      %make[1]: Leaving directory '/home/gjohn/Dropbox/Projects/opendcs/dcs/tests'
+    \end{lstlisting}

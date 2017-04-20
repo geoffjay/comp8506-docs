@@ -1,0 +1,97 @@
+\section{Configuration}\label{sec:cfg}
+
+  For all OpenDCS objects that are the type \emph{Object} configuration can be
+  represented for \emph{property} as data, \emph{id} and \emph{type} as
+  attributes, and additionally \emph{property} should have a \emph{name}
+  attribute. For all that are the type \emph{Container} will have as an
+  addition an array of \emph{Object} nodes.
+
+  \subsection{XML Format}\label{sec:cfg-xml}
+
+    Object:
+
+    \begin{lstlisting}[caption={Object Configuration in XML},label={lst:cfg-xml-obj}]
+      <core:object id="ds0" type="data-series">
+        <property name="buffer-size">100</property>
+        <property name="stride">10</property>
+      </core:object>
+    \end{lstlisting}
+
+    Container:
+
+    \begin{lstlisting}[caption={Container Configuration in XML},label={lst:cfg-xml-ctr}]
+      <core:object id="" type="">
+        <property name=""></property>
+        <core:object id="" type="" />
+        <core:object id="" type="" />
+      </core:object>
+    \end{lstlisting}
+
+    Nested Containers:
+
+    \begin{lstlisting}[caption={Nested Container Configuration in XML},label={lst:cfg-xml-ctr}]
+      <core:object id="" type="">
+        <property name=""></property>
+        <core:object id="" type="">
+          <property name=""></property>
+          <core:object id="" type="" />
+          <core:object id="" type="" />
+        </core:object>
+      </core:object>
+    \end{lstlisting}
+
+  \subsection{JSON Format}\label{sec:cfg-json}
+
+    Object:
+
+    \begin{lstlisting}[caption={Object Configuration in JSON},label={lst:cfg-json-obj}]
+      {
+        "id": "ds0",
+        "type": "data-series",
+        "properties": [
+          { "name": "buffer-size", "value": 100 },
+          { "name": "stride", "value": 10 }
+        ]
+      }
+    \end{lstlisting}
+
+    Container:
+
+    \begin{lstlisting}[caption={Container Configuration in JSON},label={lst:cfg-json-ctr}]
+      {
+        "id": "ctr0",
+        "type": "container",
+        "properties": [
+          { "name": "sample", "value": "sample" }
+        ],
+        "objects": [
+          { "id": "", "type": "" },
+          { "id": "", "type": "" }
+        ]
+      }
+    \end{lstlisting}
+
+    Nested Containers:
+
+    \begin{lstlisting}[caption={Nested Container Configuration in JSON},label={lst:cfg-json-ctr}]
+      {
+        "id": "ctr0",
+        "type": "container",
+        "properties": [
+          { "name": "sample", "value": "sample" }
+        ],
+        "objects": [
+          {
+            "id": "samp0",
+            "type": "sample",
+            "properties": [
+              { "name": "sample", "value": "sample" }
+            ],
+            "objects": [
+              { "id": "", "type": "" },
+              { "id": "", "type": "" }
+            ]
+          },
+        ]
+      }
+    \end{lstlisting}

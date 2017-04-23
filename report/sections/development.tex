@@ -4,229 +4,253 @@
 
   \subsection{REST APIs}\label{sec:rest}
 
-    \subsubsection{Common to all Services}\label{sec:rest-common}
+    A high level overview of the RESTful APIs provided by the services is given
+    here, these add a method of interoperability among these and other web
+    services that want to communicate with them. In most cases this means using
+    the common HTTP verbs GET, POST, PUT, and DELETE as operations.
 
-      \large{Publishing Sockets}
+    \subsubsection{Common to All Services}\label{sec:rest-common}
+
+      This section describes the common APIs for services that contain
+      networking objects. Each service with have dedicated publishing,
+      subscribing, requesting, and replying sockets where necessary to function
+      as intended but they will also be capable of having additional socket
+      types configured at runtime to add functionality and leave future options
+      open for concepts like proxies and brokers.
+
+      \large{\textbf{Publishers}}
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{6cm} p{10cm}}
+        \begin{tabular}{p{8cm} p{10cm}}
           \toprule
-          \textbf{Resource} & \textbf{Description} \\ [0.5ex]
+          \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
-          GET /api/...s & List all ...s \\
-          GET /api/...s/:id & Show a ... \\
-          POST /api/...s/:id & ... a ... \\
-          PUT /api/...s/:id & Update a ... \\
-          DELETE /api/...s/:id & ... \\
+          GET /api/net/publishers & List all publishers \\
+          GET /api/net/publishers/:id & Show a publisher \\
+          POST /api/net/publishers/:id & Add a publisher \\
+          PUT /api/net/publishers/:id & Update a publisher \\
+          DELETE /api/net/publishers/:id & Remove a publisher \\
           \bottomrule
         \end{tabular}
-        \caption{API for the DAQ Service ...}\label{tab:rest-daq-...}
+        \caption{API for the Publishers in Services}\label{tab:rest-common-pub}
       \end{table}
 
-      \large{Subscribing Sockets}
+      \large{\textbf{Subscribers}}
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{6cm} p{10cm}}
+        \begin{tabular}{p{8cm} p{10cm}}
           \toprule
-          \textbf{Resource} & \textbf{Description} \\ [0.5ex]
+          \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
-          GET /api/...s & List all ...s \\
-          GET /api/...s/:id & Show a ... \\
-          POST /api/...s/:id & ... a ... \\
-          PUT /api/...s/:id & Update a ... \\
-          DELETE /api/...s/:id & ... \\
+          GET /api/net/subscribers & List all subscriber \\
+          GET /api/net/subscribers/:id & Show a subscriber \\
+          POST /api/net/subscribers/:id & Add a subscriber \\
+          PUT /api/net/subscribers/:id & Update a subscriber \\
+          DELETE /api/net/subscribers/:id & Remove a subscriber \\
           \bottomrule
         \end{tabular}
-        \caption{API for the DAQ Service ...}\label{tab:rest-daq-...}
+        \caption{API for the Subscribers in Services}\label{tab:rest-common-sub}
       \end{table}
 
-      \large{Requesting Sockets}
+      \large{\textbf{Requesters}}
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{6cm} p{10cm}}
+        \begin{tabular}{p{8cm} p{10cm}}
           \toprule
-          \textbf{Resource} & \textbf{Description} \\ [0.5ex]
+          \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
-          GET /api/...s & List all ...s \\
-          GET /api/...s/:id & Show a ... \\
-          POST /api/...s/:id & ... a ... \\
-          PUT /api/...s/:id & Update a ... \\
-          DELETE /api/...s/:id & ... \\
+          GET /api/net/requesters & List all requesters \\
+          GET /api/net/requesters/:id & Show a requester \\
+          POST /api/net/requesters/:id & Add a requester \\
+          PUT /api/net/requesters/:id & Update a requester \\
+          DELETE /api/net/requesters/:id & Remove a requester \\
           \bottomrule
         \end{tabular}
-        \caption{API for the DAQ Service ...}\label{tab:rest-daq-...}
+        \caption{API for the Requesters in Services}\label{tab:rest-common-req}
       \end{table}
 
-      \large{Replying Sockets}
+      \large{\textbf{Repliers}}
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{6cm} p{10cm}}
+        \begin{tabular}{p{8cm} p{10cm}}
           \toprule
-          \textbf{Resource} & \textbf{Description} \\ [0.5ex]
+          \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
-          GET /api/...s & List all ...s \\
-          GET /api/...s/:id & Show a ... \\
-          POST /api/...s/:id & ... a ... \\
-          PUT /api/...s/:id & Update a ... \\
-          DELETE /api/...s/:id & ... \\
+          GET /api/net/repliers & List all repliers \\
+          GET /api/net/repliers/:id & Show a replier \\
+          POST /api/net/repliers/:id & Add a replier \\
+          PUT /api/net/repliers/:id & Update a replier \\
+          DELETE /api/net/repliers/:id & Remove a replier \\
           \bottomrule
         \end{tabular}
-        \caption{API for the DAQ Service ...}\label{tab:rest-daq-...}
+        \caption{API for the Repliers in Services}\label{tab:rest-common-rep}
       \end{table}
 
     \subsubsection{Data Acquisition Service}\label{sec:rest-daq}
 
-      \large{Devices}
+      \large{\textbf{Devices}}
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{6cm} p{10cm}}
+        \begin{tabular}{p{8cm} p{10cm}}
           \toprule
-          \textbf{Resource} & \textbf{Description} \\ [0.5ex]
+          \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
-          GET /api/devices & List all devices \\
-          GET /api/devices/enabled & List all enabled devices \\
-          GET /api/devices/:id & Show a device \\
-          POST /api/devices/:id & Enable a device \\
-          PUT /api/devices/:id & Update a device \\
-          DELETE /api/devices/:id & Disable a device \\
+          GET /api/daq/devices & List all devices \\
+          GET /api/daq/devices/enabled & List all enabled devices \\
+          GET /api/daq/devices/:id & Show a device \\
+          POST /api/daq/devices/:id & Enable a device \\
+          PUT /api/daq/devices/:id & Update a device \\
+          DELETE /api/daq/devices/:id & Disable a device \\
           \bottomrule
         \end{tabular}
         \caption{API for the DAQ Service Devices}\label{tab:rest-daq-dev}
       \end{table}
 
-      \large{Sensors}
+      \large{\textbf{Sensors}}
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{6cm} p{10cm}}
+        \begin{tabular}{p{8cm} p{10cm}}
           \toprule
-          \textbf{Resource} & \textbf{Description} \\ [0.5ex]
+          \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
-          GET /api/...s & List all ...s \\
-          GET /api/...s/:id & Show a ... \\
-          POST /api/...s/:id & ... a ... \\
-          PUT /api/...s/:id & Update a ... \\
-          DELETE /api/...s/:id & ... \\
+          GET /api/daq/sensors & List all sensors \\
+          GET /api/daq/sensors/:id & Show a sensor \\
+          POST /api/daq/sensors/:id & Add a sensor \\
+          PUT /api/daq/sensors/:id & Update a sensor \\
+          DELETE /api/daq/sensors/:id & Remove a sensor \\
           \bottomrule
         \end{tabular}
-        \caption{API for the DAQ Service ...}\label{tab:rest-daq-...}
+        \caption{API for the DAQ Service Sensors}\label{tab:rest-daq-sensor}
       \end{table}
 
-      \large{Signals}
+      \large{\textbf{Signals}}
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{6cm} p{10cm}}
+        \begin{tabular}{p{8cm} p{10cm}}
           \toprule
-          \textbf{Resource} & \textbf{Description} \\ [0.5ex]
+          \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
-          GET /api/...s & List all ...s \\
-          GET /api/...s/:id & Show a ... \\
-          POST /api/...s/:id & ... a ... \\
-          PUT /api/...s/:id & Update a ... \\
-          DELETE /api/...s/:id & ... \\
+          GET /api/daq/signals & List all signals \\
+          GET /api/daq/signals/:id & Show a signal \\
+          POST /api/daq/signals/:id & Add a signal \\
+          PUT /api/daq/signals/:id & Update a signal \\
+          DELETE /api/daq/signals/:id & Remove signal \\
           \bottomrule
         \end{tabular}
-        \caption{API for the DAQ Service ...}\label{tab:rest-daq-...}
+        \caption{API for the DAQ Service Signals}\label{tab:rest-daq-signal}
       \end{table}
 
-      \large{Ports}
+      \large{\textbf{Ports}}
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{6cm} p{10cm}}
+        \begin{tabular}{p{8cm} p{10cm}}
           \toprule
-          \textbf{Resource} & \textbf{Description} \\ [0.5ex]
+          \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
-          GET /api/...s & List all ...s \\
-          GET /api/...s/:id & Show a ... \\
-          POST /api/...s/:id & ... a ... \\
-          PUT /api/...s/:id & Update a ... \\
-          DELETE /api/...s/:id & ... \\
+          GET /api/daq/ports & List all ports \\
+          GET /api/daq/ports/:id & Show a port \\
+          POST /api/daq/ports/:id & Add a port \\
+          PUT /api/daq/ports/:id & Update a port \\
+          DELETE /api/daq/ports/:id & Remove a port \\
           \bottomrule
         \end{tabular}
-        \caption{API for the DAQ Service ...}\label{tab:rest-daq-...}
+        \caption{API for the DAQ Service Ports}\label{tab:rest-daq-port}
       \end{table}
 
     \subsubsection{Data Logging Service}\label{sec:rest-log}
 
-      \large{Backends}
+      \large{\textbf{Backends}}
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{6cm} p{10cm}}
+        \begin{tabular}{p{8cm} p{10cm}}
           \toprule
-          \textbf{Resource} & \textbf{Description} \\ [0.5ex]
+          \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
-          GET /api/...s & List all ...s \\
-          GET /api/...s/:id & Show a ... \\
-          POST /api/...s/:id & ... a ... \\
-          PUT /api/...s/:id & Update a ... \\
-          DELETE /api/...s/:id & ... \\
+          GET /api/log/backends & List all backends \\
+          GET /api/log/backends/:id & Show a backend \\
+          POST /api/log/backends/:id & Enable a backend \\
+          PUT /api/log/backends/:id & Update a backend \\
+          DELETE /api/log/backends/:id & Disable a backend \\
           \bottomrule
         \end{tabular}
-        \caption{API for the Log Service ...}\label{tab:rest-log-...}
+        \caption{API for the Log Service Backends}\label{tab:rest-log-backend}
       \end{table}
 
-      \large{Logs}
+      \large{\textbf{Logs}}
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{6cm} p{10cm}}
+        \begin{tabular}{p{8cm} p{10cm}}
           \toprule
-          \textbf{Resource} & \textbf{Description} \\ [0.5ex]
+          \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
-          GET /api/...s & List all ...s \\
-          GET /api/...s/:id & Show a ... \\
-          POST /api/...s/:id & ... a ... \\
-          PUT /api/...s/:id & Update a ... \\
-          DELETE /api/...s/:id & ... \\
+          GET /api/log/logs & List all logs \\
+          GET /api/log/logs/:id & Show a log \\
+          POST /api/log/logs/:id & Add a log \\
+          PUT /api/log/logs/:id & Update a log \\
+          DELETE /api/log/logs/:id & Remove a log \\
           \bottomrule
         \end{tabular}
-        \caption{API for the Log Service ...}\label{tab:rest-log-...}
+        \caption{API for the Log Service's Configured Logs}\label{tab:rest-log-logs}
       \end{table}
 
-      \large{Log Columns}
+      \large{\textbf{Log Columns}}
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{6cm} p{10cm}}
+        \begin{tabular}{p{8cm} p{10cm}}
           \toprule
-          \textbf{Resource} & \textbf{Description} \\ [0.5ex]
+          \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
-          GET /api/...s & List all ...s \\
-          GET /api/...s/:id & Show a ... \\
-          POST /api/...s/:id & ... a ... \\
-          PUT /api/...s/:id & Update a ... \\
-          DELETE /api/...s/:id & ... \\
+          GET /api/log/columns & List all columns \\
+          GET /api/log/columns/:id & Show a column \\
+          POST /api/log/columns/:id & Add a column \\
+          PUT /api/log/columns/:id & Update a column \\
+          DELETE /api/log/columns/:id & Remove a column \\
           \bottomrule
         \end{tabular}
-        \caption{API for the Log Service ...}\label{tab:rest-log-...}
+        \caption{API for the Log Service's Configured Data Columns}\label{tab:rest-log-columns}
       \end{table}
 
-      \large{Data Query}
+      \large{\textbf{Data Query}}
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{6cm} p{10cm}}
+        \begin{tabular}{p{8cm} p{10cm}}
           \toprule
-          \textbf{Resource} & \textbf{Description} \\ [0.5ex]
+          \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
-          GET /api/...s & List all ...s \\
-          GET /api/...s/:id & Show a ... \\
-          POST /api/...s/:id & ... a ... \\
-          PUT /api/...s/:id & Update a ... \\
-          DELETE /api/...s/:id & ... \\
+          GET /api/log/query/:id & Query a log \\
           \bottomrule
         \end{tabular}
-        \caption{API for the Log Service ...}\label{tab:rest-log-...}
+        \caption{API for Log Service Queries}\label{tab:rest-log-query}
       \end{table}
 
     \subsubsection{Process Control Service}\label{sec:rest-control}
 
-      \large{Feedback Controllers}
+      \large{\textbf{Feedback Controllers}}
+
+      \begin{table}[H]
+        \centering
+        \begin{tabular}{p{8cm} p{10cm}}
+          \toprule
+          \emph{Resource} & \emph{Description} \\ [0.5ex]
+          \midrule
+          GET /api/control/controllers & List all controllers \\
+          GET /api/control/controllers/:id & Show a controller \\
+          POST /api/control/controllers/:id & Enable a controller \\
+          PUT /api/control/controllers/:id & Update a controller \\
+          DELETE /api/control/controllers/:id & Disable a controller \\
+          \bottomrule
+        \end{tabular}
+        \caption{API for the Process Control Service Feedback Controllers}\label{tab:rest-control-controllers}
+      \end{table}

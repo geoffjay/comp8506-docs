@@ -1,0 +1,11 @@
+/'
+ '  UML include file for Device class
+ '/
+
+@startuml
+class Device {
+    +Dcs.Net.Service service
+    ----
+    +Device (Dcs.Net.Service service)
+}
+@enduml

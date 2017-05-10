@@ -1,0 +1,11 @@
+/'
+ '  UML file for Serializable interface
+ '/
+
+@startuml
+hide interface fields
+interface Serializable {
+    +{abstract} string serialize () throws Error
+    +{abstract} void deserialize (string data) throws Error
+}
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+
+class Publish {
+    +int port
+    +string transport_spec
+    +Dcs.Net.ZmqTransport transport
+    +string address
+    ----
+    +Publish ()
+    #void init () throws Error
+    +void start () throws Error
+    +void stop () throws Error
+    -- signals --
+    +signal void data_published (uint8[] data)
+}
+
+@enduml

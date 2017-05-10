@@ -1,0 +1,14 @@
+@startuml
+
+class Request {
+    +int port
+    +string transport_spec
+    +Dcs.Net.ZmqTransport transport
+    +string address
+    ----
+    +Request ()
+    +void send (Dcs.Message message)
+    #void init () throws Error
+}
+
+@enduml

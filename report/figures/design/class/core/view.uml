@@ -1,0 +1,14 @@
+/'
+ '  UML include file for App.View
+ '/
+
+@startuml
+interface View {
+    -{abstract} Dcs.Model model
+    ----
+    +{abstract} void add (string path, owned Dcs.Node node) throws Error
+    +{abstract} void remove (Dcs.Node node) throws Error
+    +{abstract} void render ()
+}
+@enduml
+

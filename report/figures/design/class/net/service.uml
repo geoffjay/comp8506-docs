@@ -1,0 +1,12 @@
+@startuml
+
+abstract class Service {
+    #Dcs.PluginManager plugin_manager
+    #Gee.HashMap<string, Gee.ArrayQueue<Dcs.Message>> queue_group
+    ----
+    #void start () throws Error
+    #void pause () throws Error
+    #void stop () throws Error
+}
+
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+
+top to bottom direction
+
+() "register_config" as p_rc
+() "register_factory" as p_rf
+[Service] as c_s
+[Message Queue] as c_mq
+[Config Builder] as c_cb
+[Meta Config] as c_mc
+[Meta Factory] as c_mf
+
+node "Plugin System" {
+  [Plugin Manager] as c_pm
+  [Plugin] as c_pl
+  [Plugin Config] as c_pc
+  [Plugin Factory] as c_pf
+}
+
+c_s -down-> c_pm
+c_pm --> c_pl : loads
+c_pl --> c_pf : provides
+c_pl --> c_pc : provides
+c_s -down-> c_pl
+c_pl -> c_mq : uses
+c_s --> p_rc
+p_rc --> c_mc
+c_s --> p_rf
+p_rf --> c_mf
+c_s -> c_cb
+c_cb --> c_mc
+
+@enduml

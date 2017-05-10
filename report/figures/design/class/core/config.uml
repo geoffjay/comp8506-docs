@@ -1,0 +1,34 @@
+/'
+ ' UML include file for Dcs.Config class.
+ '/
+
+@startuml
+hide interface fields
+interface Config {
+    +{static} check_property_type (GLib.Type class, GLib.Type check, string prop) throws Error
+    +virtual void dump (GLib.FileStream stream)
+    +{abstract} string get_namespace () throws Error
+    +{abstract} ConfigFormat get_format () throws Error
+    +{abstract} string get_string (string ns, string key) throws Error
+    +{abstract} Gee.ArrayList<string> get_string_list (string ns, string key) throws Error
+    +{abstract} int get_int (string ns, string key) throws Error
+    +{abstract} Gee.ArrayList<int> get_int_list (string ns, string key) throws Error
+    +{abstract} bool get_bool (string ns, string key) throws Error
+    +{abstract} Gee.ArrayList<bool> get_bool_list (string ns, string key) throws Error
+    +{abstract} double get_double (string ns, string key) throws Error
+    +{abstract} Gee.ArrayList<double> get_double_list (string ns, string key) throws Error
+    +{abstract} Dcs.ConfigNode get_node (string ns, string key) throws Error
+    +{abstract} void set_string (string ns, string key, string value) throws Error
+    +{abstract} void set_string_list (string ns, string key, string[] value) throws Error
+    +{abstract} void set_int (string ns, string key, int value) throws Error
+    +{abstract} void set_int_list (string ns, string key, int[] value) throws Error
+    +{abstract} void set_bool (string ns, string key, bool value) throws Error
+    +{abstract} void set_bool_list (string ns, string key, bool[] value) throws Error
+    +{abstract} void set_double (string ns, string key, double value) throws Error
+    +{abstract} void set_double_list (string ns, string key, double[] value) throws Error
+    +{abstract} void set_node (string ns, string key, Dcs.ConfigNode value) throws Error
+    -- signals --
+    +void config_changed (Dcs.ConfigEntry entry)
+    +void setting_changed (string ns, string key)
+}
+@enduml

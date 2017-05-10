@@ -1,0 +1,18 @@
+/'
+ '  UML include file for App.Model
+ '/
+
+@startuml
+class Model {
+    +Dcs.Node root
+    +bool active
+    +bool verbose
+    ----
+    +Dcs.Node get_root ()
+    +void set_root (Dcs.Node new_root)
+    -- signals --
+    +signal void state_changed (string name, bool state)
+    +signal void node_updated (string id)
+}
+
+@enduml

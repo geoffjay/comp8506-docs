@@ -8,52 +8,52 @@
 # └── design
 #     └── class
 #         ├── core
-#         │   ├── abstract-buildable.png
-#         │   ├── abstract-config.png
-#         │   ├── abstract-container.png
-#         │   ├── abstract-object.png
-#         │   ├── application.png
-#         │   ├── buildable.png
-#         │   ├── config-node.png
-#         │   ├── config.png
-#         │   ├── container.png
-#         │   ├── controller.png
-#         │   ├── dataseries.png
-#         │   ├── dbus-interface.png
-#         │   ├── enums.png
-#         │   ├── factory.png
-#         │   ├── message.png
-#         │   ├── meta-config.png
-#         │   ├── meta-factory.png
-#         │   ├── model.png
-#         │   ├── node.png
-#         │   ├── object.png
-#         │   ├── plugin-extension.png
-#         │   ├── plugin-information.png
-#         │   ├── plugin-manager.png
-#         │   ├── plugin.png
-#         │   ├── point.png
-#         │   ├── ref-container.png
-#         │   ├── serializable.png
-#         │   ├── syslog.png
-#         │   └── view.png
+#         │   ├── abstract-buildable.pdf
+#         │   ├── abstract-config.pdf
+#         │   ├── abstract-container.pdf
+#         │   ├── abstract-object.pdf
+#         │   ├── application.pdf
+#         │   ├── buildable.pdf
+#         │   ├── config-node.pdf
+#         │   ├── config.pdf
+#         │   ├── container.pdf
+#         │   ├── controller.pdf
+#         │   ├── dataseries.pdf
+#         │   ├── dbus-interface.pdf
+#         │   ├── enums.pdf
+#         │   ├── factory.pdf
+#         │   ├── message.pdf
+#         │   ├── meta-config.pdf
+#         │   ├── meta-factory.pdf
+#         │   ├── model.pdf
+#         │   ├── node.pdf
+#         │   ├── object.pdf
+#         │   ├── plugin-extension.pdf
+#         │   ├── plugin-information.pdf
+#         │   ├── plugin-manager.pdf
+#         │   ├── plugin.pdf
+#         │   ├── point.pdf
+#         │   ├── ref-container.pdf
+#         │   ├── serializable.pdf
+#         │   ├── syslog.pdf
+#         │   └── view.pdf
 #         ├── daq
-#         │   ├── device-manager.png
-#         │   ├── device.png
-#         │   └── factory.png
+#         │   ├── device-manager.pdf
+#         │   ├── device.pdf
+#         │   └── factory.pdf
 #         ├── log
-#         │   ├── backend-manager.png
-#         │   ├── backend.png
-#         │   ├── backend-proxy.png
-#         │   └── factory.png
+#         │   ├── backend-manager.pdf
+#         │   ├── backend.pdf
+#         │   ├── backend-proxy.pdf
+#         │   └── factory.pdf
 #         └── net
-#             ├── enums.png
-#             ├── factory.png
-#             ├── publish.png
-#             ├── reply.png
-#             ├── request.png
-#             ├── rest-service.png
-#             └── subscribe.png
+#             ├── enums.pdf
+#             ├── factory.pdf
+#             ├── publish.pdf
+#             ├── reply.pdf
+#             ├── request.pdf
+#             ├── rest-service.pdf
+#             └── subscribe.pdf
 #
 
 core=(
@@ -111,7 +111,7 @@ subscribe
 )
 
 for img in ${core[@]}; do
-  file="../../opendcs/dcs/doc/uml/core/$img.png"
+  file="../../opendcs/dcs/doc/uml/core/$img.pdf"
   if [ -a $file ]; then
     echo copying $file
     cp $file figures/design/class/core/
@@ -121,7 +121,7 @@ for img in ${core[@]}; do
 done
 
 for img in ${daq[@]}; do
-  file="../../opendcs/dcs/doc/uml/daq/$img.png"
+  file="../../opendcs/dcs/doc/uml/daq/$img.pdf"
   if [ -a $file ]; then
     echo copying $file
     cp $file figures/design/class/daq/
@@ -131,7 +131,7 @@ for img in ${daq[@]}; do
 done
 
 for img in ${log[@]}; do
-  file="../../opendcs/dcs/doc/uml/log/$img.png"
+  file="../../opendcs/dcs/doc/uml/log/$img.pdf"
   if [ -a $file ]; then
     echo copying $file
     cp $file figures/design/class/log/
@@ -141,7 +141,7 @@ for img in ${log[@]}; do
 done
 
 for img in ${net[@]}; do
-  file="../../opendcs/dcs/doc/uml/net/$img.png"
+  file="../../opendcs/dcs/doc/uml/net/$img.pdf"
   if [ -a $file ]; then
     echo copying $file
     cp $file figures/design/class/net/

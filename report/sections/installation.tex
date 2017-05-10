@@ -8,26 +8,203 @@
     \begin{itemize}
       \item GNU/Linux
       \item Automake/Autoconf
+      \item GLib/GNOME
       \item LAN connection
     \end{itemize}
 
+    The intention is to be able to install and run the project libraries and
+    executables on any modern Linux installation. Fedora Workstation has been
+    the dominant development environment but with minor modification what's
+    given in this document should work on any number of distributions including
+    Ubuntu 14.04 and newer, Debian 7 and newer, Arch, and CentOS 7.
+
   \subsection{Compilation}\label{sec:inst-comp}
 
-    \begin{lstlisting}[caption={},label={}]
+    \begin{lstlisting}[caption={Compiling OpenDCS},
+                       label={lst:inst-comp}]
+			dcs 0.2.0
+
+			Options
+
+			Prefix: ...................................... : /usr/local
+			Libdir: ...................................... : ${exec_prefix}/lib
+			Optimized Build: ............................. : yes
+			WebKit: ...................................... : yes
+
+			Development Options
+
+			DAQ support: ................................. :
+			UI support: .................................. : yes
+			Enable Debug: ................................ : yes
+			Enable Tracing: .............................. : no
+			Enable Profiling (-pg): ...................... : yes
+			Build Test Suite: ............................ : yes
+			Build documentation: ......................... : yes
+			Build API reference: ......................... : yes
+			Update MIME Database: ........................ : no
+
+			Plugins
+
+			(placeholder): ............................... :
+
+			Backends
+
+			XML: ......................................... : yes
+
+			Devices
+
+			Arduino: ..................................... : yes
+			Comedi: ...................................... : yes
+			MCC USB: ..................................... : yes
+
+			Control Loops
+
+			PID: ......................................... : yes
+
+			Example Plugins
+
+			Example Python: .............................. : yes
+			Example Vala: ................................ : yes
+
+			Languages support
+
+			Python 3 support: ............................ : no
+
+			dcs will be installed in ${exec_prefix}/bin
+
+			Now type `make' to compile
     \end{lstlisting}
+
+    \subsubsection{Controlling Installation}\label{sec:inst-comp-control}
+
+      % TODO complete this section
+      Currently, if OpenDCS was installed from source using the instructions
+      given in this document the installation path is relative to
+      \texttt{/usr/local}, it is possible to change this behaviour using the
+      build system to include an installation prefix using
+      \texttt{./autogen.sh --prefix=/opt} for example. This will install
+      the libraries and \ldots
 
   \subsection{Dependencies}\label{sec:inst-dep}
 
-    The software dependencies that are required to be installed to fully
-    compile all components of this project are:
+    The commands for installing the software dependencies that are required to
+    be installed to fully compile all components of this project, including
+    those needed to build the UI, are given in Listing~\ref{lst:inst-dep} for
+    Fedora using release 19 or newer.  While this project has been tested using
+    other variants of Linux, namely Ubuntu and Arch, Fedora has been the
+    primary development environment.
 
-    \begin{itemize}
-    \end{itemize}
+    These instructions include building and installing libcld, while this
+    library is no longer an explicit dependency of OpenDCS as described in this
+    document it is included due to the existence of some components that have
+    been intentionally omitted in order to be able to compile.
 
-    \begin{lstlisting}[caption={},label={}]
+    \begin{lstlisting}[language=bash,
+                       caption={Installation Dependencies},
+                       label={lst:inst-dep}]
+      # Install packages required
+      sudo dnf install automake autoconf libtool gnome-common intltool gcc vala
+      sudo dnf install glib2-devel gtk3-devel libxml2-devel libgee-devel \
+       json-glib-devel clutter-devel clutter-gtk-devel gsl-devel \
+       gtksourceview3-devel libmatheval-devel sqlite-devel \
+       gobject-introspection-devel gettext-devel gettext-common-devel \
+       libmodbus-devel comedilib-devel librsvg2-devel python3-devel \
+       pygobject3-devel libpeas-devel libsoup-devel webkitgtk4-devel \
+       json-glib-devel libpeas-devel zeromq3-devel
+      # Install Vala dependencies
+      git clone https://github.com/geoffjay/modbus-vapi.git
+      git clone https://github.com/geoffjay/comedi-vapi.git
+      sudo mkdir -p /usr/local/lib/pkgconfig
+      sudo cp comedi-vapi/comedi.pc /usr/local/lib/pkgconfig/
+      ver=`vala --version | sed -e 's/.*\([0-9]\.[0-9][0-9]\).*/\1/'`
+      sudo cp comedi-vapi/comedi.vapi /usr/share/vala-$ver/vapi/
+      sudo cp modbus-vapi/libmodbus.vapi /usr/share/vala-$ver/vapi/
+      # Install transitional library dependancy
+      git clone https://github.com/geoffjay/libcld.git
+      cd libcld
+      git checkout master
+      export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+      ./autogen.sh
+      make && sudo make install
+      cd ..
+      echo "/usr/local/lib" | sudo tee --append /etc/ld.so.conf
+      sudo ldconfig
     \end{lstlisting}
 
   \subsection{Containerized Components}\label{sec:inst-cont}
 
-    \begin{lstlisting}[caption={},label={}]
+    \begin{lstlisting}[caption={Building Containers},
+                       label={lst:inst-cont}]
+    \end{lstlisting}
+
+  \subsection{Plugins}\label{sec:inst-plugins}
+
+    While it is possible for plugin systems that have been developed using
+    libpeas to load plugins from any path on the system that functionality was
+    not added, though it likely will be in a future version. Using the default
+    installation prefix of \texttt{/usr/local} the services will search the
+    path \texttt{/usr/local/lib/dcs/devices} for DAQ device plugins,
+    \texttt{/usr/local/lib/dcs/backends} for data logging backend plugins,
+    and \texttt{/usr/local/lib/dcs/controllers} for feedback control plugins.
+
+    Plugins are loaded if there is an associated plugin information file in the
+    paths given above. They describe various pieces of the plugin that they
+    system requires to load it, as well as document who to blame for their
+    efforts. An example of the plugin that is included in OpenDCS is given in
+    Listing~\ref{lst:inst-plugin-info}.
+
+    \begin{lstlisting}[caption={Plugin Information File Example},
+                       label={lst:inst-plugin-info}]
+      [Plugin]
+      Module=signal-generator
+      Loader=python3
+      Name=Signal Generator Device Plugin
+      Description=Signal generator device.
+      Authors=Geoff Johnson <geoff.jay@gmail.com>
+      Copyright=Copyright © 2016 Geoff Johnson
+    \end{lstlisting}
+
+    Plugins can be developed using C, Vala, and Python. A minimal working
+    example, that does nothing more that loads and prints a message on
+    activation and deactivation, has been provided in
+    Listing~\ref{lst:inst-plugin-example}.
+
+    \begin{lstlisting}[caption={Minimal Working Example of a libpeas Plugin},
+                       label={lst:inst-plugin-example}]
+			#
+			# Sample OpenDCS python plugin.
+			#
+			# Taken from: https://github.com/gregier/libpeas/tree/master/peas-demo
+			#
+			# For gi to find dcs this needs to be run before starting the application:
+			#   export GI_TYPELIB_PATH=/usr/local/lib/girepository-1.0/:$GI_TYPELIB_PATH
+
+			import gi
+			gi.require_version('Peas', '1.0')
+			gi.require_version('DcsCore', '0.2')
+			gi.require_version('DcsDAQ', '0.2')
+			gi.require_version('DcsNet', '0.2')
+			from gi.repository import GObject
+			from gi.repository import Peas
+			from gi.repository import DcsCore
+			from gi.repository import DcsDAQ
+			from gi.repository import DcsNet
+
+			from pprint import pprint
+
+			LABEL_STRING="Signal Generator Device"
+
+			class SignalGenerator(DcsDAQ.DAQDevice):
+					__gtype_name__ = 'SignalGenerator'
+
+					object = GObject.property(type=GObject.Object)
+
+					def do_activate(self):
+							print("SignalGenerator.do_activate")
+
+					def do_deactivate(self):
+							print("SignalGenerator.do_deactivate")
+
+					def do_update_state(self):
+							print("SignalGenerator.do_update_state")
     \end{lstlisting}

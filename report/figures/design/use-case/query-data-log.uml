@@ -1,0 +1,23 @@
+@startuml
+
+left to right direction
+
+actor Operator as a_o
+actor Service as a_s
+actor Backend as a_b
+
+rectangle "Query a Data Log" {
+  a_o --> (Start\nService) : <<initiate>>
+  (Start\nService) ..> a_s : <<participate>>
+  (Load\nBackends) <-- a_s
+  (Load\nBackends) ..> a_b : <<participate>>
+  a_o --> (Send\nQuery)
+  (Send\nQuery) ..> a_s : <<receive>>
+  (Translate\nQuery) <-- a_s
+  (Send\nMessage) <-- a_s
+  (Send\nMessage) ..> a_b : <<participate>>
+  (Read\nData Log) <-- a_b
+  a_o --> (Receive\nQuery Results)
+}
+
+@enduml

@@ -1,0 +1,25 @@
+/'
+ ' UML include file for Node
+ '/
+
+@startuml
+class Node {
+    +{virtual} string id
+    +{virtual} Dcs.Node parent
+    #{virtual} Gee.List<unowned Dcs.Node> references
+    ----
+    +override bool set (string key, Dcs.Node node)
+    +override bool unset (string key, out Dcs.Node node)
+    +virtual void add (Dcs.Node node) throws Error
+    +virtual void remove (Dcs.Node node)
+    +virtual Gee.ArrayList<Dcs.Object> get_descendants (GLib.Type type)
+    +virtual Gee.ArrayList<Dcs.Object> get_children (GLib.Type type)
+    +void reparent (Dcs.Node new_parent)
+    +virtual void print_node (int depth)
+    +virtual string to_string ()
+    -- signals --
+    +signal void node_added (string id)
+    +signal void node_removed (string id)
+    +signal void request_node (string id)
+}
+@enduml

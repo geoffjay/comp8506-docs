@@ -1,0 +1,44 @@
+@startuml
+
+hide class fields
+hide class methods
+hide abstract fields
+hide abstract methods
+hide interface fields
+hide interface methods
+
+namespace Dcs {
+  class PluginManager
+  interface Extension
+  abstract class Plugin
+  namespace Net {
+    class Service
+  }
+  namespace DAQ {
+    abstract class Device
+    class DeviceManager
+  }
+  namespace Log {
+    abstract class Backend
+    class BackendManager
+  }
+  namespace Control {
+    abstract class Controller
+    class ControllerManager
+  }
+}
+
+Dcs.Extension --right--o "1" Dcs.Net.Service : Provides
+Dcs.Plugin ..|> Dcs.Extension
+Dcs.PluginManager --* "*" Dcs.Plugin : Contains
+Dcs.DAQ.Device --|> Dcs.Plugin
+Dcs.DAQ.DeviceManager --left--|> Dcs.PluginManager
+Dcs.DAQ.DeviceManager --o "*" Dcs.DAQ.Device : Loads
+Dcs.Log.Backend --|> Dcs.Plugin
+Dcs.Log.BackendManager --left--|> Dcs.PluginManager
+Dcs.Log.BackendManager --o "*" Dcs.Log.Backend : Loads
+Dcs.Control.Controller --|> Dcs.Plugin
+Dcs.Control.ControllerManager --left--|> Dcs.PluginManager
+Dcs.Control.ControllerManager --o "*" Dcs.Control.Controller : Loads
+
+@enduml

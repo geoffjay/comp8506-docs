@@ -1,0 +1,35 @@
+@startuml
+
+top to bottom direction
+
+() User as u
+() "main" as p_m
+() "run" as p_r
+() "process_message" as p_p
+[Interface] as c_i
+[Application] as c_a
+[Config Builder] as c_cb
+[Meta Config] as c_mc
+[Meta Factory] as c_mf
+[Plugin Manager] as c_pm
+
+node "Output" {
+  [ZeroMQ] as o_z
+  [REST] as o_r
+}
+
+u --> c_i
+c_i --> p_m
+c_i -> c_cb
+p_m -> p_r
+p_r -> p_m
+p_m -->o_z
+p_m -->o_r
+p_r --> c_a
+c_a -> p_p
+c_cb --> c_mc
+c_a --> c_mc
+c_a --> c_mf
+c_a --> c_pm
+
+@enduml

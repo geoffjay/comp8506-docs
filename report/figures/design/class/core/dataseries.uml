@@ -1,0 +1,13 @@
+/'
+ '  UML include file for DataSeries
+ '/
+
+@startuml
+class DataSeries {
+    +int length
+    +int stride
+    ----
+    +DataSeries (int length)
+    +Dcs.SimplePoint[] to_array ()
+}
+@enduml

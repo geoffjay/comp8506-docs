@@ -1,0 +1,21 @@
+@startuml
+
+left to right direction
+
+actor Operator as a_o
+actor Service as a_s
+actor Device as a_d
+
+rectangle "Measure DAQ Hardware" {
+  a_o --> (Start\nService) : <<initiate>>
+  (Start\nService) ..> a_s : <<participate>>
+  (Load\nDevices) <-- a_s
+  (Load\nDevices) ..> a_d : <<participate>>
+  a_o --> (Request\nMeasurement)
+  (Send\nMessage) <-- a_s
+  (Send\nMessage) ..> a_d : <<participate>>
+  (Read\nHardware) <-- a_d
+  a_o --> (Receive\nMeasurement)
+}
+
+@enduml

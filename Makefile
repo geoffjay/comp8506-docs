@@ -6,6 +6,9 @@ SUBDIRS = proposal report
 
 subdirs: $(SUBDIRS)
 
+$(SUBDIRS):
+	$(MAKE) -C $@
+
 clean: $(CLEANDIRS)
 
 $(CLEANDIRS):

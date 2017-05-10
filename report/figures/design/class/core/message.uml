@@ -1,0 +1,20 @@
+/'
+ '  UML include file for Message
+ '/
+
+@startuml
+
+hide class fields
+
+class Message {
+    +Message (string data)
+    +Message.alert ()
+    +Message.error ()
+    +Message.info ()
+    +Message.warning ()
+    +Message.from_node (Dcs.Node node)
+    +Message.from_node_group (Gee.List<Dcs.Node> group)
+    +string to_string ()
+}
+
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+
+class ControllerManager {
+    +Dcs.Controller ext
+    ----
+    +ControllerManager (Dcs.Net.Service service)
+    #overrride void add_extension ()
+}
+
+@enduml

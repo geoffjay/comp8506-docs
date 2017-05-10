@@ -18,13 +18,15 @@
 \usepackage{float}
 \usepackage{amssymb}
 \usepackage{mathtools}
-\usepackage{biblatex}
 \usepackage{svg}
 \usepackage{tikz}
 \usepackage{listings,lstautogobble}
 \usepackage[tablegrid]{vhistory}
 \usetikzlibrary{arrows}
-\bibliography{references}
+
+\usepackage[backend=biber]{biblatex}
+%\bibliography{references}
+\addbibresource{references.bib}
 
 \usepackage{hyperref}
 \hypersetup{%
@@ -124,40 +126,44 @@
   \addtocounter{page}{-1}
   \pagenumbering{roman}
   \tableofcontents
-  \listoffigures
-  \listoftables
-  \lstlistoflistings
 
   \newpage
   \pagenumbering{arabic}
 
   % XXX fill in or omit sections as needed, for now just blasting ideas
 
-  \input{sections/description}
+  \include{sections/description}
 
   \newpage
-  \input{sections/requirements}
+  \include{sections/technology}
 
   \newpage
-  \input{sections/design}
+  \include{sections/requirements}
 
   \newpage
-  \input{sections/development}
+  \include{sections/design}
 
   \newpage
-  \input{sections/installation}
+  \include{sections/development}
 
   \newpage
-  \input{sections/configuration}
+  \include{sections/installation}
 
   \newpage
-  \input{sections/testing}
+  \include{sections/configuration}
 
-  \section{Results}\label{sec:res}
+  \newpage
+  \include{sections/testing}
+
+	\newpage
+  \include{sections/results}
+
+  \newpage
+  \include{sections/future}
 
   % Insert a list of references that were cited.
-  %\newpage
-  %\printbibliography%
+  \newpage
+  \printbibliography%
 
   % Appendices
   \newpage
@@ -165,6 +171,18 @@
   \appendix
   \appendixpage%
 
+  \section{List of Figures}\label{app:list-figures}
+    \listoffigures
+
+  \newpage
+  \section{List of Tables}\label{app:list-tables}
+    \listoftables
+
+  \newpage
+  \section{List of Source Code Listings}\label{app:list-listings}
+    \lstlistoflistings
+
+  \newpage
   % Left over from a previous proposal document, edit later as needed.
   \section{Glossary of Abbreviations and Terms}\label{app:glossary}
 
@@ -178,6 +196,7 @@
         \toprule
         Term & Definition/Explanation \\ [0.5ex]
         \midrule
+        ADT & Abstract Data Type \\
         API & Application Programming interface \\
         Client & Refers to the software application that communications with a daemon \\
         Container & Operating system level virtualization similar to chroot jails \\
@@ -191,6 +210,7 @@
         GNOME & Open source dekstop environment software used with Linux systems \\
         GObject & A C type library to gain object oriented style features \\
         GUI & Graphical User Interface \\
+        MVC & Model-View-Controller \\
         OSS & Open Source Software \\
         Perl & A high level programming language good for rapid development \\
         REST & Representational State Transfer \\
@@ -304,8 +324,23 @@
       \vhEntry{0.6}{2017-01-09}{Geoff Johnson}{Add unit test and coverage info (pages: 8-9)}
       \vhEntry{0.7}{2017-01-13}{Geoff Johnson}{Add raw requirements from discussions}
       \vhEntry{0.8}{2017-01-17}{Geoff Johnson}{Create requirements section}
-      \vhEntry{0.9}{2017-01-22}{Geoff Johnson}{Outline UML Class Diagram Sections}
-      \vhEntry{0.10}{2017-02-04}{Geoff Johnson}{Add UML Class Diagrams}
+      \vhEntry{0.9}{2017-01-22}{Geoff Johnson}{Outline UML class diagram sections}
+      \vhEntry{0.10}{2017-02-04}{Geoff Johnson}{Add UML class Diagrams}
+      \vhEntry{0.11}{2017-02-05}{Geoff Johnson}{Add bibliography}
+      \vhEntry{0.12}{2017-02-11}{Geoff Johnson}{Add use cases}
+      \vhEntry{0.13}{2017-02-18}{Geoff Johnson}{Add more specific class diagrams}
+      \vhEntry{0.14}{2017-03-02}{Geoff Johnson}{Document class diagrams}
+      \vhEntry{0.15}{2017-03-06}{Geoff Johnson}{Document use cases}
+      \vhEntry{0.16}{2017-03-15}{Geoff Johnson}{Add sequence diagrams}
+      \vhEntry{0.17}{2017-03-21}{Geoff Johnson}{Document sequence diagrams}
+      \vhEntry{0.18}{2017-04-03}{Geoff Johnson}{Add and document more sequence diagrams}
+      \vhEntry{0.19}{2017-04-16}{Geoff Johnson}{Add and document component diagrams}
+      \vhEntry{0.20}{2017-04-22}{Geoff Johnson}{Add Development section}
+      \vhEntry{0.21}{2017-05-02}{Geoff Johnson}{Add REST APIs}
+      \vhEntry{0.22}{2017-05-04}{Geoff Johnson}{Add Installation section}
+      \vhEntry{0.23}{2017-05-05}{Geoff Johnson}{Add initial Configuration section}
+      \vhEntry{0.24}{2017-05-08}{Geoff Johnson}{Add initial Testing section}
+      \vhEntry{0.25}{2017-05-09}{Geoff Johnson}{Fix document formatting}
     \end{versionhistory}
 
 \end{document}

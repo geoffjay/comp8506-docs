@@ -1,0 +1,21 @@
+@startuml
+
+left to right direction
+
+actor Client
+actor Designer
+
+rectangle "Deploy New DCS System" {
+  Client --> (Request\nSystem) : <<initiate>>
+  (Propose\nDesign) <-- Designer : <<initiate>>
+  Client ..> (Propose\nDesign) : <<participate>>
+  Client --> (Approve\nDesign)
+  (Approve\nDesign) <.. Designer : <<participate>>
+  (Write\nConfiguration) <-- Designer
+  (Test\nSystem) <-- Designer
+  (Deliver\nSystem) <-- Designer
+  Client ..> (Deliver\nSystem) : <<receive>>
+  Client --> (Use\nSystem)
+}
+
+@enduml

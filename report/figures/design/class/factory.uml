@@ -1,0 +1,40 @@
+@startuml
+
+hide class fields
+hide class methods
+hide abstract fields
+hide abstract methods
+hide interface fields
+hide interface methods
+
+namespace Dcs {
+  interface Factory
+  abstract class AbstractFactory
+  class ConfigNode
+  class Node
+  class PluginFactory
+  class MetaFactory
+  namespace Net {
+    class Factory
+  }
+  namespace DAQ {
+    class Factory
+  }
+  namespace Control {
+    class Factory
+  }
+}
+
+Dcs.AbstractFactory --|> GLib.Object
+Dcs.AbstractFactory ..|> Dcs.Factory
+Dcs.AbstractFactory --o "*" Dcs.ConfigNode : Consumes
+Dcs.AbstractFactory --o "*" Dcs.Node : Produces
+Dcs.Net.Factory --|> Dcs.AbstractFactory
+Dcs.DAQ.Factory --|> Dcs.AbstractFactory
+Dcs.Control.Factory --|> Dcs.AbstractFactory
+Dcs.PluginFactory --|> Dcs.AbstractFactory
+Dcs.MetaFactory --|> Dcs.AbstractFactory
+Dcs.MetaFactory --* "*" Dcs.AbstractFactory : Registers
+Dcs.Node --|> Gee.TreeMap
+
+@enduml

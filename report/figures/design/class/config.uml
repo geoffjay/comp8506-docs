@@ -1,0 +1,23 @@
+@startuml
+
+hide class fields
+hide class methods
+hide abstract fields
+hide abstract methods
+hide interface fields
+hide interface methods
+
+interface Dcs.Config
+abstract class Dcs.AbstractConfig
+
+Dcs.AbstractConfig --|> GLib.Object
+Dcs.AbstractConfig ..|> Dcs.Config
+Dcs.AbstractConfig --o "*" Dcs.ConfigNode : Contains
+Dcs.ServiceConfig --|> Dcs.AbstractConfig
+Dcs.CmdlineConfig --|> Dcs.AbstractConfig
+Dcs.PluginConfig --|> Dcs.AbstractConfig
+Dcs.MetaConfig --|> Dcs.AbstractConfig
+Dcs.MetaConfig --* "*" Dcs.AbstractConfig : Registers
+Dcs.ConfigNode --|> Gee.TreeMap
+
+@enduml

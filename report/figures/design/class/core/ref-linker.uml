@@ -1,0 +1,19 @@
+@startuml
+
+class RefLinker {
+    -bool satisfied
+    -int n_satisfied
+    +{static} unowned Dcs.RefLinker get_default ()
+    +bool is_satisfied ()
+    +int get_n_satisfied ()
+    +bool add_reference (string dest, string src)
+    +bool remove_reference (string dest, string src)
+    +bool remove_path (string path)
+    +void clear ()
+    +void print_table ()
+    +void process_node () throws Error
+    -- signals --
+    +signal void progress (double value)
+}
+
+@enduml

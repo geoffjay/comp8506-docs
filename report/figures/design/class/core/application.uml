@@ -1,0 +1,24 @@
+/'
+ 'UML include file for Dcs.Application interface.
+ '/
+
+@startuml
+abstract class Application {
+    #Dcs.MetaConfig config
+    #Dcs.MetaFactory factory
+    #Dcs.Model model
+    #Dcs.View view
+    #Dcs.Controller controller
+    ----
+    #void init ()
+    +virtual void Dcs.Config get_config ()
+    +virtual Dcs.Factory get_factory ()
+    +virtual Dcs.Model get_model ()
+    +virtual Dcs.View get_view ()
+    +virtual Dcs.Controller get_controller ()
+    +virtual void construct_model () throws Error
+    +virtual int launch (string[] args)
+	-- signals --
+	signal void closed ()
+}
+@enduml

@@ -1,6 +1,72 @@
 \section{Development}\label{sec:dev}
 
-  \subsection{Autotools Build Systems}\label{sec:dev-ac}
+  \subsection{Plugin Systems}\label{sec:dev-plugins}
+
+    The software application that OpenDCS aims to replace uses a plugin system
+    built using the GObject library gmodule-2.0. GModule and related classes
+    provide a portable method for dynamically loading plugins, but it would
+    require a large amount of effort to continue using this approach to address
+    one of the key requirements that was identified. In early discussions that
+    were had about requirements and given in Section~\ref{sec:req-sh} as \#9 of
+    Table~\ref{tab:requirements}, the end user ``Must be able to develop plugins
+    in Python as well as C/Vala''. While this is possible using GModule, it was
+    identified by early research that doing so would be difficult, and has
+    already been accomplished in another library called Libpeas. This is what
+    will be used for the plugin systems incorporated in the various services.
+
+    Libpeas is a gobject-based plugins engine, and is targetted at giving every
+    application the chance to assume its own extensibility~\cite{Libpeas2016}.
+    Its features include programming support for C, and Vala by extension,
+    Python, and Lua so it is appropriate to address our requirement.
+
+    More information on developing and installing Libpeas plugins is given in
+    Section~\ref{sec:inst}.
+
+  \subsection{GNU Build System}\label{sec:dev-ac}
+
+    The GNU build system is made up of a many components, the most important of
+    which are Automake, Autoconf, Gnulib, and Libtool. Files that make up this
+    type of build system define a set of rules to build the files in a package
+    \cite{Automake2014}. Figure~\ref{fig:dev-ac-comp} shows the basic components
+    of an Autotools build system and how certain necessary input files result in
+    a \texttt{Makefile} that is the recipe required to build a package. The two
+    files that are required as input to this type of build system are
+    \texttt{configure.ac} and \texttt{Makefile.am}, with \texttt{autoconf} and
+    \texttt{automake} these files are used to produce the \texttt{configure}
+    script which defines how to create the corresponding \texttt{Makefile} that
+    is used with the program \texttt{make} which is the command that many expect
+    to be able to call on a source package to generate a set of libraries and
+    executables.
+
+    In OpenDCS the build system is used for a variety of purposes, it defines
+    binary and library version numbers, ensures that the necessary applications
+    to compile are installed, to control compilation which allows for the
+    inclusion of non-essential components or the exclusion of components to
+    simplify builds, and to manage compiler variables including \texttt{CFLAGS}
+    and \texttt{LIBS}. As it is a desired requirement of this project to be able
+    to generate builds for a variety of Linux variants this type of build system
+    is essential. While other systems are available, for example \texttt{CMAKE}
+    and \texttt{Meson}, the developer has the most knowledge of the GNU build
+    system.
+
+    \begin{figure}[H]
+      \includegraphics[width=0.8\textwidth,center]{figures/development/autotools-components}
+      \caption{Basic Overview of the Autotools Components}\label{fig:dev-ac-comp}
+    \end{figure}
+
+    A standardized workflow that is generally understood and accepted by many
+    users of Unix based systems is given here:
+
+    \begin{lstlisting}
+      git clone https://git.coanda.local:open-dcs/dcs.git
+      cd dcs
+      ./autogen.sh
+      make
+      sudo make install
+    \end{lstlisting}
+
+    More information on specifics about controlling compilation and installation
+    of this project are given in Section~\ref{sec:inst}.
 
   \subsection{REST APIs}\label{sec:rest}
 
@@ -22,7 +88,7 @@
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{8cm} p{10cm}}
+        \begin{tabular}{p{3in} p{3in}}
           \toprule
           \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
@@ -40,7 +106,7 @@
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{8cm} p{10cm}}
+        \begin{tabular}{p{3in} p{3in}}
           \toprule
           \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
@@ -58,7 +124,7 @@
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{8cm} p{10cm}}
+        \begin{tabular}{p{3in} p{3in}}
           \toprule
           \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
@@ -76,7 +142,7 @@
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{8cm} p{10cm}}
+        \begin{tabular}{p{3in} p{3in}}
           \toprule
           \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
@@ -96,7 +162,7 @@
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{8cm} p{10cm}}
+        \begin{tabular}{p{3in} p{3in}}
           \toprule
           \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
@@ -115,7 +181,7 @@
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{8cm} p{10cm}}
+        \begin{tabular}{p{3in} p{3in}}
           \toprule
           \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
@@ -133,7 +199,7 @@
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{8cm} p{10cm}}
+        \begin{tabular}{p{3in} p{3in}}
           \toprule
           \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
@@ -151,7 +217,7 @@
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{8cm} p{10cm}}
+        \begin{tabular}{p{3in} p{3in}}
           \toprule
           \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
@@ -171,7 +237,7 @@
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{8cm} p{10cm}}
+        \begin{tabular}{p{3in} p{3in}}
           \toprule
           \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
@@ -189,7 +255,7 @@
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{8cm} p{10cm}}
+        \begin{tabular}{p{3in} p{3in}}
           \toprule
           \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
@@ -207,7 +273,7 @@
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{8cm} p{10cm}}
+        \begin{tabular}{p{3in} p{3in}}
           \toprule
           \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
@@ -225,7 +291,7 @@
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{8cm} p{10cm}}
+        \begin{tabular}{p{3in} p{3in}}
           \toprule
           \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule
@@ -241,7 +307,7 @@
 
       \begin{table}[H]
         \centering
-        \begin{tabular}{p{8cm} p{10cm}}
+        \begin{tabular}{p{3in} p{3in}}
           \toprule
           \emph{Resource} & \emph{Description} \\ [0.5ex]
           \midrule

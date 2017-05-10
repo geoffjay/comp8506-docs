@@ -1,0 +1,13 @@
+/'
+ '  UML include file for Backend interface
+ '/
+
+@startuml
+class Backend {
+    +Dcs.Net.Service service
+    ----
+    +Backend (Dcs.Net.Service service)
+    +{abstract} open () throws Error
+    +{abstract} close () throws Error
+}
+@enduml

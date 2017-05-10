@@ -1,0 +1,31 @@
+@startuml
+
+actor User
+participant Service
+participant PluginManager
+database "File System" as fs
+participant PluginInfo
+participant Plugin
+
+User -> Service : Start service
+activate Service
+...
+Service -> PluginManager : Construct plugin manager
+activate PluginManager
+PluginManager --> Service : Plugin manager created
+Service -> PluginManager : Load plugins
+loop until all plugins are loaded
+PluginManager -> fs : Read plugin\ninformation files
+fs --> PluginManager : Provide plugin\ninformation file
+PluginManager -> PluginInfo : Construct plugin\ninformation from file
+PluginInfo --> PluginManager : Plugin information\ncreated
+PluginManager -> Plugin : Construct plugin\nfrom information file
+Plugin --> PluginManager : Plugin created
+end
+PluginManager --> Service : All plugins loaded
+...
+Service -> Service : Continue
+deactivate PluginManager
+deactivate Service
+
+@enduml

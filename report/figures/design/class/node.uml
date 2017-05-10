@@ -1,0 +1,9 @@
+@startuml
+
+hide class fields
+hide class methods
+
+Dcs.Node --* "many" Dcs.Node : Contains
+Dcs.Node --* "many" Dcs.Reference : Contains
+
+@enduml

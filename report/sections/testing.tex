@@ -5,10 +5,10 @@
     Adding support to build and run unit tests can be done using the commands given here
     in Listing~\ref{lst:test-unit}.
 
-    \begin{lstlisting}[caption={Compiling and Running Unit Tests},label={lst:test-unit}]
+    \begin{lstlisting}[language=bash,caption={Compiling and Running Unit Tests},label={lst:test-unit}]
       ./autogen.sh --enable-tests
-      make -j8
       make check
+      make -j8
     \end{lstlisting}
 
     If everything completes successfully a test suite summary should be given similar to
@@ -31,7 +31,7 @@
 
   \subsection{Coverage Reports}\label{sec:test-cov}
 
-    \begin{lstlisting}[caption={Generating Coverage Reports},label={lst:test-cov}]
+    \begin{lstlisting}[language=bash,caption={Generating Coverage Reports},label={lst:test-cov}]
       ./autogen.sh --enable-coverage --enable-tests
       make -j8
       make check

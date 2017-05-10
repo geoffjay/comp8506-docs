@@ -1,0 +1,46 @@
+/'
+ ' UML include file for Dcs.ConfigNode class.
+ '/
+
+@startuml
+class ConfigNode {
+    ~ConfigNode parent
+    ----
+    +ConfigNode (string obj_type, ConfigFormat format)
+    +ConfigNode.from_xml (Xml.Node* node)
+    +ConfigNode.from_json (Json.Node node)
+    +ConfigNode get_parent ()
+    +{static} bool equals (Dcs.ConfigNode a, Dcs.ConfigNode b)
+    +string to_string ()
+    +string get_namespace () throws Error
+    +ConfigFormat get_format () throws Error
+    +Gee.Map<string, Variant> get_properties ()
+    +Gee.List<string> get_references ()
+    +string get_type_name ()
+    +void set_format (Dcs.ConfigFormat format) throws Error
+    +void add_property (string name, VariantType type) throws Error
+    +void add_array_property (string name, VariantType type) throws Error
+    +void remove_property (string name) throws Error
+    +void add_reference (string reference) throws Error
+    +string get_string (string ns, string key) throws Error
+    +Gee.ArrayList<string> get_string_list (string ns, string key) throws Error
+    +int get_int (string ns, string key) throws Error
+    +Gee.ArrayList<int> get_int_list (string ns, string key) throws Error
+    +bool get_bool (string ns, string key) throws Error
+    +Gee.ArrayList<bool> get_bool_list (string ns, string key) throws Error
+    +double get_double (string ns, string key) throws Error
+    +Gee.ArrayList<double> get_double_list (string ns, string key) throws Error
+    +Dcs.ConfigNode get_node (string ns, string key) throws Error
+    +void set_string (string ns, string key, string value) throws Error
+    +void set_string_list (string ns, string key, string[] value) throws Error
+    +void set_int (string ns, string key, int value) throws Error
+    +void set_int_list (string ns, string key, int[] value) throws Error
+    +void set_bool (string ns, string key, bool value) throws Error
+    +void set_bool_list (string ns, string key, bool[] value) throws Error
+    +void set_double (string ns, string key, double value) throws Error
+    +void set_double_list (string ns, string key, double[] value) throws Error
+    +void set_node (string ns, string key, Dcs.ConfigNode value) throws Error
+    -- signals --
+    +void property_edited (string property)
+}
+@enduml

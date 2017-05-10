@@ -1,0 +1,51 @@
+@startuml
+
+actor User
+participant ControlService
+participant DaqService
+participant Measure
+participant Device
+participant Control
+participant Controller
+participant "DAQ Hardware" as daq_hw
+participant ControlResult
+
+User -> ControlService : Send control request message
+ControlService -> ControlService : Parse message
+loop
+  ControlService -> DaqService : Send measurement\nrequest message
+  DaqService -> DaqService : Parse message
+  DaqService -> Measure : Construct measure
+  activate Measure
+  Measure --> DaqService : Measure created
+  DaqService -> Device : Measure DAQ device
+  Device -> daq_hw : Retrieve data from\nDAQ hardware
+  daq_hw --> Device : Return measurement\nresult value
+  Device -> MeasureResult : Construct measurement\nresult from value
+  activate MeasureResult
+  MeasureResult --> Device : Result created
+  Device --> DaqService : Return measurement\nresult
+  deactivate Measure
+  DaqService -> DaqService : Convert result to message
+  deactivate MeasureResult
+  DaqService --> ControlService : Send measurement\nreply message
+  ControlService -> Control : Construct control
+  activate Control
+  Control --> ControlService : Control created
+  ControlService -> Controller : Calculate change
+  Controller -> ControlResult : Construct control\nresult
+  ControlResult --> Controller : Result created
+  activate ControlResult
+  Controller --> ControlService : Return control\nresult
+  deactivate Control
+  alt desired control value == measured value
+    ControlService --> User : Send control\nsuccess confirmation and exit
+  else failed to complete
+    ControlService --> User : Send control\nfailure message and exit
+  else
+    ControlService -> ControlService : Repeat
+  end
+  deactivate ControlResult
+end
+
+@enduml

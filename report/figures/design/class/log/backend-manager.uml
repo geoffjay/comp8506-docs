@@ -1,0 +1,12 @@
+/'
+ '  UML include file for BackendManager class
+ '/
+
+@startuml
+class BackendManager {
+    +BackendProxy ext
+    ----
+    +BackendManager (Dcs.Net.Service service)
+    #overrride void add_extension ()
+}
+@enduml

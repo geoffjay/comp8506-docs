@@ -1,0 +1,31 @@
+/'
+ '  UML include file for MetaConfig
+ '/
+
+@startuml
+hide class fields
+class MetaConfig {
+    +{static} Dcs.MetaConfig get_default ()
+    +{static} void register_config (Dcs.Config config)
+    +override Gee.List<Dcs.ConfigNode> get_children ()
+    +override void dump (GLib.FileStream stream)
+    +override string get_namespace () throws Error
+    +override Dcs.ConfigFormat get_format () throws Error
+    +override string get_string (string ns, string key) throws Error
+    +override Gee.ArrayList<string> get_string_list (string ns, string key) throws Error
+    +override int get_int (string ns, string key) throws Error
+    +override Gee.ArrayList<int> get_int_list (string ns, string key) throws Error
+    +override bool get_bool (string ns, string key) throws Error
+    +override Gee.ArrayList<bool> get_bool_list (string ns, string key) throws Error
+    +override double get_double (string ns, string key) throws Error
+    +override Gee.ArrayList<double> get_double_list (string ns, string key) throws Error
+    +override void set_string (string ns, string key, string value) throws Error
+    +override void set_string_list (string ns, string key, string[] value) throws Error
+    +override void set_int (string ns, string key, int value) throws Error
+    +override void set_int_list (string ns, string key, int[] value) throws Error
+    +override void set_bool (string ns, string key, bool value) throws Error
+    +override void set_bool_list (string ns, string key, bool[] value) throws Error
+    +override void set_double (string ns, string key, double value) throws Error
+    +override void set_double_list (string ns, string key, double[] value) throws Error
+}
+@enduml

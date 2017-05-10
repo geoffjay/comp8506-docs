@@ -1,0 +1,19 @@
+@startuml
+
+class Subscribe {
+    +int port
+    +string transport_spec
+    +Dcs.Net.ZmqTransport transport
+    +string address
+    ----
+    +Subscribe ()
+    +bool is_connected ()
+    #void init () throws Error
+    +void start () throws Error
+    +void stop () throws Error
+    -- signals --
+    +signal void data_received (uint8[] data)
+    +signal void message_received (Dcs.Message message)
+}
+
+@enduml

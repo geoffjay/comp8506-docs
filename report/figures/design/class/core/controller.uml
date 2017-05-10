@@ -1,0 +1,16 @@
+/'
+ '  Uml include file for App.Controller
+ '/
+
+@startuml
+abstract class Controller {
+    #App.Model model
+    #App.View view
+    ----
+    +{abstract}abstract void update_view (string id)
+    +{abstract}abstract void add (owned Dcs.Object object, string path) throws Error
+    +{abstract}abstract void remove (string path) throws Error
+    +{abstract}abstract void @set (string path, string prop, Variant value) throws Error
+    +{abstract}abstract Variant @get (string path, string prop) throws Error
+}
+@enduml

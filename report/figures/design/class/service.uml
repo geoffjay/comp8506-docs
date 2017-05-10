@@ -1,0 +1,37 @@
+@startuml
+
+hide class fields
+hide class methods
+hide abstract fields
+hide abstract methods
+hide interface fields
+hide interface methods
+
+namespace Dcs {
+  interface Application
+  interface Runnable
+  class PluginManager
+  class Plugin
+  class MetaConfig
+  class MetaFactory
+  namespace Net {
+    abstract class Service
+    class MessageQueue
+    class RestService
+    class RestRouteFunc
+  }
+}
+
+Dcs.Application ..|> Dcs.Runnable
+Dcs.Application --o "1" Dcs.MetaConfig : Contains
+Dcs.Application --o "1" Dcs.MetaFactory : Contains
+Dcs.Net.Service --|> Dcs.Application
+Dcs.Net.Service --* "1" Dcs.PluginManager : Contains
+Dcs.Net.Service --* "1" Dcs.Net.MessageQueue : Contains
+Dcs.Net.Service --* "1" Dcs.Net.RestService : Provides
+Dcs.Net.RestService --* "*" Dcs.Net.RestRouteFunc : Uses
+Dcs.Net.Service --* Dcs.Net.RestRouteFunc : Supplies
+Dcs.PluginManager --o "*" Dcs.Plugin : Loads
+Dcs.Plugin --* Dcs.Net.MessageQueue : Uses
+
+@enduml

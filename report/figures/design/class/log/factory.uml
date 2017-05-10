@@ -1,0 +1,16 @@
+/'
+ '  UML include file for Log.Factory class
+ '/
+
+@startuml
+
+hide class fields
+
+class Factory {
+    +{static} unowned Dcs.Log.Factory get_default ()
+    +virtual Dcs.Node produce (GLib.Type type) throws Error
+    +virtual Dcs.Node produce_from_config (Dcs.ConfigNode config) throws Error
+    +virtual Dcs.Node produce_from_config_list (Gee.List<Dcs.ConfigNode> config) throws Error
+}
+
+@enduml

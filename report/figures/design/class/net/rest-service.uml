@@ -1,0 +1,11 @@
+/'
+ '  UML include file for RestService class
+ '/
+
+@startuml
+abstract class RestService {
+        +int port
+        ----
+        +void add_routes (Dcs.Net.RouteEntry[] routes)
+}
+@enduml

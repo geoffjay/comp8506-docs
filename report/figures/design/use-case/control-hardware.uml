@@ -1,0 +1,30 @@
+@startuml
+
+left to right direction
+
+actor Operator as a_o
+actor "DAQ Service" as a_sd
+actor "Control Service" as a_sc
+actor Device as a_d
+actor Controller as a_c
+
+rectangle "Control DAQ Hardware" {
+  a_o --> (Start\nDAQ Service) : <<initiate>>
+  (Start\nDAQ Service) ..> a_sd : <<participate>>
+  (Load\nDevices) <-- a_sd
+  (Load\nDevices) ..> a_d : <<participate>>
+  a_o --> (Start\nControl Service) : <<initiate>>
+  (Start\nControl Service) ..> a_sc : <<participate>>
+  (Load\nControllers) <-- a_sc
+  (Load\nControllers) ..> a_c : <<participate>>
+  a_o --> (Request\nDevice State\nChange)
+  (Send\nMessage) <-- a_sd
+  (Send\nMessage) ..> a_d : <<participate>>
+  (Receive\nMessage) <-- a_sc
+  (Receive\nMessage) ..> a_c : <<participate>>
+  (Control\nHardware) <-- a_d
+  (Control\nHardware) <-- a_c : <<participate>>
+  a_o --> (Perceive\nChange)
+}
+
+@enduml

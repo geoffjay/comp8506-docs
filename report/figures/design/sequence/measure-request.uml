@@ -1,0 +1,27 @@
+@startuml
+
+actor User
+participant DaqService
+participant Measure
+participant Device
+participant "DAQ Hardware" as daq_hw
+participant MeasureResult
+
+User -> DaqService : Send measurement\nrequest message
+DaqService -> DaqService : Parse message
+DaqService -> Measure : Construct measure
+activate Measure
+Measure --> DaqService : Measure created
+DaqService -> Device : Measure DAQ device
+Device -> daq_hw : Retrieve data from\nDAQ hardware
+daq_hw --> Device : Return measurement\nresult value
+Device -> MeasureResult : Construct measurement\nresult from value
+activate MeasureResult
+MeasureResult --> Device : Result created
+Device --> DaqService : Return measurement\nresult
+deactivate Measure
+DaqService -> DaqService : Convert result to message
+deactivate MeasureResult
+DaqService --> User : Send measurement\nreply message
+
+@enduml

@@ -1,0 +1,35 @@
+/'
+ '  UML inlude file for AbstractConfig class
+ '/
+
+@startuml
+abstract class AbstractConfig {
+    #Dcs.ConfigFormat format
+    #string namespace
+    #Gee.ArrayList<Dcs.ConfigNode> children
+    ----
+    +bool has_children ()
+    +virtual Gee.List<Dcs.ConfigNode> get_children ()
+    +virtual void dump (FileStream stream)
+    +virtual string get_namespace () throws Error
+    +virtual ConfigFormat get_format () throws Error
+    +virtual string get_string (string ns, string key) throws Error
+    +virtual Gee.ArrayList<string> get_string_list (string ns, string key) throws Error
+    +virtual int get_int (string ns, string key) throws Error
+    +virtual Gee.ArrayList<int> get_int_list (string ns, string key) throws Error
+    +virtual bool get_bool (string ns, string key) throws Error
+    +virtual Gee.ArrayList<bool> get_bool_list (string ns, string key) throws Error
+    +virtual double get_double (string ns, string key) throws Error
+    +virtual Gee.ArrayList<double> get_double_list (string ns, string key) throws Error
+    +virtual Dcs.ConfigNode get_node (string ns, string key) throws Error
+    +virtual void set_string (string ns, string key, string value) throws Error
+    +virtual void set_string_list (string ns, string key, string[] value) throws Error
+    +virtual void set_int (string ns, string key, int value) throws Error
+    +virtual void set_int_list (string ns, string key, int[] value) throws Error
+    +virtual void set_bool (string ns, string key, bool value) throws Error
+    +virtual void set_bool_list (string ns, string key, bool[] value) throws Error
+    +virtual void set_double (string ns, string key, double value) throws Error
+    +virtual void set_double_list (string ns, string key, double[] value) throws Error
+    +virtual void set_node (string ns, string key, Dcs.ConfigNode value) throws Error
+}
+@enduml

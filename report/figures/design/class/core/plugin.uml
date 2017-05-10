@@ -1,0 +1,15 @@
+/'
+ '  UML include file for Plugin interface
+ '/
+
+@startuml
+abstract class Plugin {
+    +bool enabled
+    +GLib.Object object
+    ----
+    +void activate ()
+    +void deactivate ()
+    +void update_state ()
+    +void run ()
+}
+@enduml

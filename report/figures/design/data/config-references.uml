@@ -1,0 +1,32 @@
+@startuml
+
+node "Logging Service" {
+  (Log\nModel) as lm
+  (Column 1) as lc1
+  (Column 2) as lc2
+  (Column 3) as lc3
+  lm -down- lc1
+  lm -down- lc2
+  lm -down- lc3
+}
+
+node "DAQ Service" {
+  (DAQ\nModel) as dm
+  (Channel 1) as dc1
+  (Channel 2) as dc2
+  (Channel 3) as dc3
+  (Measurement\nTask) as dt
+  dm -down- dc1
+  dm -down- dc2
+  dm -down- dc3
+  dm -right- dt
+}
+
+lc1 .. dc1
+lc2 .. dc2
+lc3 .. dc3
+dt .. dc1
+dt .. dc2
+dt .. dc3
+
+@enduml

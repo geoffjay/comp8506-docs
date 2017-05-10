@@ -1,0 +1,9 @@
+@startuml
+
+class Controller {
+    +Dcs.Net.Service service
+    ----
+    +Controller (Dcs.Net.Service service)
+}
+
+@enduml

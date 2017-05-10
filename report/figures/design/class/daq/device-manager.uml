@@ -1,0 +1,13 @@
+/'
+ '  UML include file for DeviceManager class
+ '/
+
+@startuml
+class DeviceManager {
+    +Dcs.Daq.Device ext
+    ----
+    +DeviceManager (Dcs.Net.Service service)
+    #override void add_extension ()
+}
+@enduml
+

@@ -1,0 +1,18 @@
+/'
+ '  UML include file for PluginManager
+ '/
+
+@startuml
+abstract class PluginManager {
+    #Peas.Engine engine
+    #Peas.ExtensionSet extensions
+    #string search_path
+    ----
+    #virtual void init ()
+    #{abstract} add_extension ()
+    #virtual void load_plugins ()
+    +string[] loaded_plugins ()
+    --signals--
+    +signal void plugin_available (Dcs.Plugin plugin)
+}
+@enduml

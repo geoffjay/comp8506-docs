@@ -1,0 +1,13 @@
+/'
+ '  UML include file for Object interface
+ '/
+
+@startuml
+interface Object {
+    +{abstract} string id
+    ----
+    +{static} bool equal (Dcs.Object a, Dcs.Object b)
+    +{static} int compare (Dcs.Object a)
+    +virtual string to_string ()
+}
+@enduml

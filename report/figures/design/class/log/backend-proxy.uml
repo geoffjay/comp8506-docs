@@ -1,0 +1,11 @@
+/'
+ '  UML include file for BackendProxy class
+ '/
+
+@startuml
+class BackendProxy {
+    +Dcs.Net.Service service
+    ----
+    +BackendProxy (Dcs.Net.Service service)
+}
+@enduml

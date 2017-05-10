@@ -81,7 +81,7 @@
         33 & Should be able to test any system component by following the documentation provided & 3 \\
         \bottomrule
       \end{tabular}
-      \caption{Initial Requirements List Continued}\label{tab:requirements}
+      \caption{Initial Requirements List Continued}\label{tab:requirements-cont}
     \end{table}
 
   \subsection{Analysis}\label{sec:req-analyze}
@@ -119,9 +119,9 @@
       \item[WISH:] ideal goal value
     \end{itemize}
 
-    \subsubsection{External Interface Requirements}\label{sec:req-srs-func}
+    \subsubsection{External Interface Requirements}\label{sec:req-srs-ext}
 
-      \paragraph{User Interfaces}
+      %\paragraph{User Interfaces}
 
       \paragraph{Hardware Interfaces}
 
@@ -317,7 +317,8 @@
           \item[ID:] DSFR-0001
           \item[TAG:] Data acquisition common system requirements
           \item[DESC:] The common service requirements shall be met.
-          \item[RAT:]
+          \item[RAT:] There are common requirements of a DAQ system that
+            should be met.
           \item[DEP:] FR-0001
         \end{itemize}
 
@@ -329,7 +330,7 @@
           \item[DESC:] Data messages shall be published on the socket
             containing channel measurements, timestamps, and broadcast
             status/warnings.
-          \item[RAT:]
+          \item[RAT:] ZeroMQ publishing sockets provide required functionality.
           \item[DEP:] FR-0002
         \end{itemize}
 
@@ -340,7 +341,7 @@
           \item[TAG:] Subscribe to Data Messages
           \item[DESC:] The data acquisition system component shall be able to
             subscribe to published messages.
-          \item[RAT:]
+          \item[RAT:] ZeroMQ subscribing sockets provide required functionality.
           \item[DEP:] FR-0003
         \end{itemize}
 
@@ -352,7 +353,7 @@
           \item[DESC:] The data acquisition system component shall start
             publishing data in response to a request to do so if it has not
             already started.
-          \item[RAT:]
+          \item[RAT:] A DAQ service should be capable of starting on demand.
           \item[DEP:] FR-0002
         \end{itemize}
 
@@ -363,7 +364,7 @@
           \item[TAG:] Stop
           \item[DESC:] The data acquisition system component shall stop
             publishing data in response to a request to do so.
-          \item[RAT:]
+          \item[RAT:] A DAQ service should be capable of stopping on demand.
           \item[DEP:] FR-0002
         \end{itemize}
 
@@ -374,7 +375,8 @@
           \item[TAG:] Automatic Start
           \item[DESC:] The data acquisition system component shall start
             publishing data immediately.
-          \item[RAT:]
+          \item[RAT:] A DAQ service should be configurable to start necessary
+            components of the system at launch.
           \item[DEP:] FR-0002
         \end{itemize}
 
@@ -386,7 +388,8 @@
           \item[ID:] LSFR-0001
           \item[TAG:] Data logging common system requirements
           \item[DESC:] The common service requirements shall be met.
-          \item[RAT:]
+          \item[RAT:] There are common requirements of a data logging system
+            that should be met.
           \item[DEP:] FR-0001
         \end{itemize}
 
@@ -397,8 +400,8 @@
           \item[TAG:] Publish backend malfunction warning
           \item[DESC:] Data messages shall be published as a warning when its
             back end data storage is not functioning.
-          \item[RAT:] To allow the subscribing GUI interface to alert the
-            user.
+          \item[RAT:] To allow the subscribing application interface to alert
+            the user.
           \item[DEP:] FR-0002
         \end{itemize}
 
@@ -407,9 +410,45 @@
           \itemsep .15em
           \item[ID:] LSFR-0003
           \item[TAG:] Subscribe to published data from data acquisition system.
-          \item[DESC:]
-          \item[RAT:]
+          \item[DESC:] The data logging system component shall be able to
+            subscribe to published messages.
+          \item[RAT:] ZeroMQ subscribing sockets provide required functionality.
           \item[DEP:] FR-0003
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] LSFR-0004
+          \item[TAG:] Start
+          \item[DESC:] The data logging system component shall start
+            subscribing to data in response to a request to do so if it has not
+            already started.
+          \item[RAT:] A log service should be capable of starting on demand.
+          \item[DEP:] FR-0002
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] LSFR-0005
+          \item[TAG:] Stop
+          \item[DESC:] The data logging system component shall stop
+            subscribing to data in response to a request to do so.
+          \item[RAT:] A log service should be capable of stopping on demand.
+          \item[DEP:] FR-0002
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] LSFR-0006
+          \item[TAG:] Automatic Start
+          \item[DESC:] The data logging system component shall start
+            publishing data immediately.
+          \item[RAT:] A log service should be configurable to start necessary
+            components of the system at launch.
+          \item[DEP:] FR-0002
         \end{itemize}
 
       \paragraph{Feedback Control}
@@ -420,7 +459,8 @@
           \item[ID:] CSFR-0001
           \item[TAG:] Feedback control common system requirements
           \item[DESC:] The common service requirements shall be met.
-          \item[RAT:]
+          \item[RAT:] There are common requirements of a feedback control system
+            that should be met.
           \item[DEP:] FR-0001
         \end{itemize}
 
@@ -460,7 +500,45 @@
           \item[DEP:] FR-0002, FR-0003, CSFR-0002, CSFR-0003
         \end{itemize}
 
-    \subsubsection{Non-Functional Requirements}\label{sec:req-srs-func}
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] CSFR-0005
+          \item[TAG:] Start
+          \item[DESC:] The feedback control system component shall start
+            publishing and subscribing to data in response to a request to do
+            so if it has not already started.
+          \item[RAT:] A feedback control service should be capable of starting
+            on demand.
+          \item[DEP:] FR-0002
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] CSFR-0006
+          \item[TAG:] Stop
+          \item[DESC:] The feedback control system component shall stop
+            publishing and subscribing to data in response to a request to do
+            so.
+          \item[RAT:] A feedback control service should be capable of stopping
+            on demand.
+          \item[DEP:] FR-0002
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] CSFR-0007
+          \item[TAG:] Automatic Start
+          \item[DESC:] The feedback system component shall start
+            publishing data immediately.
+          \item[RAT:] A feedback control service should be configurable to start
+            necessary components of the system at launch.
+          \item[DEP:] FR-0002
+        \end{itemize}
+
+    \subsubsection{Non-Functional Requirements}\label{sec:req-srs-non-func}
 
       \paragraph{Performance}
 
@@ -475,39 +553,12 @@
           \itemsep .15em
           \item[ID:] QR-0001
           \item[GIST:] Data log query response time.
-          \item[SCALE:]
-          \item[METER:]
-          \item[MUST:]
-          \item[PLAN:]
-          \item[WISH:]
-        \end{itemize}
-
-        Usage of the data acquisition message publish feature
-
-        \begin{itemize}
-          \setlength{\itemindent}{.5in}
-          \itemsep .15em
-          \item[ID:] QR-0002
-          \item[GIST:]
-          \item[SCALE:]
-          \item[METER:]
-          \item[MUST:]
-          \item[PLAN:]
-          \item[WISH:]
-        \end{itemize}
-
-        Usage of the data acquisition message subscribe feature
-
-        \begin{itemize}
-          \setlength{\itemindent}{.5in}
-          \itemsep .15em
-          \item[ID:] QR-0003
-          \item[GIST:]
-          \item[SCALE:]
-          \item[METER:]
-          \item[MUST:]
-          \item[PLAN:]
-          \item[WISH:]
+          \item[SCALE:] seconds
+          \item[METER:] Measurements taken from the time a query request was
+            sent until the response was received and reported as the difference.
+          \item[MUST:] 100 ms
+          \item[PLAN:] 10 ms
+          \item[WISH:] 500 us
         \end{itemize}
 
         Configuration modification request response time
@@ -516,12 +567,14 @@
           \setlength{\itemindent}{.5in}
           \itemsep .15em
           \item[ID:] QR-0004
-          \item[GIST:]
-          \item[SCALE:]
-          \item[METER:]
-          \item[MUST:]
-          \item[PLAN:]
-          \item[WISH:]
+          \item[GIST:] Response time taken for a successful configuration
+            modification using the REST API.
+          \item[SCALE:] seconds
+          \item[METER:] Measurements taken from the time a query request was
+            sent until the response was received and reported as the difference.
+          \item[MUST:] 100 ms
+          \item[PLAN:] 10 ms
+          \item[WISH:] 500 us
         \end{itemize}
 
         Configuration information request response time
@@ -530,12 +583,14 @@
           \setlength{\itemindent}{.5in}
           \itemsep .15em
           \item[ID:] QR-0005
-          \item[GIST:]
-          \item[SCALE:]
-          \item[METER:]
-          \item[MUST:]
-          \item[PLAN:]
-          \item[WISH:]
+          \item[GIST:] Response time taken for a request to configuration
+            using the REST API.
+          \item[SCALE:] seconds
+          \item[METER:] Measurements taken from the time a query request was
+            sent until the response was received and reported as the difference.
+          \item[MUST:] 100 ms
+          \item[PLAN:] 10 ms
+          \item[WISH:] 500 us
         \end{itemize}
 
         Sample rate capacity of data acquisition service
@@ -544,12 +599,16 @@
           \setlength{\itemindent}{.5in}
           \itemsep .15em
           \item[ID:] QR-0006
-          \item[GIST:]
-          \item[SCALE:]
-          \item[METER:]
-          \item[MUST:]
-          \item[PLAN:]
-          \item[WISH:]
+          \item[GIST:] Bulk messages sent count as delivered by the data
+            acquisition service.
+          \item[SCALE:] MPS
+          \item[METER:] Measurements taken by publishing a set number of
+            messages sent by the publisher and received by the subscriber and
+            reported as the total received.
+          \item[MUST:] 100 MPS
+          \item[PLAN:] 100 MPS
+          \item[WISH:] 1000 MPS
+          \item[MPS:] Messages per second
         \end{itemize}
 
         Sample rate capacity of data logging service
@@ -558,12 +617,16 @@
           \setlength{\itemindent}{.5in}
           \itemsep .15em
           \item[ID:] QR-0007
-          \item[GIST:]
-          \item[SCALE:]
-          \item[METER:]
-          \item[MUST:]
-          \item[PLAN:]
-          \item[WISH:]
+          \item[GIST:] Bulk messages received count as seen by the data logging
+            service.
+          \item[SCALE:] MPS
+          \item[METER:] Measurements taken by publishing a set number of
+            messages sent by the publisher and received by the subscriber and
+            reported as the total received.
+          \item[MUST:] 100 MPS
+          \item[PLAN:] 100 MPS
+          \item[WISH:] 1000 MPS
+          \item[MPS:] Messages per second
         \end{itemize}
 
         Sample rate capacity of feedback control service
@@ -572,12 +635,16 @@
           \setlength{\itemindent}{.5in}
           \itemsep .15em
           \item[ID:] QR-0008
-          \item[GIST:]
-          \item[SCALE:]
-          \item[METER:]
-          \item[MUST:]
-          \item[PLAN:]
-          \item[WISH:]
+          \item[GIST:] Bulk messages sent and received as delivered and seen
+            by the feedback control service.
+          \item[SCALE:] MPS
+          \item[METER:] Measurements taken by publishing a set number of
+            messages sent by the publisher and received by the subscriber and
+            reported as the total received.
+          \item[MUST:] 100 MPS
+          \item[PLAN:] 100 MPS
+          \item[WISH:] 1000 MPS
+          \item[MPS:] Messages per second
         \end{itemize}
 
         System dependability of the data acquisition service
@@ -641,13 +708,16 @@
         \begin{itemize}
           \setlength{\itemindent}{.5in}
           \itemsep .15em
-          \item[ID:] QR-00
-          \item[GIST:]
-          \item[SCALE:]
-          \item[METER:]
-          \item[MUST:]
-          \item[PLAN:]
-          \item[WISH:]
+          \item[ID:] QR-0012
+          \item[GIST:] Ethernet network bandwidth capacity.
+          \item[SCALE:] Mbps
+          \item[METER:] Measure the total throughput of the network performance
+            by flooding with message traffic and monitor using \texttt{tcpdump}.
+          \item[MUST:] 100 Mbps
+          \item[PLAN:] 500 Mbps
+          \item[WISH:] 1 Gbps
+          \item[Mbps:] Megabits per second
+          \item[Gbps:] Gigabits per second
         \end{itemize}
 
         Network latency
@@ -655,13 +725,14 @@
         \begin{itemize}
           \setlength{\itemindent}{.5in}
           \itemsep .15em
-          \item[ID:] QR-00
-          \item[GIST:]
-          \item[SCALE:]
-          \item[METER:]
-          \item[MUST:]
-          \item[PLAN:]
-          \item[WISH:]
+          \item[ID:] QR-0013
+          \item[GIST:] TCP/IP network latency
+          \item[SCALE:] microseconds
+          \item[METER:] Measure the time difference between the time a message
+            was sent and when it was received.
+          \item[MUST:] 100 ms
+          \item[PLAN:] 100 us
+          \item[WISH:] 1 us
         \end{itemize}
 
         Data acquisition device speed
@@ -669,13 +740,15 @@
         \begin{itemize}
           \setlength{\itemindent}{.5in}
           \itemsep .15em
-          \item[ID:] QR-00
-          \item[GIST:]
-          \item[SCALE:]
-          \item[METER:]
-          \item[MUST:]
-          \item[PLAN:]
-          \item[WISH:]
+          \item[ID:] QR-0014
+          \item[GIST:] Data acquisition device speed
+          \item[SCALE:] S/s
+          \item[METER:] Measurement obtained by counting the number of single
+            measurement values acquired in 1 minute.
+          \item[MUST:] 10 S/s
+          \item[PLAN:] 1 kS/s
+          \item[WISH:] 1 MS/s
+          \item[s/s:] Samples per second
         \end{itemize}
 
         Hard drive read/write speed
@@ -683,13 +756,13 @@
         \begin{itemize}
           \setlength{\itemindent}{.5in}
           \itemsep .15em
-          \item[ID:] QR-00
-          \item[GIST:]
-          \item[SCALE:]
-          \item[METER:]
-          \item[MUST:]
-          \item[PLAN:]
-          \item[WISH:]
+          \item[ID:] QR-0015
+          \item[GIST:] Hard drive transfer rate
+          \item[SCALE:] Mbps
+          \item[METER:] The transfer rate is given by the manufacturer.
+          \item[MUST:] 100 Mbps
+          \item[PLAN:] 500 Mbps
+          \item[WISH:] More than 500 Mbps
         \end{itemize}
 
         Application memory usage
@@ -697,13 +770,15 @@
         \begin{itemize}
           \setlength{\itemindent}{.5in}
           \itemsep .15em
-          \item[ID:] QR-00
-          \item[GIST:]
-          \item[SCALE:]
-          \item[METER:]
-          \item[MUST:]
-          \item[PLAN:]
-          \item[WISH:]
+          \item[ID:] QR-0016
+          \item[GIST:] The recommended RAM required to meet performance and user
+            experience requirements.
+          \item[SCALE:] GB
+          \item[METER:] The quantity of the installed RAM.
+          \item[MUST:] 1 GB
+          \item[PLAN:] 2 GB
+          \item[WISH:] 512 MB
+          \item[GB:] Gigabytes
         \end{itemize}
 
         Application processor usage
@@ -711,13 +786,14 @@
         \begin{itemize}
           \setlength{\itemindent}{.5in}
           \itemsep .15em
-          \item[ID:] QR-00
-          \item[GIST:]
-          \item[SCALE:]
-          \item[METER:]
-          \item[MUST:]
-          \item[PLAN:]
-          \item[WISH:]
+          \item[ID:] QR-0017
+          \item[GIST:] The CPU usage.
+          \item[SCALE:] percent
+          \item[METER:] Use the htop utility to measure this over a 1 hour time
+            period.
+          \item[MUST:] Less than 50\%
+          \item[PLAN:] Less than 20\%
+          \item[WISH:] Less than 10\%
         \end{itemize}
 
       \paragraph{Software System Attributes}
@@ -727,13 +803,14 @@
         \begin{itemize}
           \setlength{\itemindent}{.5in}
           \itemsep .15em
-          \item[ID:] QR-00
-          \item[GIST:]
-          \item[SCALE:]
-          \item[METER:]
-          \item[MUST:]
-          \item[PLAN:]
-          \item[WISH:]
+          \item[ID:] QR-0018
+          \item[GIST:] Continuous operation.
+          \item[SCALE:] days
+          \item[METER:] Observe a full functioning system running continuously
+            for a number of days.
+          \item[MUST:] 90 days
+          \item[PLAN:] 180 days
+          \item[WISH:] 365 days
         \end{itemize}
 
         Availability
@@ -741,37 +818,48 @@
         \begin{itemize}
           \setlength{\itemindent}{.5in}
           \itemsep .15em
-          \item[ID:] QR-00
-          \item[GIST:]
-          \item[SCALE:]
-          \item[METER:]
-          \item[MUST:]
-          \item[PLAN:]
-          \item[WISH:]
+          \item[ID:] QR-0019
+          \item[GIST:] System uptime.
+          \item[SCALE:] percent
+          \item[METER:] Observe a system as available for network requests as a
+            ratio of time up to total time.
+          \item[MUST:] 90\%
+          \item[PLAN:] 99\%
+          \item[WISH:] 99.99\%
         \end{itemize}
 
         \begin{itemize}
           \setlength{\itemindent}{.5in}
           \itemsep .15em
-          \item[ID:] QR-00
-          \item[GIST:]
-          \item[SCALE:]
-          \item[METER:]
-          \item[MUST:]
-          \item[PLAN:]
-          \item[WISH:]
+          \item[ID:] QR-0020
+          \item[TITLE:] Network connection.
+          \item[DESC:] The applications should be connected to a building
+            network.
+          \item[RAT:] In order for the applications to speak with each other.
+          \item[DEP:] none
         \end{itemize}
 
         \begin{itemize}
           \setlength{\itemindent}{.5in}
           \itemsep .15em
-          \item[ID:] QR-00
-          \item[GIST:]
-          \item[SCALE:]
-          \item[METER:]
-          \item[MUST:]
-          \item[PLAN:]
-          \item[WISH:]
+          \item[ID:] QR-0021
+          \item[TITLE:] Remote access.
+          \item[DESC:] A user can access the system from outside the building
+            network over a secure network connection.
+          \item[RAT:] In order for a user to remotely monitor or download data
+            from the system.
+          \item[DEP:] none
+        \end{itemize}
+
+        \begin{itemize}
+          \setlength{\itemindent}{.5in}
+          \itemsep .15em
+          \item[ID:] QR-0021
+          \item[TITLE:] Control access.
+          \item[DESC:] The daemons should provide a means to enable or disable
+            secure communications through an authentication mechanism.
+          \item[RAT:] It should be possible to prevent unauthenticated requests.
+          \item[DEP:] none
         \end{itemize}
 
         Maintainability
@@ -779,13 +867,13 @@
         \begin{itemize}
           \setlength{\itemindent}{.5in}
           \itemsep .15em
-          \item[ID:] QR-00
-          \item[GIST:]
-          \item[SCALE:]
-          \item[METER:]
-          \item[MUST:]
-          \item[PLAN:]
-          \item[WISH:]
+          \item[ID:] QR-0022
+          \item[TITLE:] Software upgrades.
+          \item[DESC:] Bug fixes and software upgrades can be applied using a
+            package manager.
+          \item[RAT:] Maintaining the software should be made simple by using
+            an automated system.
+          \item[DEP:] none
         \end{itemize}
 
     %\subsubsection{Core Library}\label{sec:req-srs-core}

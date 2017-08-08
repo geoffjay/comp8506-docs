@@ -3,6 +3,7 @@
  '/
 
 @startuml
+
 class Node {
     +{virtual} string id
     +{virtual} Dcs.Node parent
@@ -22,4 +23,5 @@ class Node {
     +signal void node_removed (string id)
     +signal void request_node (string id)
 }
+
 @enduml

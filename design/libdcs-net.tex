@@ -1,0 +1,54 @@
+\begin{tikzpicture} {
+\umlclass{DcsNetFactory}{}{
+new
+}\umlclass{DcsNetRestService}{
+port : gint
+}{
+add_routes \\
+get_port \\
+set_port
+}\umlclass{DcsNetZmqService}{
+port : gint \\
+transport : DcsNet.NetZmqTransport \\
+address : utf8
+}{
+zmq_init \\
+run \\
+listen \\
+listen_finish \\
+to_string \\
+get_port \\
+set_port \\
+get_transport \\
+set_transport \\
+get_address \\
+set_address
+}\umlclass{DcsNetZmqClient}{
+port : gint \\
+transport : DcsNet.NetZmqTransport \\
+address : utf8 \\
+is-connected : gboolean \\
+filter : utf8
+}{
+zmq_init \\
+run \\
+watch \\
+watch_finish \\
+get_port \\
+set_port \\
+get_transport \\
+set_transport \\
+get_address \\
+set_address \\
+get_is_connected \\
+get_filter \\
+set_filter
+}\umlenum{DcsNetZmqTransport} {
+}
+\umlenum{DcsNetRouteArg} {
+}
+\umlenum{undefined} {
+}
+\begin{umlpackage}{DcsNet}
+\end{umlpackage}
+}

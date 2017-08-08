@@ -1,0 +1,10 @@
+/'
+ '  UML include file for App.View
+ '/
+
+@startuml
+interface View {
+    +{absract}abstract void add (owned Dcs.Object, string path) throws Error
+}
+@enduml
+

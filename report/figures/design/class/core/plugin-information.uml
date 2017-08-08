@@ -3,10 +3,12 @@
  '/
 
 @startuml
+
 class PluginInformation {
     +string module_path
     +string name
     ----
     +{static} Dcs.PluginInformation new_from_file (GLib.File file) throws Error
 }
+
 @enduml

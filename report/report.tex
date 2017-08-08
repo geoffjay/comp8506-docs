@@ -47,7 +47,7 @@
 \definecolor{sol-emph}{RGB}{211,54,130} % Magenta
 \definecolor{sol-background}{RGB}{253,246,227} % Base3
 
-\lstset{
+\lstset{%
   language=xml,
   backgroundcolor=\color{sol-background},
   identifierstyle=\ttfamily,
@@ -74,6 +74,21 @@
   title=\lstname,
   literate={│}{{\textSFxi}}1 {└}{{\textSFii}}1 {├}{{\textSFviii}}1 {─}{{\textSFx}}1,
   autogobble=true,
+}
+
+\lstdefinelanguage{JavaScript}{%
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{sol-keyword}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{sol-keyword}\bfseries,
+  identifierstyle=\color{sol-basic},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{sol-comment}\ttfamily,
+  stringstyle=\color{sol-string}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
 }
 
 % Packages used for appendices.
@@ -158,8 +173,8 @@
 	\newpage
   \include{sections/results}
 
-  \newpage
-  \include{sections/future}
+  %\newpage
+  %\include{sections/future}
 
   % Insert a list of references that were cited.
   \newpage
@@ -273,42 +288,42 @@
 
   \newpage
 
-  \section{Sample Configurations}\label{app:configurations}
+  %\section{Sample Configurations}\label{app:configurations}
 
-    Configuration files (XML and JSON) that will have been referenced throughout
-    this document.
+    %Configuration files (XML and JSON) that will have been referenced throughout
+    %this document.
 
-    \begin{lstlisting}[caption={Complete Core Sample},label={lst:full-core}]
-      <?xml version="1.0"?>
-      <dcs xmlns:core="libdcs-core">
-        <property name="app">Sample</property>
-        <core:objects>
-          <core:object id="0" type="test"/>
-        </core:objects>
-      </dcs>
-    \end{lstlisting}
+    %\begin{lstlisting}[caption={Complete Core Sample},label={lst:full-core}]
+      %<?xml version="1.0"?>
+      %<dcs xmlns:core="libdcs-core">
+        %<property name="app">Sample</property>
+        %<core:objects>
+          %<core:object id="0" type="test"/>
+        %</core:objects>
+      %</dcs>
+    %\end{lstlisting}
 
-    \begin{lstlisting}[caption={Complete DAQ Sample},label={lst:full-daq}]
-      <?xml version="1.0"?>
-      <dcs xmlns:core="urn:libdcs-core" xmlns:daq="urn:libdcs-daq">
-        <property name="app">Sample</property>
-        <core:objects>
-          <core:object id="0" type="test"/>
-        </core:objects>
-      </dcs>
-    \end{lstlisting}
+    %\begin{lstlisting}[caption={Complete DAQ Sample},label={lst:full-daq}]
+      %<?xml version="1.0"?>
+      %<dcs xmlns:core="urn:libdcs-core" xmlns:daq="urn:libdcs-daq">
+        %<property name="app">Sample</property>
+        %<core:objects>
+          %<core:object id="0" type="test"/>
+        %</core:objects>
+      %</dcs>
+    %\end{lstlisting}
 
-    \begin{lstlisting}[caption={Complete Log Sample},label={lst:full-log}]
-      <?xml version="1.0"?>
-      <dcs xmlns:core="urn:libdcs-core" xmlns:log="urn:libdcs-log">
-        <property name="app">Sample</property>
-        <core:objects>
-          <core:object id="0" type="test"/>
-        </core:objects>
-      </dcs>
-    \end{lstlisting}
+    %\begin{lstlisting}[caption={Complete Log Sample},label={lst:full-log}]
+      %<?xml version="1.0"?>
+      %<dcs xmlns:core="urn:libdcs-core" xmlns:log="urn:libdcs-log">
+        %<property name="app">Sample</property>
+        %<core:objects>
+          %<core:object id="0" type="test"/>
+        %</core:objects>
+      %</dcs>
+    %\end{lstlisting}
 
-  \newpage
+  %\newpage
 
   \section{Document Change Log}\label{app:changelog}
 
@@ -341,6 +356,11 @@
       \vhEntry{0.23}{2017-05-05}{Geoff Johnson}{Add initial Configuration section}
       \vhEntry{0.24}{2017-05-08}{Geoff Johnson}{Add initial Testing section}
       \vhEntry{0.25}{2017-05-09}{Geoff Johnson}{Fix document formatting}
+      \vhEntry{0.26}{2017-05-12}{Geoff Johnson}{Add content to Testing for REST}
+      \vhEntry{0.27}{2017-05-15}{Geoff Johnson}{Add configuration samples used}
+      \vhEntry{0.28}{2017-05-16}{Geoff Johnson}{Add compilation information}
+      \vhEntry{0.29}{2017-05-20}{Geoff Johnson}{Add section describing missed component}
+      \vhEntry{0.30}{2017-05-25}{Geoff Johnson}{Perform final edits}
     \end{versionhistory}
 
 \end{document}

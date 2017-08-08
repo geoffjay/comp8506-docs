@@ -3,6 +3,7 @@
  '/
 
 @startuml
+
 abstract class Plugin {
     +bool enabled
     +GLib.Object object
@@ -12,4 +13,5 @@ abstract class Plugin {
     +void update_state ()
     +void run ()
 }
+
 @enduml

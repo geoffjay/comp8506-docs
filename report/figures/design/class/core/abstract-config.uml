@@ -3,6 +3,7 @@
  '/
 
 @startuml
+
 abstract class AbstractConfig {
     #Dcs.ConfigFormat format
     #string namespace
@@ -32,4 +33,5 @@ abstract class AbstractConfig {
     +virtual void set_double_list (string ns, string key, double[] value) throws Error
     +virtual void set_node (string ns, string key, Dcs.ConfigNode value) throws Error
 }
+
 @enduml

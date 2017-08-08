@@ -3,6 +3,7 @@
  '/
 
 @startuml
+
 class Model {
     +Dcs.Node root
     +bool active

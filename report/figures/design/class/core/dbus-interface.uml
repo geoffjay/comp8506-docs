@@ -3,6 +3,7 @@
  '/
 
 @startuml
+
 interface DBusInterface {
     +const unowned string SERVICE_NAME
     +const unowned string OBJECT_PATH
@@ -10,4 +11,5 @@ interface DBusInterface {
     +{abstract} reload () throws IOError
     +{abstract} shutdown () throws IOError
 }
+
 @enduml

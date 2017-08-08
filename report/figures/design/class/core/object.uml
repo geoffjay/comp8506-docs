@@ -3,6 +3,7 @@
  '/
 
 @startuml
+
 interface Object {
     +{abstract} string id
     ----
@@ -10,4 +11,5 @@ interface Object {
     +{static} int compare (Dcs.Object a)
     +virtual string to_string ()
 }
+
 @enduml

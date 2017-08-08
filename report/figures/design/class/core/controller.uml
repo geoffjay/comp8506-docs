@@ -3,6 +3,7 @@
  '/
 
 @startuml
+
 abstract class Controller {
     #App.Model model
     #App.View view
@@ -13,4 +14,5 @@ abstract class Controller {
     +{abstract}abstract void @set (string path, string prop, Variant value) throws Error
     +{abstract}abstract Variant @get (string path, string prop) throws Error
 }
+
 @enduml

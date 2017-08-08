@@ -3,6 +3,7 @@
  '/
 
 @startuml
+
 abstract class PluginManager {
     #Peas.Engine engine
     #Peas.ExtensionSet extensions
@@ -15,4 +16,5 @@ abstract class PluginManager {
     --signals--
     +signal void plugin_available (Dcs.Plugin plugin)
 }
+
 @enduml

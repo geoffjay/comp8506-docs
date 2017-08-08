@@ -1,0 +1,12 @@
+/'
+ '  UML include file for Point
+ '/
+
+@startuml
+class Point <<compact>> {
+    +double x { set; get; }
+    +double y {set; get; }
+    ----
+    +Point (double x, double y)
+}
+@enduml

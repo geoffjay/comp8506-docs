@@ -1,0 +1,250 @@
+\documentclass[svgnames]{a0poster}
+
+\usepackage[margin=1cm, paperwidth=84.1cm, paperheight=118.9cm]{geometry}
+\geometry{landscape}
+
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{fancyvrb}
+\usepackage{tikz-uml}
+\usetikzlibrary{positioning}
+
+\usepackage{hyperref}
+
+\begin{document}
+
+\noindent
+\begin{tikzpicture}
+
+    \begin{umlpackage}{DcsCore}
+
+    \umlinterface[x=0,y=0]{DcsApplication} {
+    }
+
+    \umlinterface[x=12,y=0]{DcsApplicationView} {
+    }
+
+    \umlinterface[x=24,y=0]{DcsBuildable} {
+    }
+
+    \umlinterface[x=36,y=0]{DcsCldAdapter} {
+    }
+
+    \umlinterface[x=48,y=0]{DcsConfiguration} {
+    }
+
+    \umlinterface[x=60,y=0]{DcsContainer} {
+    }
+
+    \umlinterface[x=72,y=0]{DcsDBusInterface} {
+    }
+
+    \umlinterface[x=84,y=0]{DcsFactory} {
+    }
+
+    \umlinterface[x=96,y=0]{DcsObject} {
+    }
+
+    \umlinterface[x=104,y=0]{DcsExtension} {
+    }
+
+    \umlclass[x=12,y=-18]{DcsAbstractConfig}{}{
+        get\_string \\
+        get\_string\_list \\
+        get\_int \\
+        get\_int\_list \\
+        get\_bool
+    }
+
+    \umlclass[x=24,y=-18]{DcsApplicationModel}{
+        name : utf8 \\
+        admin : gboolean \\
+        def-enabled : gboolean \\
+        config-filename : utf8 \\
+        active : gboolean \\
+        verbose : gboolean \\
+        config : DcsCore.ApplicationConfig \\
+        xml : Cld.XmlConfig \\
+        ctx : Cld.Context \\
+        settings : Gio.Settings
+    }{
+        new \\
+        get\_name \\
+        set\_name \\
+        get\_admin \\
+        set\_admin \\
+        get\_def\_enabled \\
+        set\_def\_enabled \\
+        get\_config\_filename \\
+        set\_config\_filename \\
+        get\_active \\
+        set\_active \\
+        get\_verbose \\
+        set\_verbose \\
+        get\_config \\
+        get\_xml \\
+        get\_ctx \\
+        get\_settings
+    }
+
+    \umlclass[x=36,y=-18]{DcsApplicationController}{
+        admin : gboolean
+    }{
+        new \\
+        save\_requested\_cb \\
+        start\_acquisition \\
+        stop\_acquisition \\
+        start\_device\_output \\
+        stop\_device\_output \\
+        get\_admin \\
+        set\_admin
+    }
+
+    \umlclass[x=48,y=-18]{DcsApplicationConfig}{
+        file-name : utf8 \\
+        loaded : gboolean
+    }{
+        new \\
+        save \\
+        get\_xml\_node \\
+        get\_xml\_nodeset \\
+        print\_xml\_node \\
+        get\_boolean\_property \\
+        get\_string\_property \\
+        get\_int\_property \\
+        get\_double\_property \\
+        get\_float\_property \\
+        set\_boolean\_property \\
+        set\_string\_property \\
+        set\_int\_property \\
+        set\_double\_property \\
+        set\_float\_property \\
+        set\_xml\_node \\
+        get\_file\_name \\
+        set\_file\_name \\
+        get\_loaded \\
+        set\_loaded
+    }
+
+	\umlclass[x=60,y=-18]{DcsApplicationFactory}{}{
+        new
+    }
+
+	\umlclass[x=72,y=-18]{DcsDataSeries}{
+        ch-ref : utf8 \\
+        channel : Cld.Channel \\
+        buffer-size : gint \\
+        stride : gint \\
+        node : gpointer
+    }{
+        from\_xml\_node \\
+        to\_array \\
+        new \\
+        get\_ch\_ref \\
+        set\_ch\_ref \\
+        get\_channel \\
+        set\_channel \\
+        get\_buffer\_size \\
+        get\_stride \\
+        get\_node \\
+        set\_node
+    }
+
+	\umlclass[x=84,y=-18]{DcsSysLog}{
+        verbosity : gint
+    }{
+        new
+    }
+
+	\umlclass[x=96,y=-18]{DcsMetaConfig}{}{
+        new
+    }
+
+	\umlclass[x=104,y=-18]{DcsModuleLoader}{
+        base-path : utf8
+    }{
+        load\_modules \\
+        load\_modules\_sync \\
+        load\_module\_from\_file \\
+        load\_module\_from\_info \\
+        get\_base\_path \\
+        set\_base\_path
+    }
+
+	\umlclass[x=0,y=-36]{DcsPlugin}{
+        capabilities : DcsCore.PluginCapabilities \\
+        name : utf8 \\
+        title : utf8 \\
+        description : utf8 \\
+        active : gboolean \\
+        has-factory : gboolean \\
+        factory : DcsCore.Factory
+    }{
+        new \\
+        get\_capabilities \\
+        set\_capabilities \\
+        get\_name \\
+        get\_title \\
+        set\_title \\
+        get\_description \\
+        get\_active \\
+        set\_active \\
+        get\_has\_factory \\
+        get\_factory \\
+        set\_factory
+    }
+
+	\umlclass[x=12,y=-36]{DcsPluginLoader}{}{
+        new \\
+        plugin\_disabled \\
+        add\_plugin \\
+        get\_plugin\_by\_name \\
+        list\_plugins
+    }
+
+	\umlclass[x=24,y=-36]{DcsPluginExtension}{}{
+        new
+    }
+
+	\umlclass[x=36,y=-36]{DcsPoint}{
+        x : gdouble \\
+        y : gdouble
+    }{
+        new \\
+        get\_x \\
+        set\_x \\
+        get\_y \\
+        set\_y
+    }
+
+	\umlclass[x=48,y=-36]{DcsPluginInformation}{
+        module-path : utf8 \\
+        name : utf8
+    }{
+        get\_module\_path \\
+        get\_name
+    }
+
+    \umlenum[x=0,y=-54]{DcsConfigFormat} {
+    }
+
+    \umlenum[x=12,y=-54]{DcsConfigEntry} {
+    }
+
+    \umlenum[x=24,y=-54]{DcsLogLevel} {
+    }
+
+    \umlenum[x=36,y=-54]{undefined} {
+    }
+
+    \umlenum[x=48,y=-54]{undefined} {
+    }
+
+    \umlenum[x=60,y=-54]{undefined} {
+    }
+
+    \end{umlpackage}
+
+\end{tikzpicture}
+
+\end{document}

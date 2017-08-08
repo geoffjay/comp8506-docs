@@ -76,3 +76,53 @@
     request/reply structure for a higher performance version of the REST API,
     and a structure for bridging communications to allow for the reconfiguration
     of the server as a proxy or slave node in a distributed system.
+
+  \subsection{Alternative Solutions}\label{sec:desc-alt}
+
+    Distributed Control Systems software is typically tied to hardware such as
+    Programmable Logic Controller (PLC) and Programmable Automation Controller
+    (PAC) hardware. While the cost of these types of units, typically \$500 to
+    \$1000 and up, has come down in recent years it is still more than that of
+    commodity hardware that the system proposed will be designed for, a goal of
+    this project is to be able to deploy a system on embedded targets that are
+    more prevalent now, such as a RaspberryPI or BeagleBone. The cost of these
+    embedded computers ranges from \$10 to \$100, but even if a typical desktop
+    computer running the Linux operating system is used the cost can be as low
+    as a couple of hundred dollars.
+
+    In the case of a PLC or a PAC programming is a non-trivial task that is
+    determined by the number of I/O points and the hourly cost of a developer.
+    Assuming a rate of \$125 per hour, the cost of engineering services is
+    around \$440 per point\cite{Automation2014}. This cost is not insignificant
+    for many users who wish to create data acquisition and control systems, and
+    not everyone requires the robustness of an industrial grade PLC or PAC.
+    The barrier of entry is not just the cost of the hardware or the
+    development time either, often the software to program such devices is
+    several thousands of dollars and in many cases requires a great deal of
+    training to be able to use.
+
+    Other open source offerings are available, Tango, FreeDCS, and Proview were
+    all evaluated. Each has its own limitations that made it unappealing to the
+    client. Tango has a CORBA framework that was seen as a limiting factor, but
+    did offer many features built in including the ability to communicate over
+    OLE for Process Control (OPC) making it possible to work with almost any
+    existing DCS hardware and software. In the end the learning curve to be
+    able to produce control systems using Tango made it a non-viable option. A
+    goal of the development of OpenDCS is to be able to create control systems
+    without writing any code, but still offer the ability to develop components
+    using minimal effort and it was felt that this wasn't offered there.
+
+    FreeDCS offers some ability to construct control systems components, such
+    as a PID controller, and Human Machine Interfaces (HMI) to tie in with
+    those.  The offering is limited though and cannot do many things that this
+    project seeks to address, such as the ability to log data to a variety of
+    storage backends. It was also unclear from the documentation how to create
+    new data acquisition sources and controllers.
+
+    Proview has several nice GUI features that may have been useful, but at the
+    time of this writing the installation guide targets Fedora 11 with a kernel
+    version of 2.6.26.5. It may have been possible to compile this software
+    with a more modern version of the distribution, but it was also unclear how
+    much flexibility the system offered regarding expanding to different data
+    acquistion hardware and storage database types. It appeared to be none at
+    all.

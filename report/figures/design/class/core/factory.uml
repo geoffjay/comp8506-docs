@@ -3,10 +3,13 @@
  '/
 
 @startuml
+
 hide interface fields
+
 interface Factory {
     +virtual Dcs.Node produce (GLib.Type type) throws Error
     +virtual Dcs.Node produce_from_config (Dcs.ConfigNode config) throws Error
     +virtual Dcs.Node produce_from_config_list (Gee.List<Dcs.ConfigNode> config) throws Error
 }
+
 @enduml

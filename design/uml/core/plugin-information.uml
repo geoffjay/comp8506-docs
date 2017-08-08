@@ -1,0 +1,12 @@
+/'
+ '  UML include file for PluginInformation
+ '/
+
+@startuml
+class PluginInformation {
+    +string module_path { construct; get; }
+    +string name { construct; get; }
+    ----
+    +{static}static PluginInformation new_from_file (File file) throws Error
+}
+@enduml

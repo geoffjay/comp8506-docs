@@ -3,6 +3,7 @@
  '/
 
 @startuml
+
 class DataSeries {
     +int length
     +int stride
@@ -10,4 +11,5 @@ class DataSeries {
     +DataSeries (int length)
     +Dcs.SimplePoint[] to_array ()
 }
+
 @enduml

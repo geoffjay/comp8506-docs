@@ -38,10 +38,10 @@ package "Dcs" #DDDDDD {
 
     top to bottom direction
 
+    '
+    ' Enumerations
+    '
 
-        '
-        ' Enumerations
-        '
     !ifdef SHOW_ENUM
     !endif
 
@@ -53,7 +53,6 @@ package "Dcs" #DDDDDD {
     !include core/dbus-interface.uml
     !include core/factory.uml
     !include core/object.uml
-    !include core/plugin.uml
     !include core/ref-container.uml
     !include core/serializable.uml
     !include core/view.uml
@@ -71,6 +70,7 @@ package "Dcs" #DDDDDD {
     !include core/message.uml
     !include core/meta-config.uml
     !include core/meta-factory.uml
+    !include core/model.uml
     !include core/node.uml
     !include core/plugin.uml
     !include core/plugin-information.uml
@@ -88,39 +88,36 @@ package "Dcs" #DDDDDD {
     ' Associations
     '
 
-    ConfigNode ..|> AbstractConfig
-    DataSeries ..|> Object
-    MetaConfig ..|> Config
+    AbstractConfig ..|> Config
+    ConfigNode --|> AbstractConfig
+    DataSeries ..|> Node
+    MetaConfig --|> AbstractConfig
     MetaFactory ..|> Factory
     Node --|> Gee.TreeMap
-    Node ..|> Buildable
-    Node ..|> Serializable
     Node ..|> Object
+    Node ..|> Serializable
     Node ..|> RefContainer
-    Plugin ..|> Extension
     Plugin --|> Peas.ExtensionBase
     Plugin ..|> Peas.Activatable
-    Model..|> Container
 
     !ifdef SHOW_GLIB_ASSOC
-    AbstractConfig --|> GLib.Object
-    Application --|> GLib.Object
     Config --|> GLib.Object
-    DataSeries --|> GLib.Object
     DBusInterface --|> GLib.Object
     Factory --|> GLib.Object
-    Message --|> GLib.Object
-    MetaConfig --|> GLib.Object
-    MetaFactory --|> GLib.Object
     Object --|> GLib.Object
-    Plugin --|> GLib.Object
-    PluginInformation --|> GLib.Object
-    Point --|> GLib.Object
     RefContainer --|> GLib.Object
-    SysLog --|> GLib.Object
-    Controller --|> GLib.Object
-    Model --|> GLib.Object
+    Serializable --|> GLib.Object
     View --|> GLib.Object
+    AbstractConfig --|> GLib.Object
+    Application --|> GLib.Object
+    Controller --|> GLib.Object
+    SysLog --|> GLib.Object
+    Message --|> GLib.Object
+    MetaFactory --|> GLib.Object
+    PluginInformation --|> GLib.Object
+    PluginManager --|> GLib.Object
+    Point --|> GLib.Object
+    Model --|> GLib.Object
     !endif
 
     '
@@ -163,9 +160,13 @@ package "Dcs" #DDDDDD {
         ' Associations
         '
 
-        Controller ..|> Object
+        Control.Controller --|> Plugin
         ControllerManager --|> PluginManager
         Control.Factory ..|> Factory
+
+        !ifdef SHOW_GLIB_ASSOC
+        Control.Factory --|> GLib.Object
+        !endif
 
         '
         ' Notes
@@ -197,9 +198,13 @@ package "Dcs" #DDDDDD {
         ' Associations
         '
 
-        Device ..|> Plugin
+        Device --|> Plugin
         DeviceManager --|> PluginManager
         DAQ.Factory ..|> Factory
+
+        !ifdef SHOW_GLIB_ASSOC
+        DAQ.Factory --|> GLib.Object
+        !endif
 
         '
         ' Notes
@@ -231,13 +236,13 @@ package "Dcs" #DDDDDD {
         ' Associations
         '
 
-        /'
-         'BackendProxy --|> GLib.Object
-         'Log.Factory --|> GLib.Object
-         '/
-        Backend ..|> Plugin
+        Backend --|> Plugin
         BackendManager --|> PluginManager
         Log.Factory ..|> Factory
+
+        !ifdef SHOW_GLIB_ASSOC
+        Log.Factory --|> GLib.Object
+        !endif
 
         '
         ' Notes
@@ -275,6 +280,15 @@ package "Dcs" #DDDDDD {
 
         Net.Factory ..|> Factory
         RestService --|> Soup.Server
+        Service --|> Application
+        Request --|> Node
+        Reply --|> Node
+        Publish --|> Node
+        Subscribe --|> Node
+
+        !ifdef SHOW_GLIB_ASSOC
+        Net.Factory --|> GLib.Object
+        !endif
 
         '
         ' Notes

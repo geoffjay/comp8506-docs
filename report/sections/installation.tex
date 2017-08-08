@@ -83,7 +83,19 @@
       \texttt{/usr/local}, it is possible to change this behaviour using the
       build system to include an installation prefix using
       \texttt{./autogen.sh --prefix=/opt} for example. This will install
-      the libraries and \ldots
+      the libraries and data to folders underneath the path \texttt{/opt}.
+      The full command used most commonly during development of this project
+      was:
+
+      \begin{lstlisting}[language=bash,nolol]
+      ./autogen.sh --enable-tests --enable-coverage --enable-debug \
+          --enable-profiling --enable-doc --enable-uml --enable-optimizations
+      \end{lstlisting}
+
+      This set of options sets up unit testing, code coverage reports,
+      requests additional debugging strings from the compiler, enables all
+      documentation, and system profiling and optimization information using
+      \texttt{gprof}.
 
   \subsection{Dependencies}\label{sec:inst-dep}
 
@@ -129,12 +141,6 @@
       cd ..
       echo "/usr/local/lib" | sudo tee --append /etc/ld.so.conf
       sudo ldconfig
-    \end{lstlisting}
-
-  \subsection{Containerized Components}\label{sec:inst-cont}
-
-    \begin{lstlisting}[caption={Building Containers},
-                       label={lst:inst-cont}]
     \end{lstlisting}
 
   \subsection{Plugins}\label{sec:inst-plugins}

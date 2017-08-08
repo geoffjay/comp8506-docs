@@ -68,6 +68,123 @@
     More information on specifics about controlling compilation and installation
     of this project are given in Section~\ref{sec:inst}.
 
+  \newpage
+
+  %\subsection{Continuous Integration}\label{sec:ci}
+
+    %\begin{lstlisting}[caption={TravisCI Configuration},
+                       %label={lst:ci-yaml}]
+      %language: c
+      %compiler: gcc
+
+      %sudo: required
+      %dist: trusty
+
+      %env:
+        %global:
+          %- MAKE_CMD="make -j2"
+
+      %addons:
+        %apt:
+          %sources:
+            %- sourceline: 'ppa:vala-team/ppa'
+          %packages:
+            %- autoconf
+            %- autoconf-archive
+            %- automake
+            %- docbook-xsl
+            %- gettext
+            %- gobject-introspection
+            %- gtk-doc-tools
+            %- intltool
+            %- libtool
+            %- xsltproc
+            %- lcov
+            %- libcomedi-dev
+            %- libgee-0.8-dev
+            %- libglib2.0-dev
+            %- libgirepository1.0-dev
+            %- libgsl0-dev
+            %- libjson-glib-dev
+            %- libmatheval-dev
+            %- libmodbus-dev
+            %- libpeas-dev
+            %- libsqlite3-dev
+            %- libvala-0.30-dev
+            %- libxml2-dev
+            %- libzmq3-dev
+            %- python-gi-dev
+            %- valac-0.30
+
+      %notifications:
+        %slack: opendcs:3d3YMfezT8S8vBHlpyJvTAic
+
+      %before_install:
+        %- pip install --user cpp-coveralls
+
+      %before_script:  .ci/before_script.sh
+      %script:         .ci/script.sh
+
+      %after_success:
+        %- coveralls --exclude tests --gcov-options '\-lp'
+        %- bash <(curl -s https://codecov.io/bash)
+    %\end{lstlisting}
+
+    %\begin{lstlisting}[language=bash,
+                       %caption={TravisCI Pre Script},
+                       %label={lst:ci-pre}]
+      %#!/usr/bin/env bash
+
+      %set -e
+      %set -o pipefail
+
+      %cd ${TRAVIS_BUILD_DIR}
+      %wget https://github.com/GNOME/libsoup/archive/2.48.1.tar.gz
+      %tar zxvf 2.48.1.tar.gz
+      %cd libsoup-2.48.1
+      %./autogen.sh --prefix=/usr --without-gnome --disable-tls-check
+      %make && sudo make install
+      %cd ${TRAVIS_BUILD_DIR}
+      %rm -rf libsoup-2.48.1
+      %# TODO move into a build_deps script within .ci/common/build.sh
+      %git clone https://github.com/geoffjay/libcld.git
+      %cd libcld
+      %git checkout develop
+      %PKG_CONFIG_PATH=./deps ./autogen.sh
+      %make && sudo make install
+      %cd ${TRAVIS_BUILD_DIR}
+      %rm -rf libcld
+      %# XXX don't think this actually works
+      %echo "/usr/local/lib" | sudo tee --append /etc/ld.so.conf
+      %sudo ldconfig
+      %# next command doesn't do anything, just to fix vim/latex highlighting
+      %echo $? >/dev/null
+    %\end{lstlisting}
+
+    %\begin{lstlisting}[language=bash,
+                       %caption={TravisCI Post Script},
+                       %label={lst:ci-post}]
+      %#!/usr/bin/env bash
+
+      %set -e
+      %set -o pipefail
+
+      %sed -i 's/\(\[pygobject_required_version\]\,\s\[3\.\)18\(\.0\]\)/\112\2/' configure.ac
+      %sed -i 's/\(\[glib_required_version\]\,\s\[2\.\)46\(\.0\]\)/\140\2/' configure.ac
+      %sed -i 's/\(\[peas_required_version\]\,\s\[1\.\)16\(\.0\]\)/\18\2/' configure.ac
+      %sed -i 's/\(\[json_required_version\]\,\s\[\)1\.0\(\.0\]\)/\10.16\2/' configure.ac
+
+      %./autogen.sh \
+          %--enable-debug \
+          %--enable-optimizations \
+          %--enable-coverage \
+          %--disable-ui \
+          %--disable-webkit \
+          %--disable-vala-plugin \
+          %--disable-python-plugin
+      %make && make coverage
+    %\end{lstlisting}
+
   \subsection{REST APIs}\label{sec:rest}
 
     A high level overview of the RESTful APIs provided by the services is given
@@ -84,6 +201,7 @@
       types configured at runtime to add functionality and leave future options
       open for concepts like proxies and brokers.
 
+      \begin{minipage}{\linewidth}
       \large{\textbf{Publishers}}
 
       \begin{table}[H]
@@ -101,7 +219,9 @@
         \end{tabular}
         \caption{API for the Publishers in Services}\label{tab:rest-common-pub}
       \end{table}
+      \end{minipage}
 
+      \begin{minipage}{\linewidth}
       \large{\textbf{Subscribers}}
 
       \begin{table}[H]
@@ -119,7 +239,9 @@
         \end{tabular}
         \caption{API for the Subscribers in Services}\label{tab:rest-common-sub}
       \end{table}
+      \end{minipage}
 
+      \begin{minipage}{\linewidth}
       \large{\textbf{Requesters}}
 
       \begin{table}[H]
@@ -137,7 +259,9 @@
         \end{tabular}
         \caption{API for the Requesters in Services}\label{tab:rest-common-req}
       \end{table}
+      \end{minipage}
 
+      \begin{minipage}{\linewidth}
       \large{\textbf{Repliers}}
 
       \begin{table}[H]
@@ -155,9 +279,11 @@
         \end{tabular}
         \caption{API for the Repliers in Services}\label{tab:rest-common-rep}
       \end{table}
+      \end{minipage}
 
     \subsubsection{Data Acquisition Service}\label{sec:rest-daq}
 
+      \begin{minipage}{\linewidth}
       \large{\textbf{Devices}}
 
       \begin{table}[H]
@@ -176,7 +302,9 @@
         \end{tabular}
         \caption{API for the DAQ Service Devices}\label{tab:rest-daq-dev}
       \end{table}
+      \end{minipage}
 
+      \begin{minipage}{\linewidth}
       \large{\textbf{Sensors}}
 
       \begin{table}[H]
@@ -194,7 +322,9 @@
         \end{tabular}
         \caption{API for the DAQ Service Sensors}\label{tab:rest-daq-sensor}
       \end{table}
+      \end{minipage}
 
+      \begin{minipage}{\linewidth}
       \large{\textbf{Signals}}
 
       \begin{table}[H]
@@ -212,7 +342,9 @@
         \end{tabular}
         \caption{API for the DAQ Service Signals}\label{tab:rest-daq-signal}
       \end{table}
+      \end{minipage}
 
+      \begin{minipage}{\linewidth}
       \large{\textbf{Ports}}
 
       \begin{table}[H]
@@ -230,9 +362,11 @@
         \end{tabular}
         \caption{API for the DAQ Service Ports}\label{tab:rest-daq-port}
       \end{table}
+      \end{minipage}
 
     \subsubsection{Data Logging Service}\label{sec:rest-log}
 
+      \begin{minipage}{\linewidth}
       \large{\textbf{Backends}}
 
       \begin{table}[H]
@@ -250,7 +384,9 @@
         \end{tabular}
         \caption{API for the Log Service Backends}\label{tab:rest-log-backend}
       \end{table}
+      \end{minipage}
 
+      \begin{minipage}{\linewidth}
       \large{\textbf{Logs}}
 
       \begin{table}[H]
@@ -268,7 +404,9 @@
         \end{tabular}
         \caption{API for the Log Service's Configured Logs}\label{tab:rest-log-logs}
       \end{table}
+      \end{minipage}
 
+      \begin{minipage}{\linewidth}
       \large{\textbf{Log Columns}}
 
       \begin{table}[H]
@@ -286,7 +424,9 @@
         \end{tabular}
         \caption{API for the Log Service's Configured Data Columns}\label{tab:rest-log-columns}
       \end{table}
+      \end{minipage}
 
+      \begin{minipage}{\linewidth}
       \large{\textbf{Data Query}}
 
       \begin{table}[H]
@@ -300,9 +440,11 @@
         \end{tabular}
         \caption{API for Log Service Queries}\label{tab:rest-log-query}
       \end{table}
+      \end{minipage}
 
     \subsubsection{Process Control Service}\label{sec:rest-control}
 
+      \begin{minipage}{\linewidth}
       \large{\textbf{Feedback Controllers}}
 
       \begin{table}[H]
@@ -320,3 +462,4 @@
         \end{tabular}
         \caption{API for the Process Control Service Feedback Controllers}\label{tab:rest-control-controllers}
       \end{table}
+      \end{minipage}

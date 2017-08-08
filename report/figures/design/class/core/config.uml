@@ -3,7 +3,9 @@
  '/
 
 @startuml
+
 hide interface fields
+
 interface Config {
     +{static} check_property_type (GLib.Type class, GLib.Type check, string prop) throws Error
     +virtual void dump (GLib.FileStream stream)
@@ -31,4 +33,5 @@ interface Config {
     +void config_changed (Dcs.ConfigEntry entry)
     +void setting_changed (string ns, string key)
 }
+
 @enduml

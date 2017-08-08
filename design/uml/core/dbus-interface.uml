@@ -1,0 +1,12 @@
+/'
+ '  UML include file for DBusInterface
+ '/
+
+@startuml
+interface DBusInterface {
+    +const unowned string SERVICE_NAME
+    +const unowned string OBJECT_PATH
+    ----
+    +{abstract} abstract shutdownd () throws IOError
+}
+@enduml

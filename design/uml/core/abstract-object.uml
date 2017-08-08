@@ -1,0 +1,12 @@
+/'
+ '  UML include file for AbstractObject
+ '/
+
+@startuml
+abstract class AbstractObject {
+    +string id
+    ----
+    +virtual string serialize () throws Error
+    +virtual void deserialize (string data) throws Error
+}
+@enduml

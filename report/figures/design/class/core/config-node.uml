@@ -3,6 +3,7 @@
  '/
 
 @startuml
+
 class ConfigNode {
     ~ConfigNode parent
     ----
@@ -43,4 +44,5 @@ class ConfigNode {
     -- signals --
     +void property_edited (string property)
 }
+
 @enduml

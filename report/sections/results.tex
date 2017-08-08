@@ -1,1 +1,63 @@
 \section{Results}\label{sec:results}
+
+  Section 7.2 of the proposal document submitted to BCIT CST BTech outlined all
+  tasks that were expected to be achieved as a requirement of this project were
+  carried out with a single exception. Part of Task 0.1.8, ``Write simple
+  example program as proof-of-concept'' was not. It was felt that the
+  justification for developing such a tool was to validate the network
+  connectivity and in general the interoperability of this project, but these
+  were accomplished using existing tools, namely the command \textt{zmqc} and
+  Postman so the time and effort was placed on other aspects. For convenience
+  that proposal has been included as a soft copy with this report submission at
+  the location \texttt{documents/proposal.pdf}.
+
+  \subsection{Successes}\label{sec:results-successes}
+
+    There were a couple of very important components of this project that
+    needed to be carried out successfully, the ability to configure the
+    services using a common and consistent format, that each system service
+    could load context specific plugins that would perform the heavy lifting
+    for data acquisition, data logging, and feedback control, and REST APIs
+      which would expose the services and data gathered to just about anything
+      that consumes HTTP traffic.
+
+    The configuration systems, which not perfect, do provide the ability to
+    construct networked services with a varying number of socket types and
+    protocol methods at runtime without writing any additional code, and
+    without even needing to compile any code. This may exist elsewhere in
+    similar forms, but not that this author has been able to find so the
+    ability to perform this kind of flexible networking is seen as a project
+    accomplishment.
+
+    Plugin systems are crucial to this system, the project was to define a
+    framework for application development that use a variety of different kinds
+    of data acquisition hardware devices, data logging backends, and feedback
+    control schemes. This was achieved by making each service load plugins and
+    expose parts of their data models to those plugins so that the actual work
+    could be done without knowing what the hardware is or need to do for the
+    development of the services.
+
+    REST service routers open up a lot of possibilities including websites that
+    pull data using standard web requests, this should make application
+    development much easier long term for any project that needs to pull data
+    from a data log, retrieve a measured value, or perform complicated control
+    systems without having to actual modify any of the systems that perform
+    those tasks.
+
+  \subsection{Failures}\label{sec:results-failures}
+
+    The idea of being able to have services and plugins be configurable from a
+    variety of input types was an interesting one as it would allow for the
+    developer of such things to make choices about how they wanted to configure
+    their component, but it created added complexity where it wasn't necessary.
+    Using a single format, ideally JSON, would have simplified development and
+    much of the development could have been focussed on systems that were more
+    crucial to execution.
+
+    Configuration exceptions are too restrictive and not always handled
+    correctly so the service will fail if there are issues with what's been
+    provided, such as an object that the service does not have a factory to
+    construct. This is not a show stopper due to the fact that the editor
+    shouldn't need to add objects that aren't available in the libraries, but
+    it should skip them gracefully with the addition of a warning message and
+    allow the rest of the data model to be constructed successfully.

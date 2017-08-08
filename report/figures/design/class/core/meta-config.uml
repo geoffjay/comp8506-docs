@@ -3,7 +3,9 @@
  '/
 
 @startuml
+
 hide class fields
+
 class MetaConfig {
     +{static} Dcs.MetaConfig get_default ()
     +{static} void register_config (Dcs.Config config)
@@ -28,4 +30,5 @@ class MetaConfig {
     +override void set_double (string ns, string key, double value) throws Error
     +override void set_double_list (string ns, string key, double[] value) throws Error
 }
+
 @enduml

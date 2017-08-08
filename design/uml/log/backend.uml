@@ -1,0 +1,10 @@
+/'
+ '  UML include file for Backend interface
+ '/
+
+@startuml
+interface Backend {
+    +{abstract}abstract open () theroes Error
+    +{abstract}abstract close () throws Error
+}
+@enduml

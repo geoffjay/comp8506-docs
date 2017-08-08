@@ -51,6 +51,8 @@
       \item Provide an authentication mechanism, even if rudimentary at first
     \end{itemize}
 
+    \newpage
+
     \subsection{Data Acquisition Service}\label{sec:dsg-role-daq}
 
       The roles of this service are to:
@@ -117,6 +119,8 @@
       \label{fig:dsg-use-deploy}
     \end{figure}
 
+    \newpage
+
     Measuring data is a key use of this system and the interactions that occur
     between a system operator and the running services should be defined so that
     there is an understanding of how it should developed.
@@ -126,6 +130,8 @@
       \caption{Use Case for Measuring DAQ Data}
       \label{fig:dsg-use-measure}
     \end{figure}
+
+    \newpage
 
     Another core concept is querying data that the data log service receives
     from the DAQ service. For this use case the actor for the operator is
@@ -276,7 +282,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         A data series within the context of OpenDCS is a building block for
         node objects that need to contain an array of values, some examples of
         this are a feedback controller, a chart trace, or a signal filter.
@@ -293,7 +299,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         In GLib applications DBus interfaces are used by services to create an
         API similar to what would be provided by a REST API. This object is
         carry over from the software that OpenDCS was forked from and will very
@@ -311,7 +317,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         Factories in OpenDCS are a means to define a generic way of building
         objects from configuration nodes without having to define a construction
         method within each. It defines the requirements for others implementing
@@ -330,7 +336,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         % TODO move to Net
         Messages are a serialized format of an object, or grouping of objects,
         that will be pushed and popped on message queues that are used by
@@ -348,7 +354,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         The meta configuration class provides applications a method of loading
         multiple configurations of various types in at runtime without knowing
         exactly what they provide. It is essentially a list of configuration
@@ -367,7 +373,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         The meta factory class provides applications a method of loading
         multiple object factories of various types in a runtime without knowing
         what the produce for a given configuration node. It is a list of factory
@@ -386,7 +392,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         % TODO provide citation
         A model in an MVC application stores data that is retrieved using
         commands from the controller and to update what is displayed in the
@@ -404,7 +410,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         The node class is a fundamental component of constructing the data model
         for services, it is extends a tree map ADT and is meant to contain other
         objects that derive it. Nodes have properties, an optional parent, and
@@ -423,7 +429,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         An object is the base interface for all classes to implement that work
         across OpenDCS libraries and within service data models.
       \end{minipage} \hfill
@@ -439,7 +445,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         The plugin information class will be used to describe features that the
         plugin provides, for example if a plugin is meant to read values from a
         piece of data acquisition hardware it will provide the values read as
@@ -457,7 +463,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         In other namespaces plugin managers will use this common class so that
         services have a general base for the functionality the plugin system is
         meant to provide.
@@ -474,7 +480,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         A plugin object is the class that other plugin types base off of, it
         defines the basic requirements that libpeas has of plugin extensions.
         All plugins in OpenDCS will additionally have the ability to perform
@@ -492,7 +498,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         Points are a simple class that are used at a variety of locations
         including in measurements, data series value groups, and chart traces
         in the GUI which hasn't been included in this report.
@@ -509,7 +515,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         References are an integral part of how the objects contained in a data
         model connect to each other, this class provides the ability to work
         with those references in a safe manner.
@@ -526,7 +532,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         Reference linking is performed by an application after every time new
         references have been added to an object. This object uses the singleton
         pattern as it contains data about the entire application and would
@@ -544,7 +550,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         This interface is used by objects that will need to be serialized and
         deserialized for the purpose of passing across networks using ZeroMQ and
         REST messaging.
@@ -561,7 +567,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         The logging facility provides a format for output strings and controls
         what level of messages will be output based on a variable controlling
         verbosity. It provides control to the user over the output depending on
@@ -580,7 +586,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         A view in an MVC application is used to generate new output based on
         changes to the model.
       \end{minipage} \hfill
@@ -591,6 +597,8 @@
           \label{fig:dsg-classes-view}
         \end{figure}
       \end{minipage}
+
+    \newpage
 
     \subsubsection{Data Acquisition Library}\label{sec:dsg-classes-daq}
 
@@ -604,7 +612,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         The device manager class is the DAQ namespace specific implementation of
         the plugin manager to be used by services and applications that want to
         load hardware device type plugins.
@@ -621,7 +629,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         This serves as a base for any device plugins that will be developed and
         loaded by services and applications that contain a device manager.
       \end{minipage} \hfill
@@ -637,7 +645,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         The factory class in this namespace serves the same function as other
         factories, except that it produces DAQ specific objects. It is meant to
         be used with the DcsMetaFactory class as part of a larger application.
@@ -663,7 +671,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         The backend manager class is the Log namespace specific implementation
         of the plugin manager to be used by services and applications that want
         to load logging backend type plugins.
@@ -680,7 +688,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         This serves as a base for any backend plugin that will be developed and
         loaded by services and applications that contain a backend manager.
       \end{minipage} \hfill
@@ -696,7 +704,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         The factory class in this namespace serves the same function as other
         factories, except that it produces Log specific objects. It is meant to
         be used with the DcsMetaFactory class as part of a larger application.
@@ -723,7 +731,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         The controller manager class is the Control namespace specific
         implementation of the plugin manager to be used by services and
         applications that want to load feedback controller type plugins.
@@ -739,7 +747,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         This serves as a base for any controller plugin that will be developed
         and loaded by services and applications that contain a controller
         manager.
@@ -755,7 +763,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         The factory class in this namespace serves the same function as other
         factories, except that it produces Control specific objects. It is
         meant to be used with the DcsMetaFactory class as part of a larger
@@ -768,6 +776,8 @@
         \end{figure}
       \end{minipage}
 
+    \newpage
+
     \subsubsection{Networking Library}\label{sec:dsg-classes-net}
 
       The networking library contains classes that are used to communicate with
@@ -778,7 +788,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         The factory class in this namespace serves the same function as other
         factories, except that it produces Net specific objects. It is meant to
         be used with the DcsMetaFactory class as part of a larger application.
@@ -795,7 +805,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         Services are an extension of applications and use the same MVC design
         pattern, but they add the concept of plugin systems and expose features
         that are required by plugins to function as part of the system.
@@ -812,7 +822,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         This is an abstract base that service implementations must extend and
         define if they want to provide a RESTful API. It exists mainly to be
         added as a contract to the DcsNetService class to ensure services
@@ -830,7 +840,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         A publish object makes a connection to a ZeroMQ context and provides a
         means of configuring this type of socket using the configuration and
         production methods of this project.
@@ -847,7 +857,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         A subscribe object makes a connection to a ZeroMQ context and provides a
         means of configuring this type of socket using the configuration and
         production methods of this project.
@@ -864,7 +874,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         A request object makes a connection to a ZeroMQ context and provides a
         means of configuring this type of socket using the configuration and
         production methods of this project.
@@ -881,7 +891,7 @@
 
       \vspace*{-0.75cm}
       \begin{minipage}[t]{0.5\textwidth}
-      	\vspace*{0.5cm}
+        \vspace*{0.5cm}
         A reply object makes a connection to a ZeroMQ context and provides a
         means of configuring this type of socket using the configuration and
         production methods of this project.
@@ -893,6 +903,8 @@
           \label{fig:dsg-classes-net-reply}
         \end{figure}
       \end{minipage}
+
+  \newpage
 
   \subsection{Class Diagrams}\label{sec:dsg-class-dia}
 
@@ -975,6 +987,18 @@
       \label{fig:dsg-class-service}
     \end{figure}
 
+    \emph{Complete Class Diagram for the Entire Project}
+
+    The complete class diagram for OpenDCS would not fit onto a single page, or
+    spanning multiple pages, in any way that would make it useful to the
+    reader.  As that is the case the file has been provided on the disc that
+    the report has been submitted on at the path \\
+    \texttt{documents/report/figures/design/class/opendcs.png}. Alternatively,
+    this file can be retrieved from the GitHub repository where the files used
+    to create this report reside at \url{https://github.com/open-dcs/doc/blob/master/report/figures/design/class/opendcs.png}.
+
+  \newpage
+
   \subsection{Sequence Diagrams}\label{sec:dsg-sequence}
 
     The project life cycle sequence does not impact the development of this
@@ -992,6 +1016,8 @@
       \label{fig:dsg-sequence-life-cycle}
     \end{figure}
 
+    \newpage
+
     All of the services that will be developed as part of OpenDCS rely heavily
     on the usage of plugins, as such it is worthwhile to outline how the generic
     service concept will go about loading plugins from the file system. What is
@@ -1006,11 +1032,13 @@
     \end{figure}
 
     The next three sequence diagrams show the process sequence of key concepts.
-		Figure~\ref{fig:dsg-sequence-measure-request} is meant to describe what
-		should happen when a user of the system requests a measurement from the DAQ
+    Figure~\ref{fig:dsg-sequence-measure-request} is meant to describe what
+    should happen when a user of the system requests a measurement from the DAQ
     service, Figure~\ref{fig:dsg-sequence-query-request} for a data query of
     the logging service, and Figure~\ref{fig:dsg-sequence-control-request} for
     a process control change of the feedback control service.
+
+    \newpage
 
     A measurement in OpenDCS is performed by a device plugin, the DAQ service
     itself is only responsible for loading the plugin and providing the
@@ -1054,6 +1082,8 @@
       \label{fig:dsg-sequence-control-request}
     \end{figure}
 
+  \newpage
+
   \subsection{Component Diagrams}\label{sec:dsg-component}
 
     OpenDCS is a service oriented architecture where each should be developed to
@@ -1063,7 +1093,7 @@
     for external applications to communicate with it.
 
     \begin{figure}[H]
-      \includegraphics[width=\textwidth]{figures/design/component/service}
+      \includegraphics[width=0.6\textwidth,center]{figures/design/component/service}
       \caption{Service Component Diagram}
       \label{fig:dsg-component-service}
     \end{figure}
@@ -1077,7 +1107,7 @@
     namespaces.
 
     \begin{figure}[H]
-      \includegraphics[width=\textwidth]{figures/design/component/plugin}
+      \includegraphics[width=0.6\textwidth,center]{figures/design/component/plugin}
       \caption{Plugin Component Diagram}
       \label{fig:dsg-component-plugin}
     \end{figure}

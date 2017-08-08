@@ -3,6 +3,7 @@
  '/
 
 @startuml
+
 abstract class Application {
     #Dcs.MetaConfig config
     #Dcs.MetaFactory factory
@@ -21,4 +22,5 @@ abstract class Application {
 	-- signals --
 	signal void closed ()
 }
+
 @enduml

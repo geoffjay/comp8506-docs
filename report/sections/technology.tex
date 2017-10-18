@@ -27,6 +27,17 @@
     reason for selecting this library over something else, such as TCP or UDP
     sockets on their own.
 
+    The use of a messaging system to stream data across the different services
+    provides an area for innovation. Early research into alternative solutions
+    to this project revealed that no other available distributed control system
+    that could be found uses a message queueing framework and all rely of
+    simple socket types to achieve less performant results than can be seen
+    through messaging. Some challenges are expected however, while it is
+    straightforward to transmit data over a socket this system will expect the
+    messaging equivalents to follow a data exchange format. This will need to
+    be created in a fashion that all sides of the communication can implement
+    without a great deal of additional effort.
+
     \paragraph{PUB-SUB Pattern}
 
       With this form of messaging the publisher sends the message, and the
@@ -62,3 +73,24 @@
     language features without imposing any runtime requirements and without
     using a different ABI compared to applications and libraries written in
     C~\cite{Vala2016}.
+
+  \subsection{ZLib Compression}\label{sec:tech-zlib}
+
+    One unknown aspect of this project is whether or not the type of data
+    created by the system will benefit from compression prior to transmission.
+    In order to test this plugins will be devised to compress/decompress data,
+    and record measurements of the results. Many compression schemes are
+    available, but one that is ubiquitous and available in the libraries being
+    used to develop this project is ZLib. ZLib is a compression format that is
+    used by all major operating systems to perform backups, reduce log file
+    sizes, and in general compress data.
+
+    If successful the use of a compression mechanism in this kind of system
+    could be very useful as it makes it possible to send large amounts of data
+    as a single compressed package, at a lower cost. This could however result
+    in the finding that the data created by the system does not benefit from
+    compression, and while this is not known it is suspected. Compression
+    algorithms frequently are developed to address a certain type of data, for
+    instance JPEG for image data, and it will be a challenge in this project to
+    determine if ZLib will be a good fit for the kind of random values that are
+    produced by a data acquisition system.

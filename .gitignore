@@ -10,6 +10,10 @@
 *.hst
 *.ver
 
+## Temp files:
+*.swp
+*.*~
+
 ## Intermediate documents:
 *.dvi
 *-converted-to.*

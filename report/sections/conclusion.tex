@@ -1,0 +1,34 @@
+\section{Conclusion}\label{sec:conclusion}
+
+  % Restate the main idea of your essay, or your thesis statement
+  A distributed services approach to control systems including components of
+  data acquisition, data logging, and feedback control, have been presented.
+  Requirements of the project included developing a message queueing system for
+  inter-service communication, a RESTful API to expose features to any language
+  or application capable of making basic web requests, and a plugin system that
+  can be used to inject data into, and consume from, streaming services. All of
+  these features were believed to reduce the amount of overhead on an
+  individual host system executing any of the services, improve
+  interoperability with the system from external applications, and simplify the
+  development of new data sources and consumers.
+
+  % Summarize the three subpoints of your essay
+  Using ZeroMQ has shown to be an effective strategy for publishing and
+  subscribing to (streaming) the data that was produced by the services within
+  the system, in all test cases the networking of the host running a system was
+  capable of keeping up with very high demands on the types of data produced
+  while resource requirements were low. Additionally the REST APIs showed how
+  it was possible to make changes to the service data models that were easy
+  to test using readily available tools without needing to write client
+  applications to do this. Finally, the plugin systems developed were
+  demonstrated to be very effective in integrating new sources of data
+  producers and consumers into the system without the overhead of recompiling
+  the main code base.
+
+  % Leave the reader with an interesting final impression
+  This project has been the first steps towards a modern and heavily configurable distributed
+  control system capable of delivering custom control systems with a small amount of effort,
+  without having the end user need to compile any code. Efforts to find an alternative solution
+  that was capable of creating these generic systems, or capable of communicating the data they
+  created over any message queueing systems that are common in distributed systems revealed that
+  the solution presented here is unique.

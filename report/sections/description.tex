@@ -140,3 +140,70 @@
     much flexibility the system offered regarding expanding to different data
     acquistion hardware and storage database types. It appeared to be none at
     all.
+
+  \subsection{Innovation}\label{sec:desc-innovation}
+
+    The proposed project is innovative in a number of ways, a couple of the
+    requirements identified in an initial stakeholder review made it clear where
+    significant effort would need to be placed in order to address these. One of
+    these was that it needed to have an object mapping that allowed for the
+    ability to easily and extensibly add and encorporate new objects into the
+    system by simply adding a new object and having the configuration and data
+    model recognize them. It needed to have a plugin system that exposed the
+    networking subsystems in a convenient manner, and again be configurable in a
+    way that was consistent with the existing system. Also, that a message queue
+    be part of the system that would allow for a variety of new components that
+    are commonplace in distributed systems could be added, such as message
+    brokers, load balancers, and efficient data distribution.
+
+    The configuration system was designed and developed in such a way that not
+    all future extensions of it would need to be known, by having classes
+    responsible for registering these new configuration managers this was
+    achieved. It allows for new plugins and new systems to be added without
+    modifying the primary code base, for instance plugins that are developed by
+    developers can have develop their own configuration systems that allow for a
+    single holistic configuration of the application that is exposed as a single
+    data model without ever modifying a line of code in this project.
+
+    Another area of innovation that is worth noting is the plugin system that is
+    used by the various distributed components to do all of the heavy lifting of
+    the systems. Each subsystem is only responsible for loading the
+    configurations into a single data model, exposing various core components to
+    the plugins, and providing a consistent API over REST and ZeroMQ. This
+    design allows for developers to construct new plugins that read and write
+    data from obscure hardware devices, perform new methods of logging the data
+    acquired by these, and performing feedback calculations for the purpose of
+    controlling hardware. This was demonstrated in the project through the
+    development of a plugin that generated data for the purpose of testing the
+    networking, another that consumed that data and calculated statistics on the
+    data transfered over ZeroMQ, and another that consumed that same data and
+    performed calculations on it to be then piped out of another publishing
+    message queue.
+
+  \subsection{Complexity}\label{sec:desc-complexity}
+
+    Similar to the previous section on innovation the key areas of complexity
+    that needed to be addressed during design and development were the
+    configuration and plugin systems. The desire of the project was to not know
+    everything up front that could be done with it, that is very much in the
+    spirit of how the client performs their development work. In order to be
+    able to develop new plugins for data acquisition, data logging, and feedback
+    control it would be necessary to be able to configure these and get them
+    into the system in a predictable manner. Without this there would be far too
+    much difficulty to the end user when new plugins needed to be integrated
+    into a system that they are already familiar with.
+
+    As it turned out, getting a single configuration object in the services in
+    order to build a single \emph{Meta} configuration built up of other smaller
+    ones that described the data acquisition and logging, control system,
+    networking, and plugin definitions was a complex task. Each needed to be
+    loaded from a predictable and flexible location, and registered with the
+    primary configuration object. The development of the plugin system presented
+    it's own unique challenges as well, the different services that exposed very
+    different functionality had to have an underlying structure and this ended
+    up being a considerable effort without repeating code and introducing future
+    complexity during time spent refactoring and maintaining it. Both of these
+    elements of the project also introduced a problem that ended up being a lot
+    more effort to deal with than initially understood, they required a complex
+    build system that would set the project installation directories up without
+    requiring any additional effort by the user at the time of deployment.
